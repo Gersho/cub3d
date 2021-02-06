@@ -6,11 +6,11 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 14:28:45 by kzennoun          #+#    #+#             */
-/*   Updated: 2020/12/19 15:31:49 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 14:31:51 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "cube.h"
 
 void	*ft_calloc_zero(size_t count, size_t size)
 {
@@ -75,13 +75,13 @@ int		gnl_bis(char **line, int nl_i, int read_ret, char **s)
 
 int		get_next_line(int fd, char **line)
 {
-	char			buffer[BUFFER_SIZE];
+	char			buffer[128];
 	static char		*s;
 	int				read_ret;
 	int				nl_i;
 	char			*temp;
 
-	if (fd < 0 || read(fd, 0, 0) || BUFFER_SIZE <= 0 || !line)
+	if (fd < 0 || read(fd, 0, 0) || !line)
 	{
 		if (s)
 			return (free_and_return_int(s, -1));
@@ -93,7 +93,7 @@ int		get_next_line(int fd, char **line)
 	read_ret = 1;
 	while ((nl_i = ft_str_find_c(s, '\n')) == -1 && (read_ret > 0))
 	{
-		if (((read_ret = read(fd, buffer, BUFFER_SIZE)) == -1)
+		if (((read_ret = read(fd, buffer, 128)) == -1)
 			|| ((temp = ft_gnl_join(s, buffer, read_ret)) == NULL))
 			return (free_and_return_int(s, -1));
 		free(s);
