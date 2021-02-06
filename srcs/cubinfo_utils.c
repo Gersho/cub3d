@@ -6,16 +6,22 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 12:46:12 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/06 10:55:44 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 11:24:46 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
+int		cubinfo_validate(t_cubinfo *cubinfo)
+{
+
+	
+}
+
 void	cubinfo_init(t_cubinfo *cubinfo)
 {
-	cubinfo->res_x = -1;
-	cubinfo->res_y = -1;
+	cubinfo->res[0] = -1;
+	cubinfo->res[1] = -1;
 	cubinfo->path_N = NULL;
 	cubinfo->path_S = NULL;
 	cubinfo->path_E = NULL;
@@ -43,8 +49,7 @@ void	cubinfo_free(t_cubinfo *cubinfo)
 
 void cubinfo_debug(t_cubinfo *cubinfo)
 {
-	printf("res_x:%d\n", cubinfo->res_x);
-	printf("res_y:%d\n", cubinfo->res_y);
+	printf("res:%d,%d\n", cubinfo->res[0], cubinfo->res[1]);
 	printf("Path_N:%s\n",cubinfo->path_N);
 	printf("Path_S:%s\n",cubinfo->path_S);
 	printf("Path_E:%s\n",cubinfo->path_E);

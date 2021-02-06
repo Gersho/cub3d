@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/06 10:49:40 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 13:21:59 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 
 typedef struct s_cubinfo
 {
-	int		res_x;
-	int		res_y;
+	int		res[2];
 	char	*path_N;
 	char	*path_S;
 	char	*path_E;
