@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:23:37 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/09 11:42:16 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 13:04:46 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 	free(ptr);
 }
 
-int	ft_parse_line(char *line, t_cubinfo *cubinfo)
+void	ft_parse_line(char *line, t_cubinfo *cubinfo, int i)
 {
+	if (ft_strlen(line) == 0)
+		return ;
 	if (line[0] == 'C' || line[0] == 'F')
 		ft_parse_cf(line, cubinfo);
 	else if (line[0] == 'R')
@@ -79,19 +81,22 @@ int	ft_parse_line(char *line, t_cubinfo *cubinfo)
 		ft_parse_path(line, cubinfo);
 	else
 	{
+		if (cubinfo->map_start == -1)
+			cubinfo->map_start = i;
 		cubinfo->map_size[0] += 1;
 		if (cubinfo->map_size[1] < ft_strlen(line))
 			cubinfo->map_size[1] = ft_strlen(line);
 	}
-	return (1);
 }
 
-int	ft_parse_map(char *path, t_cubinfo *cubinfo)
+void	ft_parse_map(char *path, t_cubinfo *cubinfo)
 {
 	int		fd;
 	char	*line;
 	int		ret;
+	int		i;
 
+	i = 0;
 	fd = open(path, O_RDONLY);
 	if (!fd)
 		freecub_exit(cubinfo, -1);
@@ -100,12 +105,9 @@ int	ft_parse_map(char *path, t_cubinfo *cubinfo)
 		ret = get_next_line(fd, &line);
 		if (ret == -1)
 			freecub_exit(cubinfo, -1);
-		if (ft_strlen(line) == 0)
-			continue ;
-		ft_parse_line(line, cubinfo);
+		ft_parse_line(line, cubinfo, i);
 		if (ret == 0)
 			break ;
+		i++;
 	}
-	//cubinfo_validate
-	return (1);
 }
