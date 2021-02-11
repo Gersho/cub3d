@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 14:28:48 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/05 11:47:24 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 15:46:33 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*ft_gnl_join(char *stock, char *s2, int size)
 	if (!stock || !s2)
 		return (NULL);
 	len = ft_strlen(stock);
-	if (!(ptr = ft_calloc_zero((len + size + 1), sizeof(char))))
+	ptr = ft_calloc_zero((len + size + 1), sizeof(char));
+	if (!ptr)
 		return (NULL);
 	ft_memcpy((ft_memcpy(ptr, stock, len) + len), s2, size);
 	return (ptr);
@@ -36,12 +37,14 @@ char	*ft_gnl_substr(char *s, size_t len_s, size_t start, size_t size)
 		size = 0;
 	if (len_s - start < size)
 	{
-		if (!(ptr = ft_calloc_zero((len_s - start + 1), sizeof(char))))
+		ptr = ft_calloc_zero((len_s - start + 1), sizeof(char));
+		if (!ptr)
 			return (NULL);
 	}
 	else
 	{
-		if (!(ptr = ft_calloc_zero((size + 1), sizeof(char))))
+		ptr = ft_calloc_zero((size + 1), sizeof(char));
+		if (!ptr)
 			return (NULL);
 	}
 	ft_strlcpy(ptr, s + start, size + 1);

@@ -6,16 +6,17 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 12:46:12 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/07 15:45:42 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 16:14:13 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
+/*
 int		cubinfo_validate(t_cubinfo *cubinfo)
 {
+	//a refaire, cdlamerde
 	if (!cubinfo->path_N || !cubinfo->path_S || !cubinfo->path_E
-	 ||!cubinfo->path_W || !cubinfo->sprite)
+	 ||!cubinfo->path_W || !cubinfo->path_sprite)
 	 	return (0);
 	if (!cubinfo->res[0] || !cubinfo->res[1] || !cubinfo->color_floor[0] 
 	|| !cubinfo->color_floor[1] || !cubinfo->color_floor[2] 
@@ -26,6 +27,7 @@ int		cubinfo_validate(t_cubinfo *cubinfo)
 		return (0);
 	return (1);
 }
+*/
 
 void	cubinfo_init(t_cubinfo *cubinfo)
 {
@@ -48,11 +50,16 @@ void	cubinfo_init(t_cubinfo *cubinfo)
 
 void	cubinfo_free(t_cubinfo *cubinfo)
 {
-	free(cubinfo->path_N);
-	free(cubinfo->path_S);
-	free(cubinfo->path_E);
-	free(cubinfo->path_W);
-	free(cubinfo->path_sprite);
+	if (cubinfo->path_N)
+		free(cubinfo->path_N);
+	if (cubinfo->path_S)
+		free(cubinfo->path_S);
+	if (cubinfo->path_E)
+		free(cubinfo->path_E);
+	if (cubinfo->path_W)
+		free(cubinfo->path_W);
+	if (cubinfo->path_sprite)
+		free(cubinfo->path_sprite);
 	free(cubinfo);
 }
 
