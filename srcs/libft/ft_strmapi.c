@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 13:15:46 by kzennoun          #+#    #+#             */
-/*   Updated: 2020/11/28 13:31:57 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 14:05:06 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (!s || !(*f))
 		return (NULL);
 	len_s = ft_strlen(s);
-	if (!(ptr = malloc((len_s + 1) * sizeof(char))))
+	ptr = malloc((len_s + 1) * sizeof(char));
+	if (!ptr)
 		return (NULL);
 	i = 0;
 	while (s[i] != 0)

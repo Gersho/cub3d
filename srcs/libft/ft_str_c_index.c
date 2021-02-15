@@ -6,11 +6,11 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 12:11:30 by kzennoun          #+#    #+#             */
-/*   Updated: 2020/12/20 13:24:16 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 14:07:33 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_str_index_c(char *str, char c)
+int	ft_str_index_c(char *str, char c)
 {
 	int	i;
 

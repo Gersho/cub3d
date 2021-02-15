@@ -6,11 +6,21 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 10:47:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2020/11/26 12:33:32 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:38:07 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int	ft_norme_avoid(char const *s1, char const *set)
+{
+	int	i;
+
+	i = 0;
+	while (ft_strchr(set, (int)s1[i]) && s1[i] != '\0')
+		i++;
+	return (i);
+}
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
@@ -21,19 +31,19 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1 || !set)
 		return (NULL);
 	len = ft_strlen(s1);
-	i = 0;
-	while (ft_strchr(set, (int)s1[i]) && s1[i] != '\0')
-		i++;
+	i = ft_norme_avoid(s1, set);
 	if (i == len)
 	{
-		if (!(ptr = malloc(sizeof(char))))
+		ptr = malloc(sizeof(char));
+		if (!ptr)
 			return (NULL);
 		ptr[0] = '\0';
 		return (ptr);
 	}
 	while (ft_strchr(set, (int)s1[len]))
 		len--;
-	if (!(ptr = malloc((len - i + 2) * sizeof(char))))
+	ptr = malloc((len - i + 2) * sizeof(char));
+	if (!ptr)
 		return (NULL);
 	ft_memcpy(ptr, (s1 + i), (len - i + 1));
 	ptr[len - i + 1] = '\0';

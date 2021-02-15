@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 13:48:51 by kzennoun          #+#    #+#             */
-/*   Updated: 2020/11/28 14:38:30 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 14:06:43 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int nb, int fd)
 {
-	long int long_nb;
+	long int	long_nb;
 
 	long_nb = nb;
 	if (long_nb < 0)

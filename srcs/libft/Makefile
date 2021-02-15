@@ -20,7 +20,7 @@ CFLAGS	= -Wall -Wextra -Werror
 AR		= ar -cr
 
 %.o: %.c	libft.h
-			$(CC) $(CFLAGS) -c $< -o $@ -I
+			$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):	$(OBJS)
 			$(AR) $(NAME) $?

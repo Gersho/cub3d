@@ -6,13 +6,13 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 12:35:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/01/23 12:36:57 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 14:39:26 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_get_digit_count(long int n)
+static int	ft_get_digit_count(long int n)
 {
 	int		i;
 
@@ -27,7 +27,7 @@ static int		ft_get_digit_count(long int n)
 	return (i);
 }
 
-char			*ft_ltoa(long int long_n)
+char	*ft_ltoa(long int long_n)
 {
 	char			*str;
 	int				digit_count;
@@ -35,7 +35,8 @@ char			*ft_ltoa(long int long_n)
 	digit_count = ft_get_digit_count(long_n);
 	if (long_n < 0)
 		digit_count++;
-	if (!(str = malloc((digit_count + 1) * sizeof(char))))
+	str = malloc((digit_count + 1) * sizeof(char));
+	if (!str)
 		return (NULL);
 	str[0] = '0';
 	if (long_n < 0)
@@ -45,7 +46,7 @@ char			*ft_ltoa(long int long_n)
 	}
 	str[digit_count] = '\0';
 	while (((digit_count >= 0 && str[0] != '-')
-		|| (digit_count > 0 && str[0] == '-')) && long_n != 0)
+			|| (digit_count > 0 && str[0] == '-')) && long_n != 0)
 	{
 		str[digit_count - 1] = (long_n % 10) + '0';
 		long_n /= 10;

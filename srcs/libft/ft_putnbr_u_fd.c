@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:24:56 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/01/21 12:39:48 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 14:06:38 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_u_fd(unsigned int nb, int fd)
 {
-	long unsigned int long_nb;
+	long unsigned int	long_nb;
 
 	long_nb = nb;
 	if (long_nb >= 10)

@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 12:06:31 by kzennoun          #+#    #+#             */
-/*   Updated: 2020/11/29 12:21:20 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 14:38:20 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*ptr;
 
-	if (!(ptr = malloc(sizeof(t_list))))
+	ptr = malloc(sizeof(t_list));
+	if (!ptr)
 		return (NULL);
 	ptr->content = content;
 	ptr->next = NULL;

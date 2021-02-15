@@ -6,13 +6,13 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 06:50:07 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/01/21 12:39:19 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 14:44:00 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_get_digit_count(long int n)
+static int	ft_get_digit_count(long int n)
 {
 	int		i;
 
@@ -27,31 +27,31 @@ static int		ft_get_digit_count(long int n)
 	return (i);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*str;
-	int				digit_count;
-	long int		long_n;
+	int				dc;
+	long int		ln;
 
-	long_n = n;
-	digit_count = ft_get_digit_count(long_n);
-	if (long_n < 0)
-		digit_count++;
-	if (!(str = malloc((digit_count + 1) * sizeof(char))))
+	ln = n;
+	dc = ft_get_digit_count(ln);
+	if (ln < 0)
+		dc++;
+	str = malloc((dc + 1) * sizeof(char));
+	if (!str)
 		return (NULL);
 	str[0] = '0';
-	if (long_n < 0)
+	if (ln < 0)
 	{
 		str[0] = '-';
-		long_n *= -1;
+		ln *= -1;
 	}
-	str[digit_count] = '\0';
-	while (((digit_count >= 0 && str[0] != '-')
-		|| (digit_count > 0 && str[0] == '-')) && long_n != 0)
+	str[dc] = '\0';
+	while (((dc >= 0 && str[0] != '-') || (dc > 0 && str[0] == '-')) && ln != 0)
 	{
-		str[digit_count - 1] = (long_n % 10) + '0';
-		long_n /= 10;
-		digit_count--;
+		str[dc - 1] = (ln % 10) + '0';
+		ln /= 10;
+		dc--;
 	}
 	return (str);
 }
