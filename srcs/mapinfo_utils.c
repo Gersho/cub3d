@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/11 13:52:36 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 11:14:57 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,10 @@ void	mapinfo_instantiate(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path)
 
 	i = 0;
 	mapinfo->map = malloc(mapinfo->size[0] * (sizeof(int*)));
+	while (i < mapinfo->size[1])
+	{
+
+		i++;
+	}
 
 }
