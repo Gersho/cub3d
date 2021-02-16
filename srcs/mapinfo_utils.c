@@ -12,6 +12,17 @@
 
 #include "cube.h"
 
+// test
+
+
+
+// test 2
+
+// test3
+
+
+
+
 t_mapinfo	*mapinfo_setup(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path)
 {
 	mapinfo = malloc(sizeof(t_mapinfo));
