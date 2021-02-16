@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/16 11:14:57 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 13:44:40 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	mapinfo_free(t_mapinfo *mapinfo)
 {
 
 }
+
+// test4
 
 void	mapinfo_instantiate(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path)
 {
