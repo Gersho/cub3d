@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/16 14:03:38 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/19 11:16:56 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ t_mapinfo	*mapinfo_setup(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path)
 	mapinfo->map == NULL;
 	mapinfo->size[0] = cubinfo->map_size[0];
 	mapinfo->size[1] = cubinfo->map_size[1];
-	mapinfo_instantiate(mapinfo, cubinfo, path);
-
 
 	return (mapinfo);
 }
