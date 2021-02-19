@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/16 14:31:19 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/19 13:34:05 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_mapinfo
 	int		sprite[2];
 	int		spawn[2];
 	int		size[2];
+	char	facing;
 }				t_mapinfo;
 
 
