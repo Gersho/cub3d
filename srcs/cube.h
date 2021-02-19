@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/19 13:34:05 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/19 15:53:41 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_mapinfo
 	char	facing;
 }				t_mapinfo;
 
-
 char		*ft_gnl_substr(char *s, size_t len_s, size_t start, size_t size);
 char		*ft_gnl_join(char *stock, char *s2, int size);
 void		ft_parse_map(char *path, t_cubinfo *cubinfo);
@@ -54,4 +53,8 @@ void		freecub_exit(t_cubinfo *cubinfo, int err);
 t_cubinfo	*cubinfo_setup(t_cubinfo *cubinfo, char *path);
 t_mapinfo	*mapinfo_setup(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path);
 void		clean_exit(int err);
+void		mapinfo_instantiate(t_mapinfo *mapinfo, t_cubinfo *cubinfo);
+void		mapinfo_free(t_mapinfo *mapinfo);
+void		mapinfo_fill(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path);
+void		mapinfo_print(t_mapinfo *mapinfo);
 #endif

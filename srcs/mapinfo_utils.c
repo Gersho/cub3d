@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/19 14:53:51 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/19 16:18:08 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_mapinfo	*mapinfo_setup(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path)
 
 void	mapinfo_instantiate(t_mapinfo *mapinfo, t_cubinfo *cubinfo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	mapinfo->map = malloc(mapinfo->size[0] * (sizeof(char*)));
@@ -44,8 +44,8 @@ void	mapinfo_instantiate(t_mapinfo *mapinfo, t_cubinfo *cubinfo)
 
 void	mapinfo_free(t_mapinfo *mapinfo)
 {
-		ft_free_all_2d(mapinfo->map, mapinfo->size[0] - 1);
-		free(mapinfo);
+	ft_free_all_2d(mapinfo->map, mapinfo->size[0] - 1);
+	free(mapinfo);
 }
 
 void	mapinfo_fill(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path)
@@ -55,31 +55,28 @@ void	mapinfo_fill(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path)
 	int		ret;
 	char	*line;
 
-	i = 0;
 	fd = open(path, O_RDONLY);
 	if (!fd)
 	{
 		mapinfo_free(mapinfo);
 		freecub_exit(cubinfo, -1);
 	}
+	i = -1;
 	while (1)
 	{
+		i++;
 		ret = get_next_line(fd, &line);
 		if (ret == -1)
 		{	
 			mapinfo_free(mapinfo);
 			freecub_exit(cubinfo, -1);
 		}
+		if (i <= cubinfo->map_start)
+			continue ;
+		mapinfo->map[i - cubinfo->map_start] = line;
 		if (ret == 0)
 			break ;
-		if (i < cubinfo->map_start)
-			continue ;
-		
-
-
-		i++;
 	}
-
 }
 
 void	mapinfo_print(t_mapinfo *mapinfo)

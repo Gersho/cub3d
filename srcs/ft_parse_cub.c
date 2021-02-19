@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:23:37 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/11 13:04:46 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/19 15:46:25 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	ft_parse_map(char *path, t_cubinfo *cubinfo)
 		if (ret == -1)
 			freecub_exit(cubinfo, -1);
 		ft_parse_line(line, cubinfo, i);
+		free(line);
 		if (ret == 0)
 			break ;
 		i++;
