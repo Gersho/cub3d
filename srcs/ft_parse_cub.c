@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:23:37 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/19 15:46:25 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/20 16:04:39 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_parse_path(char *line, t_cubinfo *cubinfo)
 
 	ptr = ft_strtrim((line + 2), " ");
 	if (ptr == NULL)
-		freecub_exit(cubinfo, -1);
+		freestructs_exit(NULL, cubinfo, -1);
 	if (line[0] == 'S' && line[1] != 'O')
 		cubinfo->path_sprite = ptr;
 	else if (line[0] == 'N' && line[1] == 'O')
@@ -61,7 +61,7 @@ void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 
 	ptr = ft_split(line + 1, ' ');
 	if (ptr == NULL)
-		freecub_exit(cubinfo, -1);
+		freestructs_exit(NULL, cubinfo, -1);
 	cubinfo->res[0] = ft_atoi(ptr[0]);
 	cubinfo->res[1] = ft_atoi(ptr[1]);
 	free(ptr[0]);
@@ -99,12 +99,12 @@ void	ft_parse_map(char *path, t_cubinfo *cubinfo)
 	i = 0;
 	fd = open(path, O_RDONLY);
 	if (!fd)
-		freecub_exit(cubinfo, -1);
+		freestructs_exit(NULL, cubinfo, -1);
 	while (1)
 	{
 		ret = get_next_line(fd, &line);
 		if (ret == -1)
-			freecub_exit(cubinfo, -1);
+			freestructs_exit(NULL, cubinfo, -1);
 		ft_parse_line(line, cubinfo, i);
 		free(line);
 		if (ret == 0)

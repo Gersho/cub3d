@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/19 15:53:41 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/20 16:05:21 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,15 @@ void		ft_parse_map(char *path, t_cubinfo *cubinfo);
 void		cubinfo_free(t_cubinfo *cubinfo);
 void		cubinfo_print(t_cubinfo *cubinfo);
 void		cubinfo_init(t_cubinfo *cubinfo);
-void		freecub_exit(t_cubinfo *cubinfo, int err);
+//void		freecub_exit(t_cubinfo *cubinfo, int err);
 t_cubinfo	*cubinfo_setup(t_cubinfo *cubinfo, char *path);
 t_mapinfo	*mapinfo_setup(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path);
-void		clean_exit(int err);
+void		error_exit(int err);
 void		mapinfo_instantiate(t_mapinfo *mapinfo, t_cubinfo *cubinfo);
 void		mapinfo_free(t_mapinfo *mapinfo);
 void		mapinfo_fill(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path);
 void		mapinfo_print(t_mapinfo *mapinfo);
+void		mapinfo_parse(t_mapinfo *mapinfo);
+//void		freemap_cub_exit(t_mapinfo *mapinfo, t_cubinfo *cubinfo, int err);
+void		freestructs_exit(t_mapinfo *mapinfo, t_cubinfo *cubinfo, int err);
 #endif
