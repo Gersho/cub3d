@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/20 16:06:01 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 10:29:30 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ void	mapinfo_fill(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path)
 		if (i < cubinfo->map_start)
 			continue ;
 		mapinfo->map[i - cubinfo->map_start] = line;
+		//fill la fin de la ligne avec des espaces, finir par /0
+		while ()
+		{
+			
+		}
 		if (ret == 0)
 			break ;
 	}

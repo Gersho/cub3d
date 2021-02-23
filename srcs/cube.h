@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/21 15:11:14 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/21 16:46:28 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void		mapinfo_print(t_mapinfo *mapinfo);
 void		mapinfo_parse(t_mapinfo *mapinfo);
 //void		freemap_cub_exit(t_mapinfo *mapinfo, t_cubinfo *cubinfo, int err);
 void		freestructs_exit(t_mapinfo *mapinfo, t_cubinfo *cubinfo, int err);
-int			map_floodfill(t_mapinfo *mapinfo, int x, int y, int *isvalid);
+void		map_floodfill(t_mapinfo *mapinfo, int x, int y);
 #endif
