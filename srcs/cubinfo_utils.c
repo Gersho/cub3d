@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 12:46:12 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/20 15:48:28 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 13:04:28 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ void	cubinfo_init(t_cubinfo *cubinfo)
 	cubinfo->map_size[0] = 0;
 	cubinfo->map_size[1] = 0;
 	cubinfo->map_start = -1;
+	cubinfo->map = NULL;
+	cubinfo->sprite[0] = -1;
+	cubinfo->sprite[1] = -1;
+	cubinfo->spawn[0] = -1;
+	cubinfo->spawn[1] = -1;
+	cubinfo->facing = 0;
 }
 
 void	cubinfo_free(t_cubinfo *cubinfo)
@@ -54,5 +60,7 @@ void	cubinfo_free(t_cubinfo *cubinfo)
 		free(cubinfo->path_W);
 	if (cubinfo->path_sprite)
 		free(cubinfo->path_sprite);
+	if (cubinfo->map)
+		ft_free_all_2d(cubinfo->map, cubinfo->map_size[0] - 1);
 	free(cubinfo);
 }

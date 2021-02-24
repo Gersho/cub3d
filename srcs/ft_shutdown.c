@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 10:54:20 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/24 10:30:30 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 11:12:31 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ void	error_exit(int err)
 	exit(err);
 }
 
-void	freestructs_exit(t_mapinfo *mapinfo, t_cubinfo *cubinfo, int err)
+void	freestructs_exit(t_cubinfo *cubinfo, int err)
 {
-	if (mapinfo)
-		mapinfo_free(mapinfo);
+	//if (mapinfo)
+	//	mapinfo_free(mapinfo);
 	if (cubinfo)
 		cubinfo_free(cubinfo);
 	error_exit(err);
 }
 
-void	freestructs_msg(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *str)
+void	freestructs_msg(t_cubinfo *cubinfo, char *str)
 {
-	if (mapinfo)
-		mapinfo_free(mapinfo);
+	//if (mapinfo)
+	//	mapinfo_free(mapinfo);
 	if (cubinfo)
 		cubinfo_free(cubinfo);
 	write(1, "Error: ", 7);

@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:39:04 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/24 10:32:11 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 13:02:03 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char **argv)
 {
 	t_cubinfo	*cubinfo;
-	t_mapinfo	*mapinfo;
 
 	if (ac != 2)
 	{
@@ -24,12 +23,16 @@ int	main(int ac, char **argv)
 	}
 	cubinfo = cubinfo_setup(cubinfo, argv[1]);
 	//cubinfo_print(cubinfo);
-	mapinfo = mapinfo_setup(mapinfo, cubinfo, argv[1]);
-	mapinfo_print(mapinfo);
-	map_floodfill(mapinfo, mapinfo->spawn[0], mapinfo->spawn[1]);
+	mapinfo_setup(cubinfo, argv[1]);
+
+
+	cubinfo_print(cubinfo);
+	map_floodfill(cubinfo, cubinfo->spawn[0], cubinfo->spawn[1]);
 
 	printf("######map is OK######\n");
-	mapinfo_print(mapinfo);
+	cubinfo_print(cubinfo);
+
+
 	//freestructs_msg(NULL, cubinfo, "multiple spawns on map");
 	return (0);
 }
