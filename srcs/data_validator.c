@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 13:37:32 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/24 12:59:52 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 14:37:25 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	map_floodfill(t_cubinfo *cubinfo, int x, int y)
 		cubinfo_print(cubinfo);
 		exit(-1);
 	}
-	if ((x == 0 || y == 0 || x == cubinfo->map_size[0] - 1 || y == cubinfo->map_size[1] - 1) && cubinfo->map[x][y] != '1')
+	if ((x == 0 || y == 0 || x == cubinfo->map_size[0] - 1 || \
+y == cubinfo->map_size[1] - 1) && cubinfo->map[x][y] != '1')
 	{
 		dprintf(1, "map invalid\n");
 		cubinfo_print(cubinfo);

@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 14:59:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/24 13:02:42 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 13:11:07 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,6 @@ void	cubinfo_print(t_cubinfo *cubinfo)
 	printf("Path_sprite:%s\n", cubinfo->path_sprite);
 	printf("sprite:%d,%d\n", cubinfo->sprite[0], cubinfo->sprite[1]);
 	printf("spawn:%d,%d\n", cubinfo->spawn[0], cubinfo->spawn[1]);
-	//printf("size:%d,%d\n", cubinfo->size[0], cubinfo->size[1]);
 	printf("facing:%c\n", cubinfo->facing);
 	ft_print_char_2d(cubinfo->map);
 }
-/*
-void	mapinfo_print(t_mapinfo *mapinfo)
-{
-	printf("sprite:%d,%d\n", mapinfo->sprite[0], mapinfo->sprite[1]);
-	printf("spawn:%d,%d\n", mapinfo->spawn[0], mapinfo->spawn[1]);
-	printf("size:%d,%d\n", mapinfo->size[0], mapinfo->size[1]);
-	printf("facing:%c\n", mapinfo->facing);
-	ft_print_char_2d(mapinfo->map);
-}
-*/

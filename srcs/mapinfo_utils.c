@@ -6,42 +6,18 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/24 13:07:30 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 14:49:43 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	*mapinfo_setup(t_cubinfo *cubinfo, char *path)
+void	mapinfo_setup(t_cubinfo *cubinfo, char *path)
 {
-//	mapinfo = malloc(sizeof(t_mapinfo));
-//	if (!mapinfo)
-//		freestructs_exit(NULL, cubinfo, -1);
-//	mapinfo->map = NULL;
-//	mapinfo->sprite[0] = -1;
-//	mapinfo->sprite[1] = -1;
-//	mapinfo->spawn[0] = -1;
-//	mapinfo->spawn[1] = -1;
-//	mapinfo->facing = 0;
-	//mapinfo->size[0] = cubinfo->map_size[0];
-	//mapinfo->size[1] = cubinfo->map_size[1];
 	mapinfo_instantiate(cubinfo);
 	mapinfo_fill(cubinfo, path);
 	mapinfo_parse(cubinfo);
 }
-
-/*
-void	mapinfo_init(t_mapinfo *mapinfo)
-{
-	mapinfo->map = NULL;
-	mapinfo->sprite[0] = -1;
-	mapinfo->sprite[1] = -1;
-
-	mapinfo->spawn[0] = -1;
-	mapinfo->spawn[1] = -1;
-	mapinfo->facing = 0;
-}
-*/
 
 void	mapinfo_instantiate(t_cubinfo *cubinfo)
 {
@@ -56,19 +32,12 @@ void	mapinfo_instantiate(t_cubinfo *cubinfo)
 		if (cubinfo->map[i] == NULL)
 		{
 			ft_free_all_2d(cubinfo->map, i - 1);
-			//mapinfo_free(mapinfo);
 			freestructs_exit(cubinfo, -1);
 		}
 		i++;
 	}
 }
-/*
-void	mapinfo_free(t_mapinfo *mapinfo)
-{
-	ft_free_all_2d(mapinfo->map, mapinfo->size[0] - 1);
-	free(mapinfo);
-}
-*/
+
 void	mapinfo_fill(t_cubinfo *cubinfo, char *path)
 {
 	int		i;

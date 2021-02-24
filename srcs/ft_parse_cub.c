@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:23:37 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/24 11:21:03 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 13:13:16 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 	if (ptr == NULL)
 		freestructs_exit(cubinfo, -1);
 	i = 0;
-	while(ptr[i])
+	while (ptr[i])
 		i++;
 	if (i != 2)
 	{
