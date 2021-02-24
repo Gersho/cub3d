@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/23 10:29:30 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 10:31:16 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,30 @@ t_mapinfo	*mapinfo_setup(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path)
 	if (!mapinfo)
 		freestructs_exit(NULL, cubinfo, -1);
 	mapinfo->map = NULL;
+	mapinfo->sprite[0] = -1;
+	mapinfo->sprite[1] = -1;
+	mapinfo->spawn[0] = -1;
+	mapinfo->spawn[1] = -1;
+	mapinfo->facing = 0;
 	mapinfo->size[0] = cubinfo->map_size[0];
 	mapinfo->size[1] = cubinfo->map_size[1];
 	mapinfo_instantiate(mapinfo, cubinfo);
 	mapinfo_fill(mapinfo, cubinfo, path);
-	mapinfo_parse(mapinfo);
+	mapinfo_parse(mapinfo, cubinfo);
 	return (mapinfo);
 }
+/*
+void	mapinfo_init(t_mapinfo *mapinfo)
+{
+	mapinfo->map = NULL;
+	mapinfo->sprite[0] = -1;
+	mapinfo->sprite[1] = -1;
+
+	mapinfo->spawn[0] = -1;
+	mapinfo->spawn[1] = -1;
+	mapinfo->facing = 0;
+}
+*/
 
 void	mapinfo_instantiate(t_mapinfo *mapinfo, t_cubinfo *cubinfo)
 {
@@ -35,7 +52,7 @@ void	mapinfo_instantiate(t_mapinfo *mapinfo, t_cubinfo *cubinfo)
 	mapinfo->map[mapinfo->size[0]] = NULL;
 	while (i < mapinfo->size[0])
 	{
-		mapinfo->map[i] = malloc((mapinfo->size[1] + 1)*(sizeof(char)));
+		mapinfo->map[i] = ft_calloc((mapinfo->size[1] + 1), sizeof(char));
 		if (mapinfo->map[i] == NULL)
 		{
 			mapinfo_free(mapinfo);
@@ -70,18 +87,14 @@ void	mapinfo_fill(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path)
 			freestructs_exit(mapinfo, cubinfo, -1);
 		if (i < cubinfo->map_start)
 			continue ;
-		mapinfo->map[i - cubinfo->map_start] = line;
-		//fill la fin de la ligne avec des espaces, finir par /0
-		while ()
-		{
-			
-		}
+		ft_memcpy(mapinfo->map[i - cubinfo->map_start], line, ft_strlen(line));
+		free(line);
 		if (ret == 0)
 			break ;
 	}
 }
 
-void	mapinfo_parse(t_mapinfo *mapinfo)
+void	mapinfo_parse(t_mapinfo *mapinfo, t_cubinfo *cubinfo)
 {
 	int	i;
 	int	j;
@@ -99,9 +112,14 @@ void	mapinfo_parse(t_mapinfo *mapinfo)
 			}
 			if (ft_str_index_c("NSEW", mapinfo->map[i][j]) != -1)
 			{
-				mapinfo->spawn[0] = i;
-				mapinfo->spawn[1] = j;
-				mapinfo->facing = mapinfo->map[i][j];
+				if (mapinfo->spawn[0] == -1)
+				{
+					mapinfo->spawn[0] = i;
+					mapinfo->spawn[1] = j;
+					mapinfo->facing = mapinfo->map[i][j];
+				}
+				else
+					freestructs_msg(mapinfo, cubinfo, "multiple spawn on map.");
 			}
 			j++;
 		}

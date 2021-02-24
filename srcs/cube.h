@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/21 16:46:28 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 10:56:10 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,35 @@
 
 typedef struct s_cubinfo
 {
-	int		res[2];
 	char	*path_N;
 	char	*path_S;
 	char	*path_E;
 	char	*path_W;
 	char	*path_sprite;
+
+	char		**map;
+	int			sprite[2];
+	int			spawn[2];
+	char		facing;
+
+	int		res[2];
 	int		color_floor[3];
 	int		color_ceil[3];
 	int		map_size[2];
 	int		map_start;
-}				t_cubinfo;
 
+}				t_cubinfo;
+/*
 typedef struct s_mapinfo
 {
-	char	**map;
-	int		sprite[2];
-	int		spawn[2];
-	int		size[2];
-	char	facing;
+	char		**map;
+	int			sprite[2];
+	int			spawn[2];
+	int			size[2];
+	char		facing;
+	t_cubinfo	*cubinfo;
 }				t_mapinfo;
+*/
 
 char		*ft_gnl_substr(char *s, size_t len_s, size_t start, size_t size);
 char		*ft_gnl_join(char *stock, char *s2, int size);
@@ -57,8 +66,11 @@ void		mapinfo_instantiate(t_mapinfo *mapinfo, t_cubinfo *cubinfo);
 void		mapinfo_free(t_mapinfo *mapinfo);
 void		mapinfo_fill(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *path);
 void		mapinfo_print(t_mapinfo *mapinfo);
-void		mapinfo_parse(t_mapinfo *mapinfo);
+void		mapinfo_parse(t_mapinfo *mapinfo, t_cubinfo *cubinfo);
+//void		mapinfo_init(t_mapinfo *mapinfo);
 //void		freemap_cub_exit(t_mapinfo *mapinfo, t_cubinfo *cubinfo, int err);
 void		freestructs_exit(t_mapinfo *mapinfo, t_cubinfo *cubinfo, int err);
+void		freestructs_msg(t_mapinfo *mapinfo, t_cubinfo *cubinfo, char *str);
 void		map_floodfill(t_mapinfo *mapinfo, int x, int y);
+
 #endif
