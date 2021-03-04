@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:23:37 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/02/24 13:13:16 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 13:05:53 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ft_parse_line(char *line, t_cubinfo *cubinfo, int i)
 		if (cubinfo->map_start == -1)
 			cubinfo->map_start = i;
 		cubinfo->map_size[0] += 1;
-		if (cubinfo->map_size[1] < ft_strlen(line))
+		if (cubinfo->map_size[1] < (int)ft_strlen(line))
 			cubinfo->map_size[1] = ft_strlen(line);
 	}
 }

@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlxcolors_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 10:39:04 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/04 13:13:45 by kzennoun         ###   ########lyon.fr   */
+/*   Created: 2021/03/04 11:30:06 by kzennoun          #+#    #+#             */
+/*   Updated: 2021/03/04 11:30:41 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int	main(int ac, char **argv)
+int		create_trgb(int t, int r, int g, int b)
 {
-	t_cubinfo	*cubinfo;
+	return(t << 24 | r << 16 | g << 8 | b);
+}
 
-	if (ac != 2)
-	{
-		printf("Error: Wrong number of arguments\n");
-		exit (-1);
-	}
-	cubinfo = NULL;
-	cubinfo = cubinfo_setup(cubinfo, argv[1]);
-	mapinfo_setup(cubinfo, argv[1]);
-	cubinfo_print(cubinfo);
-	map_floodfill(cubinfo, cubinfo->spawn[0], cubinfo->spawn[1]);
-	printf("######map is OK######\n");
-	cubinfo_print(cubinfo);
-	draw_map(cubinfo);
-	return (0);
+int		get_t(int trgb)
+{
+	return (trgb & (0xFF << 24));
+}
+
+int		get_r(int trgb)
+{
+	return (trgb & (0xFF << 16));
+}
+
+int		get_g(int trgb)
+{
+	return (trgb & (0xFF << 8));
+}
+
+int		get_b(int trgb)
+{
+	return (trgb & 0xFF);
 }
