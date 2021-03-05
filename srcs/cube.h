@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/04 14:33:07 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 14:26:18 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ typedef struct  s_vars {
     int         endian;   
 }               t_vars;
 
+typedef union	u_trgb
+{
+	int			trgb;
+	struct
+	{
+		uint8_t	b;
+		uint8_t	g;
+		uint8_t	r;
+		uint8_t	t;
+	};
+	
+}				t_trgb;
+
+
 typedef	struct	s_pc
 {
 	int			pos[3];
@@ -71,10 +85,5 @@ void		freestructs_exit(t_cubinfo *cubinfo, int err);
 void		freestructs_msg(t_cubinfo *cubinfo, char *str);
 void		map_floodfill(t_cubinfo *cubinfo, int x, int y);
 void		draw_map(t_cubinfo *cubinfo);
-int			create_trgb(int t, int r, int g, int b);
-int			get_t(int trgb);
-int			get_r(int trgb);
-int			get_g(int trgb);
-int			get_b(int trgb);
 void		my_mlx_pixel_put(t_vars *data, int x, int y, int color);
 #endif

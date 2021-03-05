@@ -1,25 +1,25 @@
-SRC_FILES	= main.c cubinfo_utils.c draw.c data_validator.c \
-ft_parse_cub.c mapinfo_utils.c debug_tools.c ft_shutdown.c \
-mlxcolors_utils.c mlx_utils.c
+SRCS	= srcs/main.c srcs/cubinfo_utils.c srcs/draw.c srcs/data_validator.c \
+srcs/ft_parse_cub.c srcs/mapinfo_utils.c srcs/debug_tools.c srcs/ft_shutdown.c \
+srcs/mlx_utils.c
 
-SRC_DIR = srcs
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS	= $(SRCS:.c=.o)
 NAME = cube.a
 CC		= gcc
 RM		= rm -f
 CFLAGS	= -Wall -Wextra -Werror
 AR		= ar -cr
+MINILIB = libs/minilibx_opengl_20191021
 
 %.o: %.c	cube.h
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+
+all: 		$(NAME)
 
 $(NAME):	$(OBJS)
 			make -C srcs/libft/
 			cp srcs/libft/libft.a cube.a
 			$(AR) $(NAME) $(OBJS)
-
-all: 		$(NAME)
+			gcc cube.a -L $(MINILIB) -lmlx -framework OpenGL -framework AppKit
 
 clean:
 			$(RM) $(OBJS)
