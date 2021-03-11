@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/11 13:32:10 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 14:12:10 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,40 @@ int myevents(int keycode, t_vars *vars)
 	{
 		printf("space pressed\n");
 	}
+	if (keycode == 12)
+	{
+		printf("Q pressed\n");
+	}
+	if (keycode == 13)
+	{
+		printf("W pressed\n");
+		vars->pc.pos.y = vars->pc.pos.y - 0.1;
+	}
+
+	if (keycode == 14)
+	{
+		printf("E pressed\n");
+	}
+
+	if (keycode == 0)
+	{
+		printf("A pressed\n");
+		vars->pc.pos.x = vars->pc.pos.x - 0.1;
+	}
+
+	if (keycode == 1)
+	{
+		printf("S pressed\n");
+		vars->pc.pos.y = vars->pc.pos.y + 0.1;
+	}
+
+	if (keycode == 2)
+	{
+		printf("D pressed\n");
+		vars->pc.pos.x = vars->pc.pos.x + 0.1;
+	}
+
+
 	return (0);
 }
 
@@ -54,15 +88,20 @@ int mynextframe(t_vars *vars)
 	t_plane p2;
 	t_plane p3;
 	t_plane p4;
+	//char	*p;
 	//t_coord	pos;
-	t_coord	res;
-	t_vect	vect;
+	//t_coord	res;
+	//t_vect	vect;
 	int	i,j=i=0;
 
 	// vect.x = 0;
 	// vect.y = -1;
 	// vect.z = 0;
 
+	// vars->img.trgb.t = 0;
+	// vars->img.trgb.r = 255;
+	// vars->img.trgb.g = 255;
+	// vars->img.trgb.b = 255;
 	// pos.x = 2.5;
 	// pos.y = 2.5;
 	// pos.z = 0.5;
@@ -83,12 +122,12 @@ int mynextframe(t_vars *vars)
 	p4.c = 0;
 	p4.d = -4;
 
+	
 
-
-	while (j <= cubinfo->res[1])
+	while (j <= vars->cubinfo->res[1])
 	{
 		i = 0;
-		while (i <= cubinfo->res[0])
+		while (i <= vars->cubinfo->res[0])
 		{
 			// printf("--------\n");
 			// printf("i:%d -- j:%d\n",i ,j );
@@ -138,7 +177,23 @@ int mynextframe(t_vars *vars)
 	// res = intersection(vect, pos, p4);
 	// coord_print(res);
 
-	exit(0);
+	//exit(0);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+
+	// char	*p;
+	// mlx_string_put(vars->mlx, vars->win, 220, 420, vars->img.trgb.trgb, "X");
+    // p = ft_itoa(vars->pc.pos.x * 100);
+    // mlx_string_put(vars->mlx, vars->win, 220, 440, vars->img.trgb.trgb, p);
+    // free(p);
+    // mlx_string_put(vars->mlx, vars->win, 270, 420, vars->img.trgb.trgb, "Y");
+    // p = ft_itoa(vars->pc.pos.y * 100);
+    // mlx_string_put(vars->mlx, vars->win, 270, 440, vars->img.trgb.trgb, p);
+    // free(p);
+    // mlx_string_put(vars->mlx, vars->win, 320, 420, vars->img.trgb.trgb, "Z");
+    // p = ft_itoa(vars->pc.pos.z * 100);
+    // mlx_string_put(vars->mlx, vars->win, 320, 440, vars->img.trgb.trgb, p);
+    // free(p);
+
 
 	return (0);
 }
@@ -161,15 +216,13 @@ t_vect	get_vector(t_cubinfo *cubinfo, int i, int j)
 void	draw_map(t_cubinfo *cubinfo)
 {
 	t_vars	vars;
-	//int i,j=i=200;
-
-	//(void) cubinfo;
-	//vars.img.trgb.t = 0;
 
 	vars.cubinfo = cubinfo;
 	vars.pc.pos.x = 2.5;
 	vars.pc.pos.y = 2.5;
 	vars.pc.pos.z = 0.5;
+
+	vars.img.trgb.t = 0;
 	vars.img.trgb.r = vars.img.trgb.g = vars.img.trgb.b = 255;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 800, 600, "Hello world!");
