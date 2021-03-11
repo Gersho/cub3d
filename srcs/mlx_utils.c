@@ -6,13 +6,13 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:30:50 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/05 13:00:22 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 14:30:42 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	my_mlx_pixel_put(t_vars *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
