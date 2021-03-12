@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/12 14:21:55 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 16:26:48 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,10 +201,12 @@ int mynextframe(t_vars *vars)
 			// }
 
 			
-			i++;
+			//i++;
+			i += 50;
 		}
 
-		j++;
+		//j++;
+		j += 50;
 	}
 	//vect = get_vector(cubinfo);
 
@@ -241,7 +243,7 @@ int mynextframe(t_vars *vars)
 
 	//exit(0);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
-	//exit(0);
+	exit(0);
 	char	*p;
 	mlx_string_put(vars->mlx, vars->win, 220, 420, vars->trgb_text.trgb, "X");
     p = ft_itoa(vars->pc.pos.x * 100);
@@ -268,7 +270,7 @@ t_vect	get_vector(t_cubinfo *cubinfo, int i, int j)
 
 	fov = 11.52;
 	s = 2 * tan(fov / 2);
-	vect.x = (i - (cubinfo->res[0] / 2)) * (s / cubinfo->res[0]);
+	vect.x = -(i - (cubinfo->res[0] / 2)) * (s / cubinfo->res[0]);
 	vect.y = -1;
 	vect.z = (j - (cubinfo->res[1] / 2)) * (s / cubinfo->res[1]);
 
