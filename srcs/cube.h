@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/11 13:22:55 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 13:32:52 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,14 @@ typedef struct  s_vars {
     t_data      img;
 	t_cubinfo	*cubinfo;
 	t_pc		pc;
+	t_trgb      trgb_sky;
+	t_trgb      trgb_floor;
+	t_trgb      trgb_text;
+	t_trgb		trgb_wall;
+	t_trgb		trgb_wall_n;
+	t_trgb		trgb_wall_s;
+	t_trgb		trgb_wall_e;
+	t_trgb		trgb_wall_w;
 }               t_vars;
 
 
@@ -119,6 +127,8 @@ void		freestructs_msg(t_cubinfo *cubinfo, char *str);
 void		map_floodfill(t_cubinfo *cubinfo, int x, int y);
 void		draw_map(t_cubinfo *cubinfo);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-t_coord		intersection(t_vect vec, t_coord pos, t_plane plane);
+t_coord		intersection(t_vect vec, t_coord pos, t_plane plane, float *t);
 void		coord_print(t_coord	coord);
+t_vect		get_vector(t_cubinfo *cubinfo, int i, int j);
+t_trgb		pick_pixel_color(t_vars *vars, t_vect vect);
 #endif
