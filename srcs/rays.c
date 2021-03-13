@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/12 16:31:38 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 16:04:19 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_trgb	pick_pixel_color(t_vars *vars, t_vect vect)
 	t_coord	inter_tmp;
 	t_trgb trgb;
 	char	tile;
+	int a;
+	int b;
 
 	dist_tmp = 0;
 	dist = 0;
@@ -64,70 +66,71 @@ t_trgb	pick_pixel_color(t_vars *vars, t_vect vect)
 	inter_tmp = intersection(vect, vars->pc.pos, p1, &dist_tmp);
 	dist = dist_tmp;
 	inter = inter_tmp;
-	printf("######################\n");
-	printf("after p1\n");
-	printf("dist_tmp: %f\n", dist_tmp);
-	coord_print(inter_tmp);
+	// printf("######################\n");
+	// printf("after p1\n");
+	// printf("dist_tmp: %f\n", dist_tmp);
+	// coord_print(inter_tmp);
 	
 
-	inter_tmp = intersection(vect, vars->pc.pos, p2, &dist_tmp);
-	printf("--------------------\n");
-	printf("after p2\n");
-	printf("dist_tmp: %f\n", dist_tmp);
-	coord_print(inter_tmp);
-	if (fabs((double) dist_tmp) < fabs((double) dist))
-	{
-		dist = dist_tmp;
-		inter = inter_tmp;
-	}
+	// inter_tmp = intersection(vect, vars->pc.pos, p2, &dist_tmp);
+	// if (fabs((double) dist_tmp) < fabs((double) dist))
+	// {
+	// 	dist = dist_tmp;
+	// 	inter = inter_tmp;
+	// }
+	// printf("--------------------\n");
+	// printf("after p2\n");
+	// printf("dist_tmp: %f\n", dist_tmp);
+	// coord_print(inter_tmp);
 
-	inter_tmp = intersection(vect, vars->pc.pos, p3, &dist_tmp);
-	printf("--------------------\n");
-	printf("after p3\n");
-	printf("dist_tmp: %f\n", dist_tmp);
-	coord_print(inter_tmp);
-	if (fabs((double) dist_tmp) < fabs((double) dist))
-	{
-		dist = dist_tmp;
-		inter = inter_tmp;
-	}
+	// inter_tmp = intersection(vect, vars->pc.pos, p3, &dist_tmp);
+	// if (fabs((double) dist_tmp) < fabs((double) dist))
+	// {
+	// 	dist = dist_tmp;
+	// 	inter = inter_tmp;
+	// }
+	// printf("--------------------\n");
+	// printf("after p3\n");
+	// printf("dist_tmp: %f\n", dist_tmp);
+	// coord_print(inter_tmp);
 
-	inter_tmp = intersection(vect, vars->pc.pos, p4, &dist_tmp);
-	printf("--------------------\n");
-	printf("after p4\n");
-	printf("dist_tmp: %f\n", dist_tmp);
-	coord_print(inter_tmp);
-	if (fabs((double) dist_tmp) < fabs((double) dist))
-	{
-		dist = dist_tmp;
-		inter = inter_tmp;
-	}
+	// inter_tmp = intersection(vect, vars->pc.pos, p4, &dist_tmp);
+	// if (fabs((double) dist_tmp) < fabs((double) dist))
+	// {
+	// 	dist = dist_tmp;
+	// 	inter = inter_tmp;
+	// }
+	// printf("--------------------\n");
+	// printf("after p4\n");
+	// printf("dist_tmp: %f\n", dist_tmp);
+	// coord_print(inter_tmp);
 
-	inter_tmp = intersection(vect, vars->pc.pos, p_floor, &dist_tmp);
-	printf("--------------------\n");
-	printf("after pfloor\n");
-	printf("dist_tmp: %f\n", dist_tmp);
-	coord_print(inter_tmp);
-	if (fabs((double) dist_tmp) < fabs((double) dist))
-	{
-		dist = dist_tmp;
-		inter = inter_tmp;
-	}
+	// inter_tmp = intersection(vect, vars->pc.pos, p_floor, &dist_tmp);
+	// if (fabs((double) dist_tmp) < fabs((double) dist))
+	// {
+	// 	dist = dist_tmp;
+	// 	inter = inter_tmp;
+	// }
+	// printf("--------------------\n");
+	// printf("after pfloor\n");
+	// printf("dist_tmp: %f\n", dist_tmp);
+	// coord_print(inter_tmp);
 
-	inter_tmp = intersection(vect, vars->pc.pos, p_sky, &dist_tmp);
-	printf("--------------------\n");
-	printf("after psky\n");
-	printf("dist_tmp: %f\n", dist_tmp);
-	coord_print(inter_tmp);
-	if (fabs((double) dist_tmp) < fabs((double) dist))
-	{
-		dist = dist_tmp;
-		inter = inter_tmp;
-	}
-	printf("--------------------\n");
-	printf("final dist: %f\n", dist);
-	printf("final coord:\n");
-	coord_print(inter);
+	// inter_tmp = intersection(vect, vars->pc.pos, p_sky, &dist_tmp);
+	// if (fabs((double) dist_tmp) < fabs((double) dist))
+	// {
+	// 	dist = dist_tmp;
+	// 	inter = inter_tmp;
+	// }
+	// printf("--------------------\n");
+	// printf("after psky\n");
+	// printf("dist_tmp: %f\n", dist_tmp);
+	// coord_print(inter_tmp);
+
+	// printf("--------------------\n");
+	// printf("final dist: %f\n", dist);
+	// printf("final coord:\n");
+	// coord_print(inter);
 
 	if (inter.z >= 1.0)
 		trgb = vars->trgb_sky;
@@ -135,7 +138,49 @@ t_trgb	pick_pixel_color(t_vars *vars, t_vect vect)
 		trgb = vars->trgb_floor;
 	else 
 	{
-		tile = vars->cubinfo->map[(int)inter.y - 1][(int)inter.x];
+		// if ((int)inter.y <=  1 || (int)inter.x <= 1)
+		// 	printf("(int)inter.x-y :%d, %d\n",(int)inter.x, (int)inter.y);
+		//printf("(int)inter.x :%d\n", ((int)inter.x));
+		
+		// if ((int)inter.y > vars->cubinfo->map_size[0])
+		// {
+		// 	inter.y = inter.y - 1.0;
+		// }
+		// if ((int)inter.y <= 0)
+		// {
+		// 	inter.y = inter.y + 1.0;
+		// }
+		
+		// if ((int)inter.x > vars->cubinfo->map_size[1])
+		// {
+		// 	inter.x = inter.x - 1.0;
+		// }
+		// if ((int)inter.x <= 0)
+		// {
+		// 	inter.x = inter.x + 1.0;
+		// }
+		a = (int)inter.y;
+		b = (int)inter.x;
+
+		if (a <= 0 || a >= vars->cubinfo->map_size[0] || b < 0 || b >= vars->cubinfo->map_size[1])
+		{
+			trgb = vars->trgb_text;
+			return (trgb);
+		}
+
+		// if (a <= 0)
+		// 	a = 1;
+		// if (a >= vars->cubinfo->map_size[0])
+		// 	a = vars->cubinfo->map_size[0] - 1;
+		// if (b <= 0)
+		// 	b = 0;
+		// if (b >= vars->cubinfo->map_size[1])
+		// 	b = vars->cubinfo->map_size[1] - 1;
+
+
+		tile = vars->cubinfo->map[a - 1][b];
+		// printf("tile: %c\n", tile);
+		// printf("a-b :%d, %d\n", a, b);
 		if (tile == '1')
 			{
 				trgb = vars->trgb_wall;
