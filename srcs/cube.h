@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/12 13:32:52 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 14:04:45 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,9 @@ typedef	struct	s_pc
 	//float x,y,z
 	//vect regard
 	t_coord		pos;
-	t_vect		view;
+	t_vect		rot;
+	float		head_tilt;
+	float		angle;
 }				t_pc;
 
 typedef struct  s_vars {
@@ -129,6 +131,8 @@ void		draw_map(t_cubinfo *cubinfo);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_coord		intersection(t_vect vec, t_coord pos, t_plane plane, float *t);
 void		coord_print(t_coord	coord);
-t_vect		get_vector(t_cubinfo *cubinfo, int i, int j);
+t_vect		get_vector(t_vars *vars, int i, int j);
 t_trgb		pick_pixel_color(t_vars *vars, t_vect vect);
+void	color_print(t_trgb trgb);
+void ftoa(float n, char* res, int afterpoint);
 #endif
