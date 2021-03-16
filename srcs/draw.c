@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/16 16:13:54 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:41:48 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,17 +193,9 @@ void	draw_map(t_vars *vars)
 	{
 		vars->pc.angle =   - M_PI_2;
 	}
-
-
-
-	//vars.cubinfo = cubinfo;
-	// vars->pc.pos.x = 0.5 + vars->cubinfo->spawn[1];
-	// vars->pc.pos.y = 0.5 + vars->cubinfo->spawn[0];
-	// vars->pc.pos.z = 0.5;
-
 	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, 800, 800, "kzennoun's cube");
-	vars->img.img = mlx_new_image(vars->mlx, 800, 800);
+	vars->win = mlx_new_window(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1], "kzennoun's cube");
+	vars->img.img = mlx_new_image(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1]);
 
 	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bits_per_pixel,
 				 &vars->img.line_length, &vars->img.endian);
