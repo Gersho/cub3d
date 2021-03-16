@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 14:59:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/15 14:03:54 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 13:46:07 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,20 @@ void	cubinfo_print(t_cubinfo *cubinfo)
 	printf("spawn:%d,%d\n", cubinfo->spawn[0], cubinfo->spawn[1]);
 	printf("facing:%c\n", cubinfo->facing);
 	ft_print_char_2d(cubinfo->map);
+}
+
+void    plane_print(t_plane *planes)
+{
+    int i;
+    
+    i = 0;
+    while (planes[i].a != -255 && planes[i].b != -255 && planes[i].c != -255 \
+    && planes[i].d != -255)
+    {
+        printf("plane %d {%f, %f, %f, %f}\n", i, planes[i].a, planes[i].b, planes[i].c, planes[i].d);
+        i++;
+    }
+    printf("plane %d {%f, %f, %f, %f}\n", i, planes[i].a, planes[i].b, planes[i].c, planes[i].d);
 }
 
 void	coord_print(t_coord	coord)

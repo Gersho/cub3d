@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/15 14:04:45 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:07:03 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,7 @@ typedef struct  s_data {
 
 typedef	struct	s_pc
 {
-	//float x,y,z
-	//vect regard
 	t_coord		pos;
-	t_vect		rot;
 	float		head_tilt;
 	float		angle;
 }				t_pc;
@@ -109,6 +106,7 @@ typedef struct  s_vars {
 	t_trgb		trgb_wall_s;
 	t_trgb		trgb_wall_e;
 	t_trgb		trgb_wall_w;
+	t_plane		*planes;
 }               t_vars;
 
 
@@ -127,7 +125,7 @@ void		mapinfo_parse(t_cubinfo *cubinfo);
 void		freestructs_exit(t_cubinfo *cubinfo, int err);
 void		freestructs_msg(t_cubinfo *cubinfo, char *str);
 void		map_floodfill(t_cubinfo *cubinfo, int x, int y);
-void		draw_map(t_cubinfo *cubinfo);
+void		draw_map(t_vars *vars);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_coord		intersection(t_vect vec, t_coord pos, t_plane plane, float *t);
 void		coord_print(t_coord	coord);
@@ -135,4 +133,7 @@ t_vect		get_vector(t_vars *vars, int i, int j);
 t_trgb		pick_pixel_color(t_vars *vars, t_vect vect);
 void	color_print(t_trgb trgb);
 void ftoa(float n, char* res, int afterpoint);
+t_plane	*plane_factory(t_cubinfo *cubinfo);
+void    plane_print(t_plane *planes);
+void	vars_init(t_cubinfo *cubinfo, t_vars *vars);
 #endif

@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/15 15:42:06 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:13:54 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,32 +111,16 @@ int mynextframe(t_vars *vars)
 		i = 0;
 		while (i <= vars->cubinfo->res[0])
 		{
-			// vect = get_vector(vars->cubinfo, i, j);
-			// trgb = pick_pixel_color(vars, vect);
-
-
 			vect = get_vector(vars, i, j);
 			trgb = pick_pixel_color(vars, vect);
-
-
-
-			if (i == 400 && j == 400)
-			{
-				// vect = get_vector(vars, i, j);
-				// trgb = pick_pixel_color(vars, vect);
-				// color_print(trgb);
-				trgb = vars->trgb_wall_e;
-			}
-
 			my_mlx_pixel_put(&vars->img, i, j, trgb.trgb);
-			i += 1;
+			i++;
 		}
-		j += 1;
+		j++;
 	}
-	//exit(0);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
-	//exit(0);
-	//char	*p;
+
+	// char	*p;
 	// mlx_string_put(vars->mlx, vars->win, 220, 120, vars->trgb_text.trgb, "X");
     // p = ft_itoa(vars->pc.pos.x * 100);
     // mlx_string_put(vars->mlx, vars->win, 220, 140, vars->trgb_text.trgb, p);
@@ -149,12 +133,9 @@ int mynextframe(t_vars *vars)
     // p = ft_itoa(vars->pc.pos.z * 100);
     // mlx_string_put(vars->mlx, vars->win, 320, 140, vars->trgb_text.trgb, p);
     // free(p);
-	char abc[10];
-	ftoa(vars->pc.angle, abc, 3);
-    mlx_string_put(vars->mlx, vars->win, 340, 150, vars->trgb_text.trgb, abc);
-    // free(p);
-
-
+	// char abc[10];
+	// ftoa(vars->pc.angle, abc, 3);
+    // mlx_string_put(vars->mlx, vars->win, 340, 150, vars->trgb_text.trgb, abc);
 
 	return (0);
 }
@@ -164,6 +145,7 @@ t_vect	get_vector(t_vars *vars, int i, int j)
 	t_vect	vect;
 	double	s;
 	double		fov;
+	t_vect tmp;
 
 	fov = 1.0471;
 	s = 2 * tan(fov / 2);
@@ -171,11 +153,19 @@ t_vect	get_vector(t_vars *vars, int i, int j)
 	vect.x = (i - (vars->cubinfo->res[0] * 0.5)) * (s / vars->cubinfo->res[0]);
 	vect.y = -1;
 	vect.z = -(j - (vars->cubinfo->res[1] / 2)) * (s_v / vars->cubinfo->res[1]);
-//rot x (HEAD UP/DOWN)
+//rot x (HEAD UP/DOWN)(old)
 	// vect.y = vect.y * (cos(vars->pc.head_tilt)) + (-vect.z * sin (vars->pc.head_tilt));
 	// vect.z = vect.y * sin(vars->pc.head_tilt) +  vect.z * cos(vars->pc.head_tilt);
+//rot x (HEAD UP/DOWN)(new)
+	tmp.x = vect.x;
+	tmp.y = vect.y * (cos(vars->pc.head_tilt)) + (-vect.z * sin(vars->pc.head_tilt));
+	tmp.z = vect.y * sin(vars->pc.head_tilt) +  vect.z * cos(vars->pc.head_tilt);
+
+	vect.x = tmp.x;
+	vect.y = tmp.y;
+	vect.z = tmp.z;
 //rot z (HEAD LEFT/RIGHT)
-	t_vect tmp;
+
 	tmp.x = vect.x * cos(vars->pc.angle) + vect.y * (-sin(vars->pc.angle));
 	tmp.y = vect.x * sin(vars->pc.angle) + vect.y * cos(vars->pc.angle);
 	tmp.z = vect.z;
@@ -183,88 +173,42 @@ t_vect	get_vector(t_vars *vars, int i, int j)
 	return (tmp);
 }
 
-void	draw_map(t_cubinfo *cubinfo)
+void	draw_map(t_vars *vars)
 {
-	t_vars	vars;
+	vars->pc.head_tilt = 0.0;
 
-	vars.pc.rot.x = 0.0;
-	vars.pc.rot.y = 1.0;
-	vars.pc.rot.z = 0.0;
-
-	vars.pc.head_tilt = 0.0;
-
-	if (cubinfo->facing == 'N')
+	if (vars->cubinfo->facing == 'N')
 	{
-		vars.pc.angle = 0;
+		vars->pc.angle = 0;
 	}
-	else if (cubinfo->facing == 'S')
+	else if (vars->cubinfo->facing == 'S')
 	{
-		vars.pc.angle = M_PI;
+		vars->pc.angle = M_PI;
 	}
-	else if (cubinfo->facing == 'E')
+	else if (vars->cubinfo->facing == 'E')
 	{
-		vars.pc.angle = M_PI_2;
+		vars->pc.angle = M_PI_2;
 	}
-	else if (cubinfo->facing == 'W')
+	else if (vars->cubinfo->facing == 'W')
 	{
-		vars.pc.angle =   - M_PI_2;
+		vars->pc.angle =   - M_PI_2;
 	}
 
-	
-
-	vars.cubinfo = cubinfo;
-	vars.pc.pos.x = 0.5 + cubinfo->spawn[1];
-	vars.pc.pos.y = 0.5 + cubinfo->spawn[0];
-	vars.pc.pos.z = 0.5;
-	
-	vars.trgb_floor.t = 0;
-	vars.trgb_floor.r = 0;
-	vars.trgb_floor.g = 255;
-	vars.trgb_floor.b = 0;
-
-	vars.trgb_sky.t = 0;
-	vars.trgb_sky.r = 0;
-	vars.trgb_sky.g = 0;
-	vars.trgb_sky.b = 255;
-
-	// vars.img.trgb.t = 0;
-	// vars.img.trgb.r = 255;
-	// vars.img.trgb.g = 255;
-	// vars.img.trgb.b = 255;
-
-	vars.trgb_wall_e.t = 0;
-	vars.trgb_wall_e.r = 255;
-	vars.trgb_wall_e.g = 0;
-	vars.trgb_wall_e.b = 0;
-
-	vars.trgb_wall.t = 0;
-	vars.trgb_wall.r = 255;
-	vars.trgb_wall.g = 255;
-	vars.trgb_wall.b = 255;
-
-	vars.trgb_text.t = 0;
-	vars.trgb_text.r = 0;
-	vars.trgb_text.g = 0;
-	vars.trgb_text.b = 0;
-
-	vars.img.trgb.t = 0;
-	vars.img.trgb.r = vars.img.trgb.g = vars.img.trgb.b = 255;
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 800, 800, "kzennoun's cube");
-	vars.img.img = mlx_new_image(vars.mlx, 800, 800);
-	vars.img.addr = mlx_get_data_addr(vars.img.img, &vars.img.bits_per_pixel,
-				 &vars.img.line_length, &vars.img.endian);
-
-   
-
-   //test
-
-   //endtest
 
 
+	//vars.cubinfo = cubinfo;
+	// vars->pc.pos.x = 0.5 + vars->cubinfo->spawn[1];
+	// vars->pc.pos.y = 0.5 + vars->cubinfo->spawn[0];
+	// vars->pc.pos.z = 0.5;
 
-	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
-	mlx_hook(vars.win, 2, 1L<<0, myevents, &vars);
-	mlx_loop_hook(vars.mlx, mynextframe, &vars);
-	mlx_loop(vars.mlx);
+	vars->mlx = mlx_init();
+	vars->win = mlx_new_window(vars->mlx, 800, 800, "kzennoun's cube");
+	vars->img.img = mlx_new_image(vars->mlx, 800, 800);
+
+	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bits_per_pixel,
+				 &vars->img.line_length, &vars->img.endian);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+	mlx_hook(vars->win, 2, 1L<<0, myevents, vars);
+	mlx_loop_hook(vars->mlx, mynextframe, vars);
+	mlx_loop(vars->mlx);
 }

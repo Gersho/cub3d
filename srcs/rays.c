@@ -6,11 +6,46 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/15 15:42:51 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 15:22:52 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+t_plane	*plane_factory(t_cubinfo *cubinfo)
+{
+	int	i;
+	int	j;
+	t_plane *planes;
+
+	i = 0;
+	j = 0;
+	planes = malloc((cubinfo->map_size[0] + cubinfo->map_size[1] + 1) * sizeof(t_plane));
+	printf("planes:%d\n", (cubinfo->map_size[0] + cubinfo->map_size[1] + 1));
+	if (!planes)
+		exit(0);
+	while (i < cubinfo->map_size[0] - 1)
+	{
+		planes[i] = (t_plane){0, 1, 0, -(i + 1)};
+		i++;
+	}
+	while (j < cubinfo->map_size[1] - 1)
+	{
+		planes[i+j] = (t_plane){1, 0, 0, -(j + 1)};
+		j++;
+	}
+	//floor
+	planes[i+j] = (t_plane){0, 0, 1, 0};
+	//sky
+	planes[i+j+1] = (t_plane){0, 0, 1, -1};
+	planes[i+j+2] = (t_plane){-255, -255, -255, -255};
+	return (planes);
+}
+
+// t_trgb pick_pixel_color(t_vars *vars, t_vect vect)
+// {
+
+// }
 
 t_trgb	pick_pixel_color(t_vars *vars, t_vect vect)
 {
@@ -40,7 +75,7 @@ t_trgb	pick_pixel_color(t_vars *vars, t_vect vect)
 	p2.a = 0;
 	p2.b = 1;
 	p2.c = 0;
-	p2.d = -7;
+	p2.d = -4;
 	//p2 = (t_plane){0, 1, 0, -7};
 
 	p3.a = 1;
@@ -51,7 +86,7 @@ t_trgb	pick_pixel_color(t_vars *vars, t_vect vect)
 	p4.a = 1;
 	p4.b = 0;
 	p4.c = 0;
-	p4.d = -10;
+	p4.d = -4;
 
 	p_floor.a = 0;
 	p_floor.b = 0;
@@ -61,132 +96,51 @@ t_trgb	pick_pixel_color(t_vars *vars, t_vect vect)
 	p_sky.a = 0;
 	p_sky.b = 0;
 	p_sky.c = 1;
-	p_sky.d = 1;
+	p_sky.d = -1;
 
-// coord_print(vars->pc.pos);
-	//printf("%f %f %f\n");
-	inter_tmp = intersection(vect, vars->pc.pos, p1, &dist_tmp);
-	dist = dist_tmp;
-	inter = inter_tmp;
-	if (dist > 0 && inter.z >= 0 && inter.z < 1)
-		return (vars->trgb_wall_e);
-	// printf("######################\n");
-	// printf("after p1\n");
-	// printf("dist_tmp: %f\n", dist_tmp);
-	// coord_print(inter_tmp);
-	
 
-	// inter_tmp = intersection(vect, vars->pc.pos, p2, &dist_tmp);
-	// if (fabs((double) dist_tmp) < fabs((double) dist))
-	// {
-	// 	dist = dist_tmp;
-	// 	inter = inter_tmp;
-	// }
-	// printf("--------------------\n");
-	// printf("after p2\n");
-	// printf("dist_tmp: %f\n", dist_tmp);
-	// coord_print(inter_tmp);
-
-	inter_tmp = intersection(vect, vars->pc.pos, p3, &dist_tmp);
-	// if (fabs((double) dist_tmp) < fabs((double) dist))
-	// {
-		dist = dist_tmp;
-		inter = inter_tmp;
-	if (dist > 0 && inter.z >= 0 && inter.z < 1)
-		return (vars->trgb_wall_e);
-	inter_tmp = intersection(vect, vars->pc.pos, p2, &dist_tmp);
-		dist = dist_tmp;
-		inter = inter_tmp;
-	if (dist > 0 && inter.z >= 0 && inter.z < 1)
-		return (vars->trgb_wall_e);
 	inter_tmp = intersection(vect, vars->pc.pos, p4, &dist_tmp);
 		dist = dist_tmp;
 		inter = inter_tmp;
 	if (dist > 0 && inter.z >= 0 && inter.z < 1)
 		return (vars->trgb_wall_e);
-	return ((t_trgb){0});
-	// }
-	// printf("--------------------\n");
-	// printf("after p3\n");
-	// printf("dist_tmp: %f\n", dist_tmp);
-	// coord_print(inter_tmp);
 
-	// inter_tmp = intersection(vect, vars->pc.pos, p4, &dist_tmp);
-	// if (fabs((double) dist_tmp) < fabs((double) dist))
-	// {
-	// 	dist = dist_tmp;
-	// 	inter = inter_tmp;
-	// }
-	// printf("--------------------\n");
-	// printf("after p4\n");
-	// printf("dist_tmp: %f\n", dist_tmp);
-	// coord_print(inter_tmp);
+	inter_tmp = intersection(vect, vars->pc.pos, p1, &dist_tmp);
+	dist = dist_tmp;
+	inter = inter_tmp;
+	if (dist > 0 && inter.z >= 0 && inter.z < 1)
+		return (vars->trgb_wall_n);
 
-	// inter_tmp = intersection(vect, vars->pc.pos, p_floor, &dist_tmp);
-	// if (fabs((double) dist_tmp) < fabs((double) dist))
-	// {
-	// 	dist = dist_tmp;
-	// 	inter = inter_tmp;
-	// }
-	// printf("--------------------\n");
-	// printf("after pfloor\n");
-	// printf("dist_tmp: %f\n", dist_tmp);
-	// coord_print(inter_tmp);
+	inter_tmp = intersection(vect, vars->pc.pos, p3, &dist_tmp);
+		dist = dist_tmp;
+		inter = inter_tmp;
+	if (dist > 0 && inter.z >= 0 && inter.z < 1)
+		return (vars->trgb_wall_s);
 
-	// inter_tmp = intersection(vect, vars->pc.pos, p_sky, &dist_tmp);
-	// if (fabs((double) dist_tmp) < fabs((double) dist))
-	// {
-	// 	dist = dist_tmp;
-	// 	inter = inter_tmp;
-	// }
-	// printf("--------------------\n");
-	// printf("after psky\n");
-	// printf("dist_tmp: %f\n", dist_tmp);
-	// coord_print(inter_tmp);
+	inter_tmp = intersection(vect, vars->pc.pos, p2, &dist_tmp);
+		dist = dist_tmp;
+		inter = inter_tmp;
+	if (dist > 0 && inter.z >= 0 && inter.z < 1)
+		return (vars->trgb_wall_w);
 
-	// printf("--------------------\n");
-	// printf("final dist: %f\n", dist);
-	// printf("final coord:\n");
-	// coord_print(inter);
+	inter_tmp = intersection(vect, vars->pc.pos, p_floor, &dist_tmp);
+	dist = dist_tmp;
+	inter = inter_tmp;
+	//if (dist > 0 && inter.z >= 0 && inter.z < 1)
+	if (dist > 0)
+		return (vars->trgb_floor);
 
-	if (inter.z >= 1.0)
-		trgb = vars->trgb_sky;
-	else if (inter.z <= 0.0)
-		trgb = vars->trgb_floor;
-	else 
-	{
-		// if ((int)inter.y <=  1 || (int)inter.x <= 1)
-		// 	printf("(int)inter.x-y :%d, %d\n",(int)inter.x, (int)inter.y);
-		//printf("(int)inter.x :%d\n", ((int)inter.x));
-		
-		// if ((int)inter.y > vars->cubinfo->map_size[0])
-		// {
-		// 	inter.y = inter.y - 1.0;
-		// }
-		// if ((int)inter.y <= 0)
-		// {
-		// 	inter.y = inter.y + 1.0;
-		// }
-		
-		// if ((int)inter.x > vars->cubinfo->map_size[1])
-		// {
-		// 	inter.x = inter.x - 1.0;
-		// }
-		// if ((int)inter.x <= 0)
-		// {
-		// 	inter.x = inter.x + 1.0;
-		// }
+	inter_tmp = intersection(vect, vars->pc.pos, p_sky, &dist_tmp);
+		dist = dist_tmp;
+		inter = inter_tmp;
+	//if (dist > 0 && inter.z >= 0 && inter.z < 1)
+	if (dist > 0)
+		return (vars->trgb_sky);
+
+	
 
 		a = (int)inter.y;
 		b = (int)inter.x;
-
-		// if (a <= 0 || a >= vars->cubinfo->map_size[0] || b < 0 || b >= vars->cubinfo->map_size[1])
-		// {
-		// 	trgb = vars->trgb_text;
-		// 	return (trgb);
-		// }
-
-
 
 		if (a <= 0)
 			a = 1;
@@ -199,8 +153,7 @@ t_trgb	pick_pixel_color(t_vars *vars, t_vect vect)
 
 
 		tile = vars->cubinfo->map[a - 1][b - 1];
-		// printf("tile: %c\n", tile);
-		// printf("a-b :%d, %d\n", a, b);
+		
 		if (tile == '1')
 		{
 			trgb = vars->trgb_wall;
@@ -208,6 +161,6 @@ t_trgb	pick_pixel_color(t_vars *vars, t_vect vect)
 		}
 		else
 			trgb = vars->trgb_text;
-	}
+	//}
 	return (trgb);
 }

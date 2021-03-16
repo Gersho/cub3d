@@ -1,6 +1,6 @@
 SRCS	= srcs/main.c srcs/cubinfo_utils.c srcs/draw.c srcs/data_validator.c \
 srcs/ft_parse_cub.c srcs/mapinfo_utils.c srcs/debug_tools.c srcs/ft_shutdown.c \
-srcs/mlx_utils.c srcs/rays.c
+srcs/mlx_utils.c srcs/rays.c srcs/vars_utils.c
 
 OBJS	= $(SRCS:.c=.o)
 NAME = cube.a
