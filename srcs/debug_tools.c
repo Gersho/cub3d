@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 14:59:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/16 13:46:07 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 14:13:06 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int intToStr(int x, char str[], int d)
 // Converts a floating-point/double number to a string. 
 void ftoa(float n, char* res, int afterpoint) 
 { 
+    n = fabsf(n);
     // Extract integer part 
     int ipart = (int)n; 
   

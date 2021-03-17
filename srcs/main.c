@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:39:04 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/16 16:01:27 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 11:10:05 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ int	main(int ac, char **argv)
 	cubinfo_print(cubinfo);
 	vars_init(cubinfo, &vars);
 	draw_map(&vars);
-
-	//t_vars	vars;
-	// vars.planes = plane_factory(cubinfo);
-	// plane_print(vars.planes);
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/16 16:13:49 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 14:50:11 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	vars_set_trgb(t_vars *vars)
 
 	vars->img.trgb.t = 0;
 	vars->img.trgb.r = vars->img.trgb.g = vars->img.trgb.b = 255;
-	
+	//printf("coucou\n");
+	//color_print(vars->trgb_wall);
 }
 
 void	vars_init(t_cubinfo *cubinfo, t_vars *vars)

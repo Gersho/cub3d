@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/16 16:07:03 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 10:55:49 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,4 +136,5 @@ void ftoa(float n, char* res, int afterpoint);
 t_plane	*plane_factory(t_cubinfo *cubinfo);
 void    plane_print(t_plane *planes);
 void	vars_init(t_cubinfo *cubinfo, t_vars *vars);
+int	is_lastplane(t_plane plane);
 #endif

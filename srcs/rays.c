@@ -6,47 +6,98 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/16 15:22:52 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 15:39:54 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-t_plane	*plane_factory(t_cubinfo *cubinfo)
-{
-	int	i;
-	int	j;
-	t_plane *planes;
 
+// t_plane get_closest_plane(t_vars *vars, t_vect vect)
+
+t_trgb pick_pixel_color(t_vars *vars, t_vect vect)
+{
+	int i;
+	t_plane closest_plane;
+	float	dist;
+	float   dist_tmp;
+	t_coord inter;
+    t_coord inter_tmp;
+	int a;
+	int b;
+	char tile;
+
+	dist = 999999;
 	i = 0;
-	j = 0;
-	planes = malloc((cubinfo->map_size[0] + cubinfo->map_size[1] + 1) * sizeof(t_plane));
-	printf("planes:%d\n", (cubinfo->map_size[0] + cubinfo->map_size[1] + 1));
-	if (!planes)
-		exit(0);
-	while (i < cubinfo->map_size[0] - 1)
+	//color_print(vars->trgb_wall);
+	//printf("trgb:%d\n", vars->trgb_wall.trgb);
+	while (!is_lastplane(vars->planes[i]))
 	{
-		planes[i] = (t_plane){0, 1, 0, -(i + 1)};
+		inter_tmp = intersection(vect, vars->pc.pos, vars->planes[i], &dist_tmp);
+		// printf("testing plane %d\n", i);
+		// printf("dist_tmp: %f\n", dist_tmp);
+		if (dist_tmp > 0 && dist_tmp < dist)
+		{
+			a = (int)inter.y;
+			b = (int)inter.x;
+
+			if (a <= 0)
+				a = 0;
+			if (a >= vars->cubinfo->map_size[0])
+				a = vars->cubinfo->map_size[0] - 1;
+			if (b <= 0)
+				b = 0;
+			if (b >= vars->cubinfo->map_size[1])
+				b = vars->cubinfo->map_size[1] - 1;
+			tile = vars->cubinfo->map[a][b];
+			
+			if (tile == '1' || vars->planes[i].c == 1)
+			{
+				inter = inter_tmp;
+				dist = dist_tmp;
+				closest_plane = vars->planes[i];
+			}
+		}
 		i++;
 	}
-	while (j < cubinfo->map_size[1] - 1)
+	// printf("closest plane\n");
+	// printf("plane{%f, %f, %f, %f}\n",  closest_plane.a, closest_plane.b, closest_plane.c, closest_plane.d);	
+	// printf("inter\n");
+	// coord_print(inter);
+	if (closest_plane.c == 1)
 	{
-		planes[i+j] = (t_plane){1, 0, 0, -(j + 1)};
-		j++;
+		//printf("coucou\n");
+		if (closest_plane.d == 0)
+			return (vars->trgb_floor);
+		return (vars->trgb_sky);
 	}
-	//floor
-	planes[i+j] = (t_plane){0, 0, 1, 0};
-	//sky
-	planes[i+j+1] = (t_plane){0, 0, 1, -1};
-	planes[i+j+2] = (t_plane){-255, -255, -255, -255};
-	return (planes);
+	// a = (int)inter.y;
+	// b = (int)inter.x;
+
+	// if (a <= 0)
+	// 	a = 1;
+	// if (a >= vars->cubinfo->map_size[0])
+	// 	a = vars->cubinfo->map_size[0] - 1;
+	// if (b <= 0)
+	// 	b = 1;
+	// if (b >= vars->cubinfo->map_size[1])
+	// 	b = vars->cubinfo->map_size[1] - 1;
+	// tile = vars->cubinfo->map[a - 1][b - 1];
+
+	// if (tile == '1')
+	// 	return(vars->trgb_wall);
+	// return (vars->trgb_text);
+
+	return (vars->trgb_wall);
+
+	// if (inter.z >= 1)
+	// 	return (vars->trgb_sky);
+	// if (inter.z <= 0)
+	// 	return (vars->trgb_floor);
+	// return (vars->trgb_wall);
 }
 
-// t_trgb pick_pixel_color(t_vars *vars, t_vect vect)
-// {
-
-// }
-
+/*
 t_trgb	pick_pixel_color(t_vars *vars, t_vect vect)
 {
 	t_plane p1;
@@ -164,3 +215,5 @@ t_trgb	pick_pixel_color(t_vars *vars, t_vect vect)
 	//}
 	return (trgb);
 }
+
+*/
