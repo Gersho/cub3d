@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 13:37:32 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/17 15:58:28 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 09:56:04 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ y == cubinfo->map_size[1] - 1) && cubinfo->map[x][y] != '1')
 	map_floodfill(cubinfo, x + 1, y + 1);
 }
 
-void	cub_validate(t_cubinfo *cubinfo)
-{
+// void	cub_validate(t_cubinfo *cubinfo)
+// {
 
 	
-}
+// }

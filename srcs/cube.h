@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/17 10:55:49 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/20 12:50:55 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ typedef	struct	s_plane
 	float	c;
 	float	d;
 }				t_plane;
-
-typedef	struct	s_vect
-{
-	float	x;
-	float	y;
-	float	z;
-}				t_vect;
 
 typedef struct	s_coord
 {
@@ -88,6 +81,7 @@ typedef struct  s_data {
 typedef	struct	s_pc
 {
 	t_coord		pos;
+	t_coord		view;
 	float		head_tilt;
 	float		angle;
 }				t_pc;
@@ -127,14 +121,15 @@ void		freestructs_msg(t_cubinfo *cubinfo, char *str);
 void		map_floodfill(t_cubinfo *cubinfo, int x, int y);
 void		draw_map(t_vars *vars);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-t_coord		intersection(t_vect vec, t_coord pos, t_plane plane, float *t);
+t_coord		intersection(t_coord vec, t_coord pos, t_plane plane, float *t);
 void		coord_print(t_coord	coord);
-t_vect		get_vector(t_vars *vars, int i, int j);
-t_trgb		pick_pixel_color(t_vars *vars, t_vect vect);
+t_coord		get_vector(t_vars *vars, int i, int j);
+t_trgb		pick_pixel_color(t_vars *vars, t_coord vect);
 void	color_print(t_trgb trgb);
 void ftoa(float n, char* res, int afterpoint);
 t_plane	*plane_factory(t_cubinfo *cubinfo);
 void    plane_print(t_plane *planes);
 void	vars_init(t_cubinfo *cubinfo, t_vars *vars);
 int	is_lastplane(t_plane plane);
+t_coord	rotate_vect(t_coord vect, float angle);
 #endif

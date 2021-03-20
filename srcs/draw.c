@@ -6,11 +6,33 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/17 15:29:42 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/20 13:33:12 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+t_coord	rotate_vect(t_coord vect, float angle)
+{
+	t_coord tmp;
+
+	tmp.x = vect.x * cos(angle) + vect.y * (-sin(angle));
+	tmp.y = vect.x * sin(angle) + vect.y * cos(angle);
+	tmp.z = vect.z;
+
+	return (tmp);
+}
+
+t_coord move_pc(t_vars *vars, int x)
+{
+	t_coord res;
+
+	res.x = vars->pc.pos.x + x * (vars->pc.view.x * 0.1);
+	res.y = vars->pc.pos.y + x * (vars->pc.view.y * 0.1);
+	res.z = vars->pc.pos.z;
+	
+	return (res);
+}
 
 int myevents(int keycode, t_vars *vars)
 {
@@ -39,44 +61,59 @@ int myevents(int keycode, t_vars *vars)
 	}
 	if (keycode == 12)
 	{
-		printf("Q pressed\n");
+		//printf("Q pressed\n");
 		vars->pc.angle = vars->pc.angle - 0.05;
+		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
+		// printf("new pc view:\n");
+		// coord_print(vars->pc.view);
 	}
 	if (keycode == 13)
 	{
-		printf("W pressed\n");
-		vars->pc.pos.y = vars->pc.pos.y - 0.1;
+		//printf("W pressed\n");
+		vars->pc.pos = move_pc(vars, 1);
+		//vars->pc.pos.y = vars->pc.pos.y - 0.1;
 	}
-
 	if (keycode == 14)
 	{
-		printf("E pressed\n");
+		//printf("E pressed\n");
 		vars->pc.angle = vars->pc.angle + 0.05;
+		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
+		// printf("new pc view:\n");
+		// coord_print(vars->pc.view);
 	}
-
 	if (keycode == 0)
 	{
-		printf("A pressed\n");
-		vars->pc.pos.x = vars->pc.pos.x - 0.1;
-	}
+		//printf("A pressed\n");
+		// //vars->pc.pos.x = vars->pc.pos.x - 0.1;
+		// vars->pc.pos = move_pc(vars, -1, 0);
+		vars->pc.angle = vars->pc.angle - M_PI_2;
+		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
+		vars->pc.pos = move_pc(vars, 1);
+		vars->pc.angle = vars->pc.angle + M_PI_2;
+		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
 
+	}
 	if (keycode == 1)
 	{
-		printf("S pressed\n");
-		vars->pc.pos.y = vars->pc.pos.y + 0.1;
+		//printf("S pressed\n");
+		//vars->pc.pos.y = vars->pc.pos.y + 0.1;
+		vars->pc.pos = move_pc(vars, -1);
 	}
-
 	if (keycode == 2)
 	{
-		printf("D pressed\n");
-		vars->pc.pos.x = vars->pc.pos.x + 0.1;
+		//printf("D pressed\n");
+		//vars->pc.pos.x = vars->pc.pos.x + 0.1;
+		//vars->pc.pos = move_pc(vars, 1, 0);
+		vars->pc.angle = vars->pc.angle + M_PI_2;
+		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
+		vars->pc.pos = move_pc(vars, 1);
+		vars->pc.angle = vars->pc.angle - M_PI_2;
+		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
 	}
-
-
 	return (0);
 }
 
-t_coord	intersection(t_vect vect, t_coord pos, t_plane plane, float *t)
+t_coord	intersection(t_coord vect, t_coord pos, t_plane plane, float *t)
 {
 	//return int pour check
 	t_coord     res;
@@ -100,20 +137,22 @@ t_coord	intersection(t_vect vect, t_coord pos, t_plane plane, float *t)
 int mynextframe(t_vars *vars)
 {
 
-	t_vect	vect;
+	t_coord	vect;
 	t_trgb	trgb;
 	int	i,j=i=0;
 
 	
 	//color_print(vars->trgb_wall);
-	while (j <= vars->cubinfo->res[1])
+	//while (j <= vars->cubinfo->res[1])
+	while (j <= 800)
 	{
 		i = 0;
-		while (i <= vars->cubinfo->res[0])
+		// while (i <= vars->cubinfo->res[0])
+		while (i <= 800)
 		{
 
-			// printf("---------");
-			//printf("i: %d, j: %d\n", i, j);
+			// printf("#########\n");
+			// printf("i: %d, j: %d\n", i, j);
 			vect = get_vector(vars, i, j);
 			trgb = pick_pixel_color(vars, vect);
 			//color_print(trgb);
@@ -140,16 +179,17 @@ int mynextframe(t_vars *vars)
 	char abc[10];
 	ftoa(vars->pc.angle, abc, 3);
     mlx_string_put(vars->mlx, vars->win, 340, 150, vars->trgb_text.trgb, abc);
-
+	ftoa(vars->pc.head_tilt, abc, 3);
+	mlx_string_put(vars->mlx, vars->win, 360, 170, vars->trgb_text.trgb, abc);
 	return (0);
 }
 
-t_vect	get_vector(t_vars *vars, int i, int j)
+t_coord	get_vector(t_vars *vars, int i, int j)
 {
-	t_vect	vect;
+	t_coord	vect;
 	double	s;
 	double		fov;
-	t_vect tmp;
+	t_coord tmp;
 
 	fov = 1.0471;
 	s = 2 * tan(fov / 2);
@@ -179,24 +219,6 @@ t_vect	get_vector(t_vars *vars, int i, int j)
 
 void	draw_map(t_vars *vars)
 {
-	vars->pc.head_tilt = 0.0;
-
-	if (vars->cubinfo->facing == 'N')
-	{
-		vars->pc.angle = 0;
-	}
-	else if (vars->cubinfo->facing == 'S')
-	{
-		vars->pc.angle = M_PI;
-	}
-	else if (vars->cubinfo->facing == 'E')
-	{
-		vars->pc.angle = M_PI_2;
-	}
-	else if (vars->cubinfo->facing == 'W')
-	{
-		vars->pc.angle =   - M_PI_2;
-	}
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1], "kzennoun's cube");
 	vars->img.img = mlx_new_image(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1]);
