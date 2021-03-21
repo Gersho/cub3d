@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/20 13:28:55 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/21 11:03:24 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 	// coord_print(vect);
 	dist = 999999;
 	i = 0;
-	//color_print(vars->trgb_wall);
-	//printf("trgb:%d\n", vars->trgb_wall.trgb);
+	// color_print(vars->trgb_wall);
+	// printf("trgb:%d\n", vars->trgb_wall.trgb);
 	//printf("angle: %f\n", vars->pc.angle);
 	while (!is_lastplane(vars->planes[i]))
 	{
@@ -55,18 +55,23 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 			a = (int)inter_tmp.y;
 			b = (int)inter_tmp.x;
 
-
-			if (vect.y < 0)
+			if (vars->planes[i].b == 1)
 			{
-				a--;
+				if (vect.y < 0)
+				{
+					a--;
+				}
 			}
 			// if (vect.y > 0)
 			// {
 			// 	a--;
 			// }
-			if (vect.x < 0)
-			{
-				b--;
+			if (vars->planes[i].a == 1)
+			{			
+				if (vect.x < 0)
+				{
+					b--;
+				}
 			}
 			// if (vect.x > 0)
 			// {
