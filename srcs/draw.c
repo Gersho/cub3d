@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/23 12:49:22 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 13:13:53 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,20 +158,22 @@ int mynextframe(t_vars *vars)
 t_coord	get_vector(t_vars *vars, int i, int j)
 {
 	t_coord	vect;
-	float	s;
-	float		fov;
+	// float	s;
+	// float		fov;
 	t_coord tmp;
 
-	fov = 1.0471;
-	s = 2 * tan(fov / 2);
+	// fov = 1.0471;
+	// s = 2 * tan(fov / 2);
+	// float s_v = s * vars->cubinfo->res[1] / vars->cubinfo->res[0];
 	//printf("s: %f\n", s);
-	float s_v = s * vars->cubinfo->res[1] / vars->cubinfo->res[0];
-
 //vect (old)
-	vect.x = (i - (vars->cubinfo->res[0] * 0.5)) * (s / vars->cubinfo->res[0]);
-	vect.y = -1;
-	vect.z = -(j - (vars->cubinfo->res[1] / 2)) * (s_v / vars->cubinfo->res[1]);
+	// vect.x = (i - (vars->cubinfo->res[0] * 0.5)) * (s / vars->cubinfo->res[0]);
+	// vect.y = -1;
+	// vect.z = -(j - (vars->cubinfo->res[1] / 2)) * (s_v / vars->cubinfo->res[1]);
 //vect (new)
+	vect.x = (i - (vars->cubinfo->res[0] * 0.5)) * vars->precalc.r_h;
+	vect.y = -1;
+	vect.z = -(j - (vars->cubinfo->res[1] / 2)) * vars->precalc.r_v;
 //rot x (HEAD UP/DOWN)
 	tmp.x = vect.x;
 	tmp.y = vect.y * (cos(vars->pc.head_tilt)) + (-vect.z * sin(vars->pc.head_tilt));
