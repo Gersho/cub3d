@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/23 13:13:53 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 13:27:59 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,9 +171,9 @@ t_coord	get_vector(t_vars *vars, int i, int j)
 	// vect.y = -1;
 	// vect.z = -(j - (vars->cubinfo->res[1] / 2)) * (s_v / vars->cubinfo->res[1]);
 //vect (new)
-	vect.x = (i - (vars->cubinfo->res[0] * 0.5)) * vars->precalc.r_h;
+	vect.x = (i - vars->precalc.res0_2) * vars->precalc.r_h;
 	vect.y = -1;
-	vect.z = -(j - (vars->cubinfo->res[1] / 2)) * vars->precalc.r_v;
+	vect.z = -(j - vars->precalc.res1_2) * vars->precalc.r_v;
 //rot x (HEAD UP/DOWN)
 	tmp.x = vect.x;
 	tmp.y = vect.y * (cos(vars->pc.head_tilt)) + (-vect.z * sin(vars->pc.head_tilt));
