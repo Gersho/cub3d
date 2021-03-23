@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/21 14:41:25 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 12:49:22 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,12 +164,14 @@ t_coord	get_vector(t_vars *vars, int i, int j)
 
 	fov = 1.0471;
 	s = 2 * tan(fov / 2);
-	printf("s: %f\n", s);
+	//printf("s: %f\n", s);
 	float s_v = s * vars->cubinfo->res[1] / vars->cubinfo->res[0];
 
+//vect (old)
 	vect.x = (i - (vars->cubinfo->res[0] * 0.5)) * (s / vars->cubinfo->res[0]);
 	vect.y = -1;
 	vect.z = -(j - (vars->cubinfo->res[1] / 2)) * (s_v / vars->cubinfo->res[1]);
+//vect (new)
 //rot x (HEAD UP/DOWN)
 	tmp.x = vect.x;
 	tmp.y = vect.y * (cos(vars->pc.head_tilt)) + (-vect.z * sin(vars->pc.head_tilt));
