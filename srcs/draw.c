@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/23 13:27:59 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 13:36:06 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,9 @@ int mynextframe(t_vars *vars)
 			trgb = pick_pixel_color(vars, vect);
 			// color_print(trgb);
 			my_mlx_pixel_put(&vars->img, i, j, trgb.trgb);
-			i += 1;
+			i++;
 		}
-		j += 1;
+		j++;
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	//exit(0);
@@ -175,12 +175,12 @@ t_coord	get_vector(t_vars *vars, int i, int j)
 	vect.y = -1;
 	vect.z = -(j - vars->precalc.res1_2) * vars->precalc.r_v;
 //rot x (HEAD UP/DOWN)
-	tmp.x = vect.x;
+	//tmp.x = vect.x;
 	tmp.y = vect.y * (cos(vars->pc.head_tilt)) + (-vect.z * sin(vars->pc.head_tilt));
 	tmp.z = vect.y * sin(vars->pc.head_tilt) +  vect.z * cos(vars->pc.head_tilt);
-	vect.x = tmp.x;
+	//vect.x = tmp.x;
 	vect.y = tmp.y;
-	vect.z = tmp.z;
+	//vect.z = tmp.z;
 //rot z (HEAD LEFT/RIGHT)
 	tmp.x = vect.x * cos(vars->pc.angle) + vect.y * (-sin(vars->pc.angle));
 	tmp.y = vect.x * sin(vars->pc.angle) + vect.y * cos(vars->pc.angle);
