@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/21 14:39:48 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 12:56:48 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ typedef	struct	s_pc
 
 typedef struct s_precalc
 {
-	float		s;
-	float		s_v;
+	float		r_h;
+	float		r_v;
 }				t_precalc;
 
 
