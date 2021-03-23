@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/23 12:56:48 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 13:10:57 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,4 +141,5 @@ void	vars_init(t_cubinfo *cubinfo, t_vars *vars);
 int	is_lastplane(t_plane plane);
 t_coord	rotate_vect(t_coord vect, float angle);
 t_coord move_pc(t_vars *vars, int x);
+void	vect_precalc(t_vars *vars);
 #endif
