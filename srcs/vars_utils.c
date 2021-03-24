@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/23 13:11:35 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 15:01:15 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,7 @@ void	vars_init(t_cubinfo *cubinfo, t_vars *vars)
 	}
 	vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
 	vect_precalc(vars);
+
+	//xpm_load(vars);
+	// xpm_getaddr(vars);
 }

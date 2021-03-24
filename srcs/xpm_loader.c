@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xpm loader.c                                       :+:      :+:    :+:   */
+/*   xpm_loader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:48:00 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/24 13:11:20 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 17:30:26 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	xpm_load(t_vars *vars)
 	if (!vars->n_xpm.img)
 		exit(0);
 	printf("n_xpm ptr:%p\n", vars->n_xpm.img);
-	
 		vars->s_xpm.img = mlx_xpm_file_to_image(vars->mlx, vars->cubinfo->path_S, &vars->s_xpm.img_width, &vars->s_xpm.img_height);
 	if (!vars->s_xpm.img)
 		exit(0);

@@ -6,11 +6,29 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/23 15:39:30 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 17:29:57 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+t_trgb	get_trgb_from_xpm(t_data *xpm, t_coord inter)
+{
+	t_coord tmp;
+	int	tex_ypos;
+	int tex_xpos;
+	t_trgb	tamaman;
+
+		tmp.x = inter.x - (int) inter.x;
+		tmp.y = inter.y - (int) inter.y;
+		tmp.z = inter.z - (int) inter.z;
+		
+	tex_ypos = (xpm->img_height * tmp.y);
+	tex_xpos = (xpm->img_width * tmp.x);
+	tamaman.trgb = xpm->addr[tex_ypos * xpm->img_width + tex_xpos];
+	return tamaman;
+
+}
 
 t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 {
@@ -24,6 +42,7 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 	int a;
 	int b;
 	char tile;
+	//int temp_trgb;
 
 	// printf("tested vect\n");
 	// coord_print(vect);
@@ -116,18 +135,28 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 
 	if (closest_plane.b == 1)
 	{
-		//en fonction du vect ?
+		//walls N/S (old)
+		// if (vect.y < 0)
+		// 	return (vars->trgb_wall_n);
+		// return (vars->trgb_wall_s);
+		//walls N/S (new)
 		if (vect.y < 0)
-			return (vars->trgb_wall_n);
-		return (vars->trgb_wall_s);
+		{
+			return get_trgb_from_xpm(&vars->n_xpm, inter);
+		}
+		return get_trgb_from_xpm(&vars->s_xpm, inter);
 	}
 
 	if (closest_plane.a == 1)
 	{
-		//en fonction du vect ?
+		//walls E/W (old)
+		// if (vect.x < 0)
+		// 	return (vars->trgb_wall_w);
+		// return (vars->trgb_wall_e);
+		//walls E/W
 		if (vect.x < 0)
-			return (vars->trgb_wall_w);
-		return (vars->trgb_wall_e);
+			return get_trgb_from_xpm(&vars->w_xpm, inter);
+		return get_trgb_from_xpm(&vars->e_xpm, inter);
 	}
 
 	return (vars->trgb_text);

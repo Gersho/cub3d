@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/23 15:26:58 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 15:46:56 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,9 @@ t_coord	get_vector(t_vars *vars, int i, int j)
 void	draw_map(t_vars *vars)
 {
 	vars->mlx = mlx_init();
+	xpm_load(vars);
+	xpm_getaddr(vars);
+	
 	vars->win = mlx_new_window(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1], "kzennoun's cube");
 	vars->img.img = mlx_new_image(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1]);
 

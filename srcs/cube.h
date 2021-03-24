@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/24 12:55:42 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 15:58:46 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,13 +140,17 @@ t_coord		intersection(t_coord vec, t_coord pos, t_plane plane, float *t);
 void		coord_print(t_coord	coord);
 t_coord		get_vector(t_vars *vars, int i, int j);
 t_trgb		pick_pixel_color(t_vars *vars, t_coord vect);
-void	color_print(t_trgb trgb);
-void ftoa(float n, char* res, int afterpoint);
-t_plane	*plane_factory(t_cubinfo *cubinfo);
-void    plane_print(t_plane *planes);
-void	vars_init(t_cubinfo *cubinfo, t_vars *vars);
-int	is_lastplane(t_plane plane);
-t_coord	rotate_vect(t_coord vect, float angle);
-t_coord move_pc(t_vars *vars, int x);
-void	vect_precalc(t_vars *vars);
+void		color_print(t_trgb trgb);
+void 		ftoa(float n, char* res, int afterpoint);
+t_plane		*plane_factory(t_cubinfo *cubinfo);
+void   		 plane_print(t_plane *planes);
+void		vars_init(t_cubinfo *cubinfo, t_vars *vars);
+int			is_lastplane(t_plane plane);
+t_coord		rotate_vect(t_coord vect, float angle);
+t_coord		 move_pc(t_vars *vars, int x);
+void		vect_precalc(t_vars *vars);
+void		xpm_load(t_vars *vars);
+void		xpm_getaddr(t_vars *vars);
+t_trgb		get_trgb_from_xpm(t_data *xpm, t_coord inter);
+
 #endif
