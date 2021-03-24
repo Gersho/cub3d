@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/23 13:36:06 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 15:26:58 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,19 +158,8 @@ int mynextframe(t_vars *vars)
 t_coord	get_vector(t_vars *vars, int i, int j)
 {
 	t_coord	vect;
-	// float	s;
-	// float		fov;
 	t_coord tmp;
 
-	// fov = 1.0471;
-	// s = 2 * tan(fov / 2);
-	// float s_v = s * vars->cubinfo->res[1] / vars->cubinfo->res[0];
-	//printf("s: %f\n", s);
-//vect (old)
-	// vect.x = (i - (vars->cubinfo->res[0] * 0.5)) * (s / vars->cubinfo->res[0]);
-	// vect.y = -1;
-	// vect.z = -(j - (vars->cubinfo->res[1] / 2)) * (s_v / vars->cubinfo->res[1]);
-//vect (new)
 	vect.x = (i - vars->precalc.res0_2) * vars->precalc.r_h;
 	vect.y = -1;
 	vect.z = -(j - vars->precalc.res1_2) * vars->precalc.r_v;
@@ -184,7 +173,7 @@ t_coord	get_vector(t_vars *vars, int i, int j)
 //rot z (HEAD LEFT/RIGHT)
 	tmp.x = vect.x * cos(vars->pc.angle) + vect.y * (-sin(vars->pc.angle));
 	tmp.y = vect.x * sin(vars->pc.angle) + vect.y * cos(vars->pc.angle);
-	tmp.z = vect.z;
+	//tmp.z = vect.z;
 	
 	return (tmp);
 }

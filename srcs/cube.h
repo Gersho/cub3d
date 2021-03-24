@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/23 13:20:04 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 12:55:42 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ typedef struct  s_data {
     char        *addr;
     int         bits_per_pixel;
     int         line_length;
-    int         endian;   
+    int         endian;
+	int         img_width;
+    int         img_height;
     t_trgb      trgb;
 }               t_data;
 
@@ -94,12 +96,15 @@ typedef struct s_precalc
 	int			res1_2;
 }				t_precalc;
 
-
 typedef struct  s_vars {
     void        *mlx;
     void        *win;
 	t_precalc	precalc;
     t_data      img;
+	t_data		n_xpm;
+	t_data		s_xpm;
+	t_data		e_xpm;
+	t_data		w_xpm;
 	t_cubinfo	*cubinfo;
 	t_pc		pc;
 	t_trgb      trgb_sky;
