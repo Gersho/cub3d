@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/24 15:58:46 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 14:30:05 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ typedef	struct	s_plane
 	float	c;
 	float	d;
 }				t_plane;
+
+typedef	struct s_sprite
+{
+	t_plane	plane;
+	t_coord	pos;
+}				t_sprite;
+
 
 typedef struct	s_coord
 {
@@ -116,6 +123,7 @@ typedef struct  s_vars {
 	t_trgb		trgb_wall_e;
 	t_trgb		trgb_wall_w;
 	t_plane		*planes;
+	t_sprite	*sprites;
 }               t_vars;
 
 
@@ -151,6 +159,6 @@ t_coord		 move_pc(t_vars *vars, int x);
 void		vect_precalc(t_vars *vars);
 void		xpm_load(t_vars *vars);
 void		xpm_getaddr(t_vars *vars);
-t_trgb		get_trgb_from_xpm(t_data *xpm, t_coord inter);
-
+t_trgb		get_trgb_from_xpm_x(t_data *xpm, t_coord inter);
+t_trgb		get_trgb_from_xpm_y(t_data *xpm, t_coord inter);
 #endif

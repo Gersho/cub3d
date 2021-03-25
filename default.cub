@@ -1,13 +1,12 @@
 R 800 800
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-
-
+NO assets/brick.xpm
+SO assets/grass.xpm
+WE assets/metal.xpm
+EA        assets/stone.xpm
 
 F       220   ,   100, 0
 C 15 ,30,0
-EA        ./path_to_the_east_taxture
+
 S ./path_to_the_sprite_texture
 
 11111
