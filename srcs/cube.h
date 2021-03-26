@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/26 13:08:51 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 16:58:12 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,20 @@
 # include <fcntl.h>
 # include "libft/libft.h"
 # include "../libs/minilibx_opengl_20191021/mlx.h"
+//# include "../libs/minilibx_mms_20200219/mlx.h"
 # include <stdio.h>
 # include <math.h>
+
+typedef struct  s_data {
+    void        *img;
+    char        *addr;
+    int         bits_per_pixel;
+    int         line_length;
+    int         endian;
+	int         img_width;
+    int         img_height;
+ //   t_trgb      trgb;
+}               t_data;
 
 typedef	struct	s_plane
 {
@@ -41,6 +53,7 @@ typedef	struct s_sprite
 {
 	t_plane	plane;
 	t_coord	pos;
+	t_data	xpm;
 }				t_sprite;
 
 typedef struct s_cubinfo
@@ -73,17 +86,6 @@ typedef union	u_trgb
 	};
 	
 }				t_trgb;
-
-typedef struct  s_data {
-    void        *img;
-    char        *addr;
-    int         bits_per_pixel;
-    int         line_length;
-    int         endian;
-	int         img_width;
-    int         img_height;
- //   t_trgb      trgb;
-}               t_data;
 
 typedef	struct	s_pc
 {
@@ -121,7 +123,9 @@ typedef struct  s_vars {
 	t_trgb		trgb_wall_e;
 	t_trgb		trgb_wall_w;
 	t_plane		*planes;
-	t_sprite	*sprites;
+	t_plane		*planes_x;
+	t_plane		*planes_y;
+	t_sprite	sprites;
 }               t_vars;
 
 
@@ -161,4 +165,5 @@ t_trgb		get_trgb_from_xpm_n(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_s(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_e(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_w(t_data *xpm, t_coord inter);
+t_plane	create_sprite_plane(t_vars *vars);
 #endif

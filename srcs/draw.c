@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/25 15:43:17 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 16:58:40 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int mynextframe(t_vars *vars)
 	t_trgb	trgb;
 	int	i,j=i=0;
 
+	vars->sprites.plane = create_sprite_plane(vars);
 	while (j <= vars->cubinfo->res[1])
 	{
 		i = 0;

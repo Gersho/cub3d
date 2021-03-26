@@ -1,8 +1,8 @@
 R 800 800
 NO assets/guts.xpm
-SO assets/guts.xpm
-WE assets/guts.xpm
-EA        assets/guts.xpm
+SO assets/grass.xpm
+WE assets/metal.xpm
+EA        assets/stone.xpm
 
 
 F       0   ,   250, 0
@@ -14,9 +14,9 @@ S assets/chopper.xpm
 1000000000000001
 1000000000000001
 1000000000000001
-1000000020000001
+1000000020000W01
 1000000000000001
 1000000000000001
-10000000S0000001
+1000000000000001
 1000000000000001
 1111111111111111

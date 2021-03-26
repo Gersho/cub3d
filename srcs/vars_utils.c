@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/26 12:56:21 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 16:33:49 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ void	vars_init(t_cubinfo *cubinfo, t_vars *vars)
 	plane_print(vars->planes);
 	vars->cubinfo = cubinfo;
 	vars_set_trgb(vars);
+
+
+	vars->sprites.pos.x = 0.5 + vars->cubinfo->sprite[1];
+	vars->sprites.pos.y = 0.5 + vars->cubinfo->sprite[0];
+	vars->sprites.pos.z = 0.5;
+
 
 	vars->pc.pos.x = 0.5 + vars->cubinfo->spawn[1];
 	vars->pc.pos.y = 0.5 + vars->cubinfo->spawn[0];

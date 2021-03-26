@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/26 12:43:26 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 17:18:33 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,34 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 	// color_print(vars->trgb_wall);
 	// printf("trgb:%d\n", vars->trgb_wall.trgb);
 	//printf("angle: %f\n", vars->pc.angle);
+	inter_tmp = intersection(vect, vars->pc.pos, vars->sprites.plane, &dist_tmp);
+	if (dist_tmp > 0 && dist_tmp < dist)
+	{
+		a = (int)inter_tmp.y;
+		b = (int)inter_tmp.x;
+		if (a <= 0)
+			a = 0;
+		if (a >= vars->cubinfo->map_size[0])
+			a = vars->cubinfo->map_size[0] - 1;
+		if (b <= 0)
+			b = 0;
+		if (b >= vars->cubinfo->map_size[1])
+			b = vars->cubinfo->map_size[1] - 1;
+
+		tile = vars->cubinfo->map[a][b];
+
+		if (tile == '2')
+			{
+				//printf("is new closest plane\n");
+				inter = inter_tmp;
+				dist = dist_tmp;
+				closest_plane = vars->sprites.plane;
+				//temp_test = i;
+			}
+	}
+
+
+
 	while (!is_lastplane(vars->planes[i]))
 	{
 		//printf("-------\n");
@@ -215,6 +243,8 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 		return get_trgb_from_xpm_e(&vars->e_xpm, inter);
 	}
 
+
+	return get_trgb_from_xpm_n(&vars->sprites.xpm, inter);
 	return (vars->trgb_text);
 	//return (vars->trgb_wall);
 }
