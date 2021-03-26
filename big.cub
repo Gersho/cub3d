@@ -5,8 +5,8 @@ WE assets/guts.xpm
 EA        assets/guts.xpm
 
 
-F       220   ,   100, 0
-C 15 ,30,0
+F       0   ,   250, 0
+C 0  , 0 ,  250
 
 S assets/chopper.xpm
 

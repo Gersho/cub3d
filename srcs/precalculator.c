@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:49:47 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/25 15:40:29 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 12:56:16 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,4 @@ void	vect_precalc(t_vars *vars)
 	vars->precalc.r_v = (s_v / vars->cubinfo->res[1]);
 	vars->precalc.res0_2 = (vars->cubinfo->res[0] / 2);
 	vars->precalc.res1_2 = (vars->cubinfo->res[1] / 2);
-
 }

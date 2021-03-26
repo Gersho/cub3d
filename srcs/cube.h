@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/26 12:39:42 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 13:08:51 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct  s_data {
     int         endian;
 	int         img_width;
     int         img_height;
-    t_trgb      trgb;
+ //   t_trgb      trgb;
 }               t_data;
 
 typedef	struct	s_pc
