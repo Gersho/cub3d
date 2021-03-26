@@ -1,20 +1,22 @@
 R 800 800
-NO assets/brick.xpm
-SO assets/grass.xpm
-WE assets/metal.xpm
-EA        assets/stone.xpm
+NO assets/guts.xpm
+SO assets/guts.xpm
+WE assets/guts.xpm
+EA        assets/guts.xpm
 
 
 F       220   ,   100, 0
 C 15 ,30,0
 
-S ./path_to_the_sprite_texture
+S assets/chopper.xpm
 
 1111111111111111
 1000000000000001
 1000000000000001
-1000000N00000001
+1000000000000001
+1000000020000001
 1000000000000001
 1000000000000001
+10000000S0000001
 1000000000000001
 1111111111111111

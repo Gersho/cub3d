@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/25 12:33:11 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 15:43:17 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int myevents(int keycode, t_vars *vars)
 
 t_coord	intersection(t_coord vect, t_coord pos, t_plane plane, float *t)
 {
-	//return int pour check
 	t_coord     res;
 	
 	if ((vect.x * plane.a + vect.y * plane.b + vect.z * plane.c) == 0)
@@ -103,7 +102,6 @@ t_coord	intersection(t_coord vect, t_coord pos, t_plane plane, float *t)
 	res.x = pos.x + *t * vect.x;
 	res.y = pos.y + *t * vect.y;
 	res.z = pos.z + *t * vect.z;
-	//printf("t:%f\n", t);
 	return (res);
 }
 
@@ -114,8 +112,6 @@ int mynextframe(t_vars *vars)
 	t_trgb	trgb;
 	int	i,j=i=0;
 
-	
-	//color_print(vars->trgb_wall);
 	while (j <= vars->cubinfo->res[1])
 	{
 		i = 0;

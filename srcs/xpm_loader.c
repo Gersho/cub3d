@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:48:00 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/25 12:58:16 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 11:27:27 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	xpm_getaddr(t_vars *vars)
 	vars->e_xpm.addr = mlx_get_data_addr(vars->e_xpm.img, &vars->e_xpm.bits_per_pixel, &vars->e_xpm.line_length, &vars->e_xpm.endian);
 	vars->w_xpm.addr = mlx_get_data_addr(vars->w_xpm.img, &vars->w_xpm.bits_per_pixel, &vars->w_xpm.line_length, &vars->w_xpm.endian);
 
+
+	printf("n_xpm len: %zu\n", ft_strlen(vars->n_xpm.addr));
 
 	printf("n_xpm ptr:%p\n", vars->n_xpm.img);
 	printf("n_xpm img width: %d\n", vars->n_xpm.img_width);
