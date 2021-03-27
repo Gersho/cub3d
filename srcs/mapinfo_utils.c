@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/05 12:58:25 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:27:53 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,9 @@ void	mapinfo_parse(t_cubinfo *cubinfo)
 		{
 			if (cubinfo->map[i][j] == '2')
 			{
-				cubinfo->sprite[0] = i;
-				cubinfo->sprite[1] = j;
+				// cubinfo->sprite[0] = i;
+				// cubinfo->sprite[1] = j;
+				cubinfo->sprite_qt = cubinfo->sprite_qt + 1;
 			}
 			if (ft_str_index_c("NSEW", cubinfo->map[i][j]) != -1)
 			{

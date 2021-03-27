@@ -6,85 +6,11 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/26 17:18:33 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 16:54:13 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-t_trgb	get_trgb_from_xpm_e(t_data *xpm, t_coord inter)
-{
-	t_coord tmp;
-	int tex_x;
-	int tex_y;
-	t_trgb trgb;
-
-	tmp.y = inter.y - (int)inter.y;
-	tmp.z = inter.z - (int)inter.z;
-	tex_x = (xpm->img_width * tmp.y);
-	tex_y = xpm->img_height - (xpm->img_height * tmp.z);
-	trgb.b = (uint8_t)xpm->addr[tex_y * xpm->line_length + tex_x * 4];
-	trgb.g = (uint8_t)xpm->addr[tex_y * xpm->line_length + tex_x * 4 + 1];
-	trgb.r = (uint8_t)xpm->addr[tex_y * xpm->line_length + tex_x * 4 + 2];
-	trgb.t = (uint8_t)xpm->addr[tex_y * xpm->line_length + tex_x * 4 + 3];
-	return (trgb);
-}
-
-t_trgb	get_trgb_from_xpm_w(t_data *xpm, t_coord inter)
-{
-	t_coord tmp;
-	int tex_x;
-	int tex_y;
-	t_trgb trgb;
-
-	tmp.y = inter.y - (int)inter.y;
-	tmp.z = inter.z - (int)inter.z;
-	tex_x = xpm->img_width - (xpm->img_width * tmp.y);
-	tex_y = xpm->img_height - (xpm->img_height * tmp.z);
-	trgb.b = (uint8_t)xpm->addr[tex_y * xpm->line_length + tex_x * 4];
-	trgb.g = (uint8_t)xpm->addr[tex_y * xpm->line_length + tex_x * 4 + 1];
-	trgb.r = (uint8_t)xpm->addr[tex_y * xpm->line_length + tex_x * 4 + 2];
-	trgb.t = (uint8_t)xpm->addr[tex_y * xpm->line_length + tex_x * 4 + 3];
-	return (trgb);
-}
-
-t_trgb	get_trgb_from_xpm_n(t_data *xpm, t_coord inter)
-{
-	t_coord tmp;
-	int tex_x;
-	int tex_y;
-	t_trgb trgb;
-
-
-	tmp.x = inter.x - (int)inter.x;
-	tmp.z = inter.z - (int)inter.z;
-	tex_x = (xpm->img_width * tmp.x);
-	tex_y = xpm->img_height - (xpm->img_height * tmp.z);
-	trgb.b = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4)];
-	trgb.g = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4 + 1)];
-	trgb.r = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4 + 2)];
-	trgb.t = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4 + 3)];
-	return (trgb);
-}
-
-t_trgb	get_trgb_from_xpm_s(t_data *xpm, t_coord inter)
-{
-	t_coord tmp;
-	int tex_x;
-	int tex_y;
-	t_trgb trgb;
-
-
-	tmp.x = inter.x - (int)inter.x;
-	tmp.z = inter.z - (int)inter.z;
-	tex_x = xpm->img_width  - (xpm->img_width * tmp.x);
-	tex_y = xpm->img_height - (xpm->img_height * tmp.z);
-	trgb.b = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4)];
-	trgb.g = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4 + 1)];
-	trgb.r = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4 + 2)];
-	trgb.t = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4 + 3)];
-	return (trgb);
-}
 
 t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 {
@@ -107,34 +33,64 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 	// color_print(vars->trgb_wall);
 	// printf("trgb:%d\n", vars->trgb_wall.trgb);
 	//printf("angle: %f\n", vars->pc.angle);
-	inter_tmp = intersection(vect, vars->pc.pos, vars->sprites.plane, &dist_tmp);
-	if (dist_tmp > 0 && dist_tmp < dist)
+
+	while(is_lastplane(vars->sprites[i].plane))
 	{
-		a = (int)inter_tmp.y;
-		b = (int)inter_tmp.x;
-		if (a <= 0)
-			a = 0;
-		if (a >= vars->cubinfo->map_size[0])
-			a = vars->cubinfo->map_size[0] - 1;
-		if (b <= 0)
-			b = 0;
-		if (b >= vars->cubinfo->map_size[1])
-			b = vars->cubinfo->map_size[1] - 1;
+		inter_tmp = intersection(vect, vars->pc.pos, vars->sprites[i].plane, &dist_tmp);
+		if (dist_tmp > 0 && dist_tmp < dist)
+		{
+			a = (int)inter_tmp.y;
+			b = (int)inter_tmp.x;
+			if (a <= 0)
+				a = 0;
+			if (a >= vars->cubinfo->map_size[0])
+				a = vars->cubinfo->map_size[0] - 1;
+			if (b <= 0)
+				b = 0;
+			if (b >= vars->cubinfo->map_size[1])
+				b = vars->cubinfo->map_size[1] - 1;
 
-		tile = vars->cubinfo->map[a][b];
+			tile = vars->cubinfo->map[a][b];
 
-		if (tile == '2')
-			{
-				//printf("is new closest plane\n");
-				inter = inter_tmp;
-				dist = dist_tmp;
-				closest_plane = vars->sprites.plane;
-				//temp_test = i;
+			if (tile == '2')
+				{
+					//printf("is new closest plane\n");
+					inter = inter_tmp;
+					dist = dist_tmp;
+					closest_plane = vars->sprites[i].plane;
+					//temp_test = i;
 			}
 	}
+		i++;
+	}
+	// inter_tmp = intersection(vect, vars->pc.pos, vars->sprites.plane, &dist_tmp);
+	// if (dist_tmp > 0 && dist_tmp < dist)
+	// {
+	// 	a = (int)inter_tmp.y;
+	// 	b = (int)inter_tmp.x;
+	// 	if (a <= 0)
+	// 		a = 0;
+	// 	if (a >= vars->cubinfo->map_size[0])
+	// 		a = vars->cubinfo->map_size[0] - 1;
+	// 	if (b <= 0)
+	// 		b = 0;
+	// 	if (b >= vars->cubinfo->map_size[1])
+	// 		b = vars->cubinfo->map_size[1] - 1;
+
+	// 	tile = vars->cubinfo->map[a][b];
+
+	// 	if (tile == '2')
+	// 		{
+	// 			//printf("is new closest plane\n");
+	// 			inter = inter_tmp;
+	// 			dist = dist_tmp;
+	// 			closest_plane = vars->sprites.plane;
+	// 			//temp_test = i;
+	// 		}
+	// }
 
 
-
+	i = 0;
 	while (!is_lastplane(vars->planes[i]))
 	{
 		//printf("-------\n");
@@ -244,7 +200,7 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 	}
 
 
-	return get_trgb_from_xpm_n(&vars->sprites.xpm, inter);
+	return get_trgb_from_xpm_n(&vars->sprite_xpm, inter);
 	return (vars->trgb_text);
 	//return (vars->trgb_wall);
 }

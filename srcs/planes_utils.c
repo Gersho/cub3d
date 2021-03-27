@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 10:41:53 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/26 16:44:29 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:20:49 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ int	is_lastplane(t_plane plane)
 {
 	if (plane.a == -255 && plane.b == -255 && plane.c == -255 \
     && plane.d == -255)
+		return (1);
+	return (0);
+}
+
+int	is_lastsprite(t_sprite sprite)
+{
+	if (sprite.pos.x == -255 && sprite.pos.y == -255 && sprite.pos.z == -255)
 		return (1);
 	return (0);
 }
@@ -91,7 +98,7 @@ t_plane	*plane_factory_y(t_vars *vars)
 }
 
 // sprites
-t_plane	create_sprite_plane(t_vars *vars)
+t_plane	create_sprite_plane(t_vars *vars, int i)
 {
 	//t_coord	tmp;
 	t_plane	plane;
@@ -101,7 +108,7 @@ t_plane	create_sprite_plane(t_vars *vars)
 	plane.a = vars->pc.pos.x / v_norm;
 	plane.b = vars->pc.pos.y / v_norm;
 	plane.c = vars->pc.pos.z / v_norm;
-	plane.d = - (plane.a * vars->sprites.pos.x) - (plane.b * vars->sprites.pos.y) - (plane.c * vars->sprites.pos.z);
+	plane.d = - (plane.a * vars->sprites[i].pos.x) - (plane.b * vars->sprites[i].pos.y) - (plane.c * vars->sprites[i].pos.z);
 
 	return (plane);
 	 //ax + by + cz + d = 0

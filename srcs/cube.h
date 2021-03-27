@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/26 16:58:12 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:21:07 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef	struct s_sprite
 {
 	t_plane	plane;
 	t_coord	pos;
-	t_data	xpm;
+	//t_data	xpm;
 }				t_sprite;
 
 typedef struct s_cubinfo
@@ -64,7 +64,7 @@ typedef struct s_cubinfo
 	char	*path_W;
 	char	*path_sprite;
 	char	**map;
-	int		sprite[2];
+	int		sprite_qt;
 	int		spawn[2];
 	char	facing;
 	int		res[2];
@@ -112,6 +112,7 @@ typedef struct  s_vars {
 	t_data		s_xpm;
 	t_data		e_xpm;
 	t_data		w_xpm;
+	t_data		sprite_xpm;
 	t_cubinfo	*cubinfo;
 	t_pc		pc;
 	t_trgb      trgb_sky;
@@ -125,7 +126,7 @@ typedef struct  s_vars {
 	t_plane		*planes;
 	t_plane		*planes_x;
 	t_plane		*planes_y;
-	t_sprite	sprites;
+	t_sprite	*sprites;
 }               t_vars;
 
 
@@ -165,5 +166,6 @@ t_trgb		get_trgb_from_xpm_n(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_s(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_e(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_w(t_data *xpm, t_coord inter);
-t_plane	create_sprite_plane(t_vars *vars);
+t_plane	create_sprite_plane(t_vars *vars, int i);
+int	is_lastsprite(t_sprite sprite);
 #endif

@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/26 16:58:40 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 16:50:05 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,15 @@ int mynextframe(t_vars *vars)
 	t_trgb	trgb;
 	int	i,j=i=0;
 
-	vars->sprites.plane = create_sprite_plane(vars);
+	//vars->sprites->plane = create_sprite_plane(vars);
+	while (!is_lastsprite(vars->sprites[i]))
+	{
+		vars->sprites[i].plane = create_sprite_plane(vars, i);
+		printf("sprite[%d] plane:{%f, %f, %f, %f}\n", i, vars->sprites[i].plane.a, vars->sprites[i].plane.b, vars->sprites[i].plane.c, vars->sprites[i].plane.d);
+		i++;
+	}
+	vars->sprites[i].plane = (t_plane){-255,-255,-255,-255};
+	printf("sprite[%d] plane:{%f, %f, %f, %f}\n", i, vars->sprites[i].plane.a, vars->sprites[i].plane.b, vars->sprites[i].plane.c, vars->sprites[i].plane.d);
 	while (j <= vars->cubinfo->res[1])
 	{
 		i = 0;
@@ -130,7 +138,7 @@ int mynextframe(t_vars *vars)
 		j++;
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
-	//exit(0);
+	exit(0);
 	// char	*p;
 	// mlx_string_put(vars->mlx, vars->win, 220, 120, vars->trgb_text.trgb, "X");
     // p = ft_itoa(vars->pc.pos.x * 100);
