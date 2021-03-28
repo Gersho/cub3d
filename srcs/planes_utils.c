@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 10:41:53 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/27 15:20:49 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/28 12:45:50 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_plane	*plane_factory_x(t_vars *vars)
 	planes = malloc((vars->cubinfo->map_size[1] + 1) * sizeof(t_plane));
 	if (!planes)
 		exit(0);
-	while (i < vars->cubinfo->map_size[0] - 1)
+	while (i < vars->cubinfo->map_size[1] - 1)
 	{
 		planes[i] = (t_plane){1, 0, 0, -(i + 1)};
 		i++;

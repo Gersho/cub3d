@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/27 14:47:12 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/28 14:59:22 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,45 +24,11 @@ void	vars_set_trgb(t_vars *vars)
 	vars->trgb_sky.g = vars->cubinfo->color_ceil[1];
 	vars->trgb_sky.b = vars->cubinfo->color_ceil[2];
 
-
-	// vars->trgb_sky.r = 0;
-	// vars->trgb_sky.g = 0;
-	//vars->trgb_sky.b = 250;
-
-	// vars->trgb_wall_e.t = 0;
-	// vars->trgb_wall_e.r = 255;
-	// vars->trgb_wall_e.g = 255;
-	// vars->trgb_wall_e.b = 255;
-
-	// vars->trgb_wall_n.t = 0;
-	// vars->trgb_wall_n.r = 255;
-	// vars->trgb_wall_n.g = 255;
-	// vars->trgb_wall_n.b = 0;
-
-	// vars->trgb_wall_s.t = 0;
-	// vars->trgb_wall_s.r = 255;
-	// vars->trgb_wall_s.g = 0;
-	// vars->trgb_wall_s.b = 255;
-
-	// vars->trgb_wall_w.t = 0;
-	// vars->trgb_wall_w.r = 255;
-	// vars->trgb_wall_w.g = 0;
-	// vars->trgb_wall_w.b = 0;
-
-	// vars->trgb_wall.t = 0;
-	// vars->trgb_wall.r = 255;
-	// vars->trgb_wall.g = 255;
-	// vars->trgb_wall.b = 255;
-
 	vars->trgb_text.t = 0;
 	vars->trgb_text.r = 0;
 	vars->trgb_text.g = 0;
 	vars->trgb_text.b = 0;
 
-	// vars->img.trgb.t = 0;
-	// vars->img.trgb.r = vars->img.trgb.g = vars->img.trgb.b = 255;
-	//printf("coucou\n");
-	//color_print(vars->trgb_wall);
 }
 
 void	vars_get_sprites(t_vars *vars)
@@ -106,6 +72,16 @@ void	vars_init(t_cubinfo *cubinfo, t_vars *vars)
 	vars_set_trgb(vars);
 	vars_get_sprites(vars);
 
+	
+	vars->planes_x = plane_factory_x(vars);
+	vars->planes_y = plane_factory_y(vars);
+	vars->plane_sky = (t_plane) { 0, 0, 1, -1};
+	vars->plane_floor = (t_plane) { 0, 0, 1, 0};
+
+	printf("new planes: x\n");
+	plane_print(vars->planes_x);
+	printf("new planes: y\n");
+	plane_print(vars->planes_y);
 
 	// vars->sprites.pos.x = 0.5 + vars->cubinfo->sprite[1];
 	// vars->sprites.pos.y = 0.5 + vars->cubinfo->sprite[0];

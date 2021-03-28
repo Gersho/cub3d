@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/27 15:21:07 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/28 14:57:34 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct  s_data {
     int         endian;
 	int         img_width;
     int         img_height;
- //   t_trgb      trgb;
 }               t_data;
 
 typedef	struct	s_plane
@@ -118,14 +117,11 @@ typedef struct  s_vars {
 	t_trgb      trgb_sky;
 	t_trgb      trgb_floor;
 	t_trgb      trgb_text;
-	t_trgb		trgb_wall;
-	t_trgb		trgb_wall_n;
-	t_trgb		trgb_wall_s;
-	t_trgb		trgb_wall_e;
-	t_trgb		trgb_wall_w;
 	t_plane		*planes;
 	t_plane		*planes_x;
 	t_plane		*planes_y;
+	t_plane		plane_sky;
+	t_plane		plane_floor;
 	t_sprite	*sprites;
 }               t_vars;
 
@@ -166,6 +162,9 @@ t_trgb		get_trgb_from_xpm_n(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_s(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_e(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_w(t_data *xpm, t_coord inter);
+t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter);
 t_plane	create_sprite_plane(t_vars *vars, int i);
 int	is_lastsprite(t_sprite sprite);
+t_plane	*plane_factory_x(t_vars *vars);
+t_plane	*plane_factory_y(t_vars *vars);
 #endif
