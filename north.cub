@@ -3,15 +3,15 @@ NO assets/guts.xpm
 SO assets/grass.xpm
 WE assets/metal.xpm
 EA        assets/stone.xpm
-S assets/chopper.xpm
+S assets/pillar.xpm
 F       0   ,   255, 0
 C 0 , 0 , 255
 
 
 1111111
 1000001
-1002001
+100S001
 1000001
-100N001
+1002001
 1000001
 1111111

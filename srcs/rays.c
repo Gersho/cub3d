@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/28 15:18:18 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/28 16:52:48 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,15 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 				b = vars->cubinfo->map_size[1] - 1;
 			tile = vars->cubinfo->map[a][b];
 
-			color_temp = get_trgb_from_xpm_n(&vars->sprite_xpm, inter);
+			color_temp = get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter);
 			//color_print(color_temp);
-			if (tile == '2' && color_temp.trgb != 0)
+			//if (tile == '2' && color_temp.r != 0 && color_temp.g != 0 && color_temp.b != 0)
+			//if (tile == '2' /*&& color_temp.t == 0*/)
+			if (tile == '2' /*&& color_temp.r != 0 && color_temp.g != 0 && color_temp.b != 0*/)
 			{
+					//color_print(color_temp);
+					//printf("%d\n", color_temp.trgb);
+					//printf("trgb.t: %d\n", color_temp.t);
 					//printf("is new closest plane\n");
 					inter = inter_tmp;
 					dist = dist_tmp;
@@ -122,7 +127,10 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 		if (dist_tmp > 0 && dist_tmp < dist)
 		{
 			a = (int)inter_tmp.y;
-			b = (int)inter_tmp.x;		
+			b = (int)inter_tmp.x;
+
+			// a = round(inter_tmp.y);
+			// b = round(inter_tmp.x);			
 			if (vect.x < 0)
 			{
 				b--;
@@ -158,6 +166,9 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 		{
 			a = (int)inter_tmp.y;
 			b = (int)inter_tmp.x;
+
+			// 	a = round(inter_tmp.y);
+			// b = round(inter_tmp.x);		
 			if (vect.y < 0)
 			{
 				a--;
@@ -226,7 +237,7 @@ if (dist_tmp > 0 && dist_tmp < dist)
 	}
 
 
-	return get_trgb_from_xpm_n(&vars->sprite_xpm, inter);
+	return get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter);
 	return (vars->trgb_text);
 }
 
