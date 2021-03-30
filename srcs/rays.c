@@ -25,6 +25,7 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 	int b;
 	char tile;
 	t_trgb	color_temp;
+	int	reverse;
 
 
 	dist = 999999;
@@ -117,10 +118,16 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 
 
 
+//change i depending on pos (& i--  || i < 0)
 
+	i = (int)vars->pc.pos.x;
+	reverse = 0;
+	if (vect.x < 0)
+		reverse = 1;
+	else
+		i++;
+	//i = 0;
 
-
-	i = 0;
 	while (!is_lastplane(vars->planes_x[i]))
 	{
 		inter_tmp = intersection(vect, vars->pc.pos, vars->planes_x[i], &dist_tmp);
@@ -155,9 +162,19 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 				closest_plane = vars->planes_x[i];
 			}
 		}
-		i++;
+		if(reverse == 0)
+			i++;
+		else
+			i--;
 	}
 
+	i = (int)vars->pc.pos.y;
+	reverse = 0;
+	if (vect.y < 0)
+		reverse = 1;
+	else
+		i++;
+//change i depending on pos (& i--  || i < 0)
 	i = 0;
 	while (!is_lastplane(vars->planes_y[i]))
 	{
