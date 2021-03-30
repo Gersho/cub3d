@@ -40,14 +40,14 @@ int myevents(int keycode, t_vars *vars)
 	{
 		printf("space pressed\n");
 	}
-	if (keycode == 126)
-	{
-		vars->pc.head_tilt = vars->pc.head_tilt - 0.05;
-	}
-	if (keycode == 125)
-	{
-		vars->pc.head_tilt = vars->pc.head_tilt + 0.05;
-	}
+	// if (keycode == 126)
+	// {
+	// 	vars->pc.head_tilt = vars->pc.head_tilt - 0.05;
+	// }
+	// if (keycode == 125)
+	// {
+	// 	vars->pc.head_tilt = vars->pc.head_tilt + 0.05;
+	// }
 	if (keycode == 12)
 	{
 		vars->pc.angle = vars->pc.angle - 0.05;
@@ -167,16 +167,16 @@ t_coord	get_vector(t_vars *vars, int i, int j)
 	vect.y = -1;
 	vect.z = -(j - vars->precalc.res1_2) * vars->precalc.r_v;
 //rot x (HEAD UP/DOWN)
-	//tmp.x = vect.x;
-	tmp.y = vect.y * (cos(vars->pc.head_tilt)) + (-vect.z * sin(vars->pc.head_tilt));
-	tmp.z = vect.y * sin(vars->pc.head_tilt) +  vect.z * cos(vars->pc.head_tilt);
-	//vect.x = tmp.x;
-	vect.y = tmp.y;
-	//vect.z = tmp.z;
+	// //tmp.x = vect.x;
+	// tmp.y = vect.y * (cos(vars->pc.head_tilt)) + (-vect.z * sin(vars->pc.head_tilt));
+	// tmp.z = vect.y * sin(vars->pc.head_tilt) +  vect.z * cos(vars->pc.head_tilt);
+	// //vect.x = tmp.x;
+	// vect.y = tmp.y;
+	// //vect.z = tmp.z;
 //rot z (HEAD LEFT/RIGHT)
 	tmp.x = vect.x * cos(vars->pc.angle) + vect.y * (-sin(vars->pc.angle));
 	tmp.y = vect.x * sin(vars->pc.angle) + vect.y * cos(vars->pc.angle);
-	//tmp.z = vect.z;
+	tmp.z = vect.z;
 	
 	return (tmp);
 }

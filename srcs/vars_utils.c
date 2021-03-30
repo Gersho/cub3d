@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: karim <karim@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/28 14:59:22 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 16:49:12 by karim            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	vars_init(t_cubinfo *cubinfo, t_vars *vars)
 	vars_set_trgb(vars);
 	vars_get_sprites(vars);
 
-	
 	vars->planes_x = plane_factory_x(vars);
 	vars->planes_y = plane_factory_y(vars);
 	vars->plane_sky = (t_plane) { 0, 0, 1, -1};
@@ -86,7 +85,12 @@ void	vars_init(t_cubinfo *cubinfo, t_vars *vars)
 	// vars->sprites.pos.x = 0.5 + vars->cubinfo->sprite[1];
 	// vars->sprites.pos.y = 0.5 + vars->cubinfo->sprite[0];
 	// vars->sprites.pos.z = 0.5;
-
+	vars->keys.up = 0;
+	vars->keys.down = 0;
+	vars->keys.left = 0;
+	vars->keys.right = 0;
+	vars->keys.turn_l = 0;
+	vars->keys.turn_r = 0;
 
 	vars->pc.pos.x = 0.5 + vars->cubinfo->spawn[1];
 	vars->pc.pos.y = 0.5 + vars->cubinfo->spawn[0];

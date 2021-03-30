@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: karim <karim@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/28 14:57:34 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 16:47:17 by karim            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,17 @@ typedef struct s_precalc
 	int			res1_2;
 }				t_precalc;
 
+typedef struct s_keys
+{
+	uint8_t		up;
+	uint8_t		down;
+	uint8_t		left;
+	uint8_t		right;
+	uint8_t		turn_l;
+	uint8_t		turn_r;
+
+}				t_keys;
+
 typedef struct  s_vars {
     void        *mlx;
     void        *win;
@@ -123,6 +134,7 @@ typedef struct  s_vars {
 	t_plane		plane_sky;
 	t_plane		plane_floor;
 	t_sprite	*sprites;
+	t_keys		keys;
 }               t_vars;
 
 
