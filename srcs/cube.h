@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karim <karim@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/30 16:47:17 by karim            ###   ########lyon.fr   */
+/*   Updated: 2021/03/31 14:08:59 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void   		 plane_print(t_plane *planes);
 void		vars_init(t_cubinfo *cubinfo, t_vars *vars);
 int			is_lastplane(t_plane plane);
 t_coord		rotate_vect(t_coord vect, float angle);
-t_coord		 move_pc(t_vars *vars, int x);
+t_coord		 move_pc(t_vars *vars, float x);
 void		vect_precalc(t_vars *vars);
 void		xpm_load(t_vars *vars);
 void		xpm_getaddr(t_vars *vars);
@@ -179,4 +179,7 @@ t_plane	create_sprite_plane(t_vars *vars, int i);
 int	is_lastsprite(t_sprite sprite);
 t_plane	*plane_factory_x(t_vars *vars);
 t_plane	*plane_factory_y(t_vars *vars);
+int keydown(int keycode, t_vars *vars);
+int keyup(int keycode, t_vars *vars);
+void	update_pc(t_vars *vars);
 #endif

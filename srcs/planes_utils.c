@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 10:41:53 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/28 12:45:50 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/31 14:49:32 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ t_plane	*plane_factory_x(t_vars *vars)
 		exit(0);
 	i = 1;
 	planes[0] = (t_plane){-255, -255, -255, -255};
-	while (i < vars->cubinfo->map_size[1] - 1)
+	while (i < vars->cubinfo->map_size[1])
 	{
-		planes[i] = (t_plane){1, 0, 0, -(i + 1)};
+		planes[i] = (t_plane){1, 0, 0, -(i)};
 		i++;
 	}
 	planes[i] = (t_plane){-255, -255, -255, -255};
@@ -84,9 +84,9 @@ t_plane	*plane_factory_y(t_vars *vars)
 
 	i = 1;
 	planes[0] = (t_plane){-255, -255, -255, -255};
-	while (i < vars->cubinfo->map_size[0] - 1)
+	while (i < vars->cubinfo->map_size[0])
 	{
-		planes[i] = (t_plane){0, 1, 0, -(i + 1)};
+		planes[i] = (t_plane){0, 1, 0, -(i)};
 		i++;
 	}
 	planes[i] = (t_plane){-255, -255, -255, -255};

@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 14:59:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/27 14:32:08 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/03/31 13:23:25 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void    plane_print(t_plane *planes)
     int i;
     
     i = 0;
+    printf("plane %d {%f, %f, %f, %f}\n", i, planes[i].a, planes[i].b, planes[i].c, planes[i].d);
+    i = 1;
     while (planes[i].a != -255 && planes[i].b != -255 && planes[i].c != -255 \
     && planes[i].d != -255)
     {
