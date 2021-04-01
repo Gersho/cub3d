@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karim <karim@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/30 16:49:12 by karim            ###   ########lyon.fr   */
+/*   Updated: 2021/04/01 15:36:18 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ void	vars_init(t_cubinfo *cubinfo, t_vars *vars)
 	// vars->sprites.pos.x = 0.5 + vars->cubinfo->sprite[1];
 	// vars->sprites.pos.y = 0.5 + vars->cubinfo->sprite[0];
 	// vars->sprites.pos.z = 0.5;
+
+
+
+
 	vars->keys.up = 0;
 	vars->keys.down = 0;
 	vars->keys.left = 0;
@@ -120,4 +124,7 @@ void	vars_init(t_cubinfo *cubinfo, t_vars *vars)
 	}
 	vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
 	vect_precalc(vars);
+
+	// vars->pc.angle = vars->pc.angle + 0.25;
+	// vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
 }

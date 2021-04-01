@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/31 14:45:34 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/01 15:37:02 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,14 +124,15 @@ int mynextframe(t_vars *vars)
 	while (j <= vars->cubinfo->res[1])
 	{
 		i = 0;
-		while (i <= vars->cubinfo->res[0])
+	while (i <= vars->cubinfo->res[0])
 		{
 
 			// printf("#########\n");
 			// printf("i: %d, j: %d\n", i, j);
 			vect = get_vector(vars, i, j);
 			trgb = pick_pixel_color(vars, vect);
-			//color_print(trgb);
+			// printf("color result!!!\n");
+			// color_print(trgb);
 			my_mlx_pixel_put(&vars->img, i, j, trgb.trgb);
 			i += 1;
 		}
@@ -139,19 +140,19 @@ int mynextframe(t_vars *vars)
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	//exit(0);
-	char	*p;
-	mlx_string_put(vars->mlx, vars->win, 220, 120, vars->trgb_text.trgb, "X");
-    p = ft_itoa(vars->pc.pos.x * 100);
-    mlx_string_put(vars->mlx, vars->win, 220, 140, vars->trgb_text.trgb, p);
-    free(p);
-    mlx_string_put(vars->mlx, vars->win, 270, 120, vars->trgb_text.trgb, "Y");
-    p = ft_itoa(vars->pc.pos.y * 100);
-    mlx_string_put(vars->mlx, vars->win, 270, 140, vars->trgb_text.trgb, p);
-    free(p);
-    mlx_string_put(vars->mlx, vars->win, 320, 120, vars->trgb_text.trgb, "Z");
-    p = ft_itoa(vars->pc.pos.z * 100);
-    mlx_string_put(vars->mlx, vars->win, 320, 140, vars->trgb_text.trgb, p);
-    free(p);
+	// char	*p;
+	// mlx_string_put(vars->mlx, vars->win, 220, 120, vars->trgb_text.trgb, "X");
+    // p = ft_itoa(vars->pc.pos.x * 100);
+    // mlx_string_put(vars->mlx, vars->win, 220, 140, vars->trgb_text.trgb, p);
+    // free(p);
+    // mlx_string_put(vars->mlx, vars->win, 270, 120, vars->trgb_text.trgb, "Y");
+    // p = ft_itoa(vars->pc.pos.y * 100);
+    // mlx_string_put(vars->mlx, vars->win, 270, 140, vars->trgb_text.trgb, p);
+    // free(p);
+    // mlx_string_put(vars->mlx, vars->win, 320, 120, vars->trgb_text.trgb, "Z");
+    // p = ft_itoa(vars->pc.pos.z * 100);
+    // mlx_string_put(vars->mlx, vars->win, 320, 140, vars->trgb_text.trgb, p);
+    // free(p);
 	// char abc[10];
 	// ftoa(vars->pc.angle, abc, 3);
     // mlx_string_put(vars->mlx, vars->win, 340, 150, vars->trgb_text.trgb, abc);
