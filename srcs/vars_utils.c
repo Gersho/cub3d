@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/01 15:36:18 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 13:15:20 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	vars_set_trgb(t_vars *vars)
 	vars->trgb_sky.b = vars->cubinfo->color_ceil[2];
 
 	vars->trgb_text.t = 0;
-	vars->trgb_text.r = 0;
+	vars->trgb_text.r = 255;
 	vars->trgb_text.g = 0;
 	vars->trgb_text.b = 0;
 

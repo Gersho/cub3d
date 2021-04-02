@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/31 14:08:59 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 16:32:24 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ t_trgb		get_trgb_from_xpm_n(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_s(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_e(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_w(t_data *xpm, t_coord inter);
-t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter);
+t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, t_coord vect);
 t_plane	create_sprite_plane(t_vars *vars, int i);
 int	is_lastsprite(t_sprite sprite);
 t_plane	*plane_factory_x(t_vars *vars);

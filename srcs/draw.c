@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/01 15:37:02 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 17:33:48 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,16 @@ int mynextframe(t_vars *vars)
 		i++;
 	}
 	vars->sprites[i].plane = (t_plane){-255,-255,-255,-255};
+	// printf("sprite planes:\n");
+	// i = 0;
+	// while (!is_lastsprite(vars->sprites[i]))
+	// {
+	// 	printf("plane %d {%f, %f, %f, %f}\n", i, vars->sprites[i].plane.a, vars->sprites[i].plane.b, vars->sprites[i].plane.c, vars->sprites[i].plane.d);
+	// 	coord_print(vars->sprites[i].pos);
+	// 	i++;
+	// }
+	// 			printf("pc coords\n");
+	// 	coord_print(vars->pc.pos);
 	j = 0;
 	while (j <= vars->cubinfo->res[1])
 	{
