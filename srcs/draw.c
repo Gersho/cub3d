@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/02 17:33:48 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 16:54:17 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,13 @@ int mynextframe(t_vars *vars)
 		i++;
 	}
 	vars->sprites[i].plane = (t_plane){-255,-255,-255,-255};
+	//i = 0;
+	// while (!is_lastsprite(vars->sprites[i]))
+	// {
+	// 	printf("sprite:%d\n", i);
+	// 	coord_print(vars->sprites[i].pos);
+	// 	i++;
+	// }
 	// printf("sprite planes:\n");
 	// i = 0;
 	// while (!is_lastsprite(vars->sprites[i]))
@@ -140,6 +147,10 @@ int mynextframe(t_vars *vars)
 			// printf("#########\n");
 			// printf("i: %d, j: %d\n", i, j);
 			vect = get_vector(vars, i, j);
+			// if (i == 400 && j == 400)
+			// {
+			// 	coord_print(vect);
+			// }
 			trgb = pick_pixel_color(vars, vect);
 			// printf("color result!!!\n");
 			// color_print(trgb);

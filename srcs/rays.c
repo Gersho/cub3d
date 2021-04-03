@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/02 17:34:11 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/03 16:51:31 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,6 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 		{
 			a = (int)inter_tmp.y;
 			b = (int)inter_tmp.x;
-			// if (a<= 0 || a >= vars->cubinfo->map_size[0] || b <= 0 || b >= vars->cubinfo->map_size[1])
-			// 	tile = '*';
-			// else 
-				// tile = vars->cubinfo->map[a][b];
 
 			if (a <= 0)
 				a = 0;
@@ -52,12 +48,25 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 				b = vars->cubinfo->map_size[1] - 1;
 			tile = vars->cubinfo->map[a][b];
 
+
+			//changer a/b pour faire avec les coords
+
+			// if (a<= 0 || a >= vars->cubinfo->map_size[0] || b <= 0 || b >= vars->cubinfo->map_size[1])
+			// 	tile = '*';
+			// else 
+				// tile = vars->cubinfo->map[a][b];
 			color_temp = get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter, vect);
+			if (color_temp.trgb == -16777216 || color_temp.trgb == 0 || isnan(color_temp.trgb))
+			{
+				i++;
+				continue;
+			}
 			//color_print(color_temp);
 			//if (tile == '2' && color_temp.r != 0 && color_temp.g != 0 && color_temp.b != 0)
 			//if (tile == '2' /*&& color_temp.t == 0*/)
 
-			if (tile == '2' /*&& color_temp.trgb != 0 *//*&& (color_temp.r != 0 || color_temp.g != 0 || color_temp.b != 0)*/)
+			//if (tile == '2' /*&& color_temp.trgb != 0 *//*&& (color_temp.r != 0 || color_temp.g != 0 || color_temp.b != 0)*/)
+			if (tile == '2'  /* && !isnan(color_temp.trgb)*/)
 			{
 					//color_print(color_temp);
 					//printf("%d\n", color_temp.trgb);
@@ -250,12 +259,6 @@ if (dist_tmp > 0 && dist_tmp < dist)
 }
 
 // printf("closest plane{%f, %f, %f, %f}\n",  closest_plane.a, closest_plane.b, closest_plane.c, closest_plane.d);
-	if (closest_plane.c == 1)
-	{
-		if (closest_plane.d == 0)
-			return (vars->trgb_floor);
-		return (vars->trgb_sky);
-	}
 
 	if (closest_plane.b == 1)
 	{
@@ -269,6 +272,12 @@ if (dist_tmp > 0 && dist_tmp < dist)
 		if (vect.x < 0)
 			return get_trgb_from_xpm_w(&vars->w_xpm, inter);
 		return get_trgb_from_xpm_e(&vars->e_xpm, inter);
+	}
+	if (closest_plane.c == 1)
+	{
+		if (closest_plane.d == 0)
+			return (vars->trgb_floor);
+		return (vars->trgb_sky);
 	}
 
 
