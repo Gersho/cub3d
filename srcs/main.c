@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:39:04 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/27 16:20:18 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/04 13:20:39 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,28 @@ int	main(int ac, char **argv)
 	t_vars		vars;
 	t_cubinfo	*cubinfo;
 
-	if (ac != 2)
+	if (!(ac == 2 || ac == 3))
 	{
 		printf("Error: Wrong number of arguments\n");
 		exit (-1);
+	}
+	if (ac == 3)
+	{		
+		if (ft_strncmp(argv[2], "--save\0", 7) == 0)
+		{
+			printf("flag is --save\n");
+			vars.savemode = 1;
+			exit(0);
+		}
+		else
+		{
+			printf("Error: the only second argument supported is --save\n");
+			exit(0);
+		}
+	}
+	else 
+	{
+		vars.savemode = 0;
 	}
 	cubinfo = NULL;
 	cubinfo = cubinfo_setup(cubinfo, argv[1]);

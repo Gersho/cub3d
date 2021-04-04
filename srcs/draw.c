@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/03 16:54:17 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/04 14:32:13 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,17 @@ int mynextframe(t_vars *vars)
 		}
 		j += 1;
 	}
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+
+
+	if (vars->savemode == 0)
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+	else
+	{
+		//do save stuff
+		exit(0);
+
+	}
+
 	//exit(0);
 	// char	*p;
 	// mlx_string_put(vars->mlx, vars->win, 220, 120, vars->trgb_text.trgb, "X");
@@ -211,7 +221,8 @@ void	draw_map(t_vars *vars)
 	xpm_load(vars);
 	xpm_getaddr(vars);
 	
-	vars->win = mlx_new_window(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1], "kzennoun's cube");
+	if (vars->savemode == 0)
+		vars->win = mlx_new_window(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1], "kzennoun's cube");
 	vars->img.img = mlx_new_image(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1]);
 
 	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bits_per_pixel,

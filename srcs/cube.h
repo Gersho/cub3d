@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/02 16:32:24 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/04 14:32:49 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct  s_vars {
 	t_plane		plane_floor;
 	t_sprite	*sprites;
 	t_keys		keys;
+	int			savemode;
 }               t_vars;
 
 
@@ -182,4 +183,5 @@ t_plane	*plane_factory_y(t_vars *vars);
 int keydown(int keycode, t_vars *vars);
 int keyup(int keycode, t_vars *vars);
 void	update_pc(t_vars *vars);
+void	img_to_bmp(t_vars *vars);
 #endif

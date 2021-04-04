@@ -2,7 +2,7 @@ SRCS	= srcs/main.c srcs/cubinfo_utils.c srcs/draw.c srcs/data_validator.c \
 srcs/ft_parse_cub.c srcs/mapinfo_utils.c srcs/debug_tools.c srcs/ft_shutdown.c \
 srcs/mlx_utils.c srcs/rays.c srcs/vars_utils.c srcs/planes_utils.c \
 srcs/movements.c srcs/precalculator.c srcs/xpm_loader.c srcs/trgb_from_xpm.c \
-srcs/sprites.c srcs/hooks.c
+srcs/sprites.c srcs/hooks.c srcs/img_to_bmp.c
 
 OBJS	= $(SRCS:.c=.o)
 NAME = cube.a
