@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/04 14:32:13 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 13:50:43 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,10 +147,11 @@ int mynextframe(t_vars *vars)
 			// printf("#########\n");
 			// printf("i: %d, j: %d\n", i, j);
 			vect = get_vector(vars, i, j);
-			// if (i == 400 && j == 400)
-			// {
-			// 	coord_print(vect);
-			// }
+			if (i == 400 && j == 400)
+			{
+				printf("------------------\n");
+				coord_print(vect);
+			}
 			trgb = pick_pixel_color(vars, vect);
 			// printf("color result!!!\n");
 			// color_print(trgb);
@@ -166,6 +167,7 @@ int mynextframe(t_vars *vars)
 	else
 	{
 		//do save stuff
+		img_to_bmp(vars);
 		exit(0);
 
 	}
@@ -227,11 +229,15 @@ void	draw_map(t_vars *vars)
 
 	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bits_per_pixel,
 				 &vars->img.line_length, &vars->img.endian);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+	if (vars->savemode == 0)
+	{
+
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+		mlx_hook(vars->win, 2, 1L<<0, keydown, vars);
+		mlx_hook(vars->win, 3, 1L<<1, keyup, vars);
+	}
 	//mlx_hook(vars->win, 2, 1L<<0, myevents, vars);
 
-	mlx_hook(vars->win, 2, 1L<<0, keydown, vars);
-	mlx_hook(vars->win, 3, 1L<<1, keyup, vars);
 	
 	mlx_loop_hook(vars->mlx, mynextframe, vars);
 	mlx_loop(vars->mlx);

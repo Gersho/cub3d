@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:39:04 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/04 13:20:39 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 13:41:19 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int ac, char **argv)
 		{
 			printf("flag is --save\n");
 			vars.savemode = 1;
-			exit(0);
+			//exit(0);
 		}
 		else
 		{

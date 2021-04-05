@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 12:40:49 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/04 16:55:04 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 13:52:05 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ static void	bmp_header(t_vars *vars, int fd)
 static void bmp_infoheader(t_vars *vars, int fd)
 {
 	int i;
+	int	infoheadsize;
+	int planes;
+	int	bpp;
 	/*
 		InfoHeader 	40 bytes 	  	Windows Structure: BITMAPINFOHEADER
 		Size 	4 bytes 	000Eh 	Size of InfoHeader =40 
@@ -58,16 +61,19 @@ static void bmp_infoheader(t_vars *vars, int fd)
 		Important Colors 	4 bytes 	0032h 	Number of important colors 
 		0 = all
 */
-	
-	write(fd, 40, 4);
+	infoheadsize = 40;
+	planes = 1;
+	bpp = 24;
+	write(fd, &infoheadsize, 4);
 	write(fd, &vars->cubinfo->res[0], 4);
 	write(fd, &vars->cubinfo->res[1], 4);
-	write(fd, 1, 2);
-	write(fd, 24, 2);
+	write(fd, &planes, 2);
+	write(fd, &bpp, 2);
 	i = 0;
 	while (i < 24)
 	{
 		write(fd, "\0", 1);
+		i++;
 	}
 	// write(fd, 0, 4); //compression
 	// write(fd, 0, 4);
@@ -77,7 +83,8 @@ static void bmp_infoheader(t_vars *vars, int fd)
 
 static void bmp_pixeldata(t_vars *vars, int fd)
 {
-	
+	(void)vars;
+	(void)fd;
 }
 
 void	img_to_bmp(t_vars *vars)

@@ -8,7 +8,7 @@ OBJS	= $(SRCS:.c=.o)
 NAME = cube.a
 CC		= gcc
 RM		= rm -f
-CFLAGS	= -Wall -Wextra -Werror -O3
+CFLAGS	= -Wall -Wextra -Werror -O3 -g
 AR		= ar -cr
 MINILIB = libs/minilibx_opengl_20191021
 

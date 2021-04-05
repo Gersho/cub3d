@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/03 16:51:31 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 16:26:36 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 	int b;
 	char tile;
 	int	reverse;
+	t_trgb	color_temp;
+	t_coord	p_tmp;
+	t_coord vect_tmp;
+	t_coord vect_v1;
+	t_coord vect_v2;
+	double v_norm;
+	double pscale;
 
 	dist = 999999;
 
-	t_trgb	color_temp;
 	i = 0;
 	while(!is_lastplane(vars->sprites[i].plane))
 	{
@@ -48,6 +54,51 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 				b = vars->cubinfo->map_size[1] - 1;
 			tile = vars->cubinfo->map[a][b];
 
+			// //if (fabsf(vect.x) < 0.75 && fabsf(vect.y) < 0.75)
+			// if (   fabsf(fabsf(vect.x) - fabsf(vect.y))  < 0.7)
+			// {
+			// 	if (inter_tmp.x > vars->sprites[i].pos.x + 0.4 || inter_tmp.x < vars->sprites[i].pos.x -0.4 || inter_tmp.y > vars->sprites[i].pos.y + 0.4 || inter_tmp.y < vars->sprites[i].pos.y - 0.4)
+			// 	{
+			// 		printf("test\n");
+			// 		i++;
+			// 		continue;
+			// 	}
+
+			// }
+
+			/* test sprite diag */
+
+			// P coord
+			p_tmp.x = vars->sprites[i].pos.x;
+			p_tmp.y = vars->sprites[i].pos.y;
+			p_tmp.z = inter_tmp.z;
+
+			// PI vect (u)
+			vect_tmp.x = inter_tmp.x - p_tmp.x;
+			vect_tmp.y = inter_tmp.y - p_tmp.y;
+			vect_tmp.z = inter_tmp.z - p_tmp.z;
+
+			// V' vect
+			vect_v1.x = vect.y;
+			vect_v1.y = -vect.x;
+			vect_v1.z = 0;
+			
+			// V2 vect
+			v_norm = sqrt(pow((double) vect_v1.x, 2) + pow((double) vect_v1.y, 2) + pow((double) vect_v1.z, 2));
+			vect_v2.x = vect_v1.x / v_norm;
+			vect_v2.y = vect_v1.y / v_norm;
+			vect_v2.z = vect_v1.z / v_norm;
+
+			// produit scalaire u.v2
+			pscale = (vect_tmp.x * vect_v2.x) + (vect_tmp.y * vect_v2.y) + (vect_tmp.z * vect_v2.z) + 0.5;
+			if(pscale > 1 || pscale < 0)
+			{
+				i++;
+				continue;
+			}
+
+
+			/* fin test sprite diag */
 
 			//changer a/b pour faire avec les coords
 
@@ -55,28 +106,44 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 			// 	tile = '*';
 			// else 
 				// tile = vars->cubinfo->map[a][b];
-			color_temp = get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter, vect);
-			if (color_temp.trgb == -16777216 || color_temp.trgb == 0 || isnan(color_temp.trgb))
+
+
+			 color_temp = get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter_tmp, vect);
+			// if (color_temp.trgb == -16777216 || color_temp.trgb == 0 || isnan(color_temp.trgb))
+			// {
+			// 	i++;
+			// 	continue;
+			// }
+			// else 
+			
+			if (tile == '2')
 			{
-				i++;
-				continue;
+					inter = inter_tmp;
+					dist = dist_tmp;
+					closest_plane = vars->sprites[i].plane;
+					i++;
+					continue;
 			}
+
+
+
 			//color_print(color_temp);
 			//if (tile == '2' && color_temp.r != 0 && color_temp.g != 0 && color_temp.b != 0)
 			//if (tile == '2' /*&& color_temp.t == 0*/)
 
 			//if (tile == '2' /*&& color_temp.trgb != 0 *//*&& (color_temp.r != 0 || color_temp.g != 0 || color_temp.b != 0)*/)
-			if (tile == '2'  /* && !isnan(color_temp.trgb)*/)
-			{
-					//color_print(color_temp);
-					//printf("%d\n", color_temp.trgb);
-					//printf("trgb.t: %d\n", color_temp.t);
-					//printf("is new closest plane\n");
-					inter = inter_tmp;
-					dist = dist_tmp;
-					closest_plane = vars->sprites[i].plane;
-					//temp_test = i;
-			}
+			// if (tile == '2'  /* && !isnan(color_temp.trgb)*/)
+			// {
+			// 		//color_print(color_temp);
+			// 		//printf("%d\n", color_temp.trgb);
+			// 		//printf("trgb.t: %d\n", color_temp.t);
+			// 		//printf("is new closest plane\n");
+			// 		inter = inter_tmp;
+			// 		dist = dist_tmp;
+			// 		closest_plane = vars->sprites[i].plane;
+			// 		//temp_test = i;
+			// 		//return color_temp;
+			// }
 		}
 		i++;
 	}
