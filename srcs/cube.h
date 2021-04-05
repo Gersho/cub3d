@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/04 14:32:49 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 16:42:48 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,4 +184,5 @@ int keydown(int keycode, t_vars *vars);
 int keyup(int keycode, t_vars *vars);
 void	update_pc(t_vars *vars);
 void	img_to_bmp(t_vars *vars);
+t_trgb	get_trgb_from_xpm_sprite_new(t_data *xpm, double pscale);
 #endif
