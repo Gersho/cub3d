@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/05 13:50:43 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 10:37:35 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,11 +147,11 @@ int mynextframe(t_vars *vars)
 			// printf("#########\n");
 			// printf("i: %d, j: %d\n", i, j);
 			vect = get_vector(vars, i, j);
-			if (i == 400 && j == 400)
-			{
-				printf("------------------\n");
-				coord_print(vect);
-			}
+			// if (i == 400 && j == 400)
+			// {
+			// 	printf("------------------\n");
+			// 	coord_print(vect);
+			// }
 			trgb = pick_pixel_color(vars, vect);
 			// printf("color result!!!\n");
 			// color_print(trgb);

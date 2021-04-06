@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:53:35 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/05 16:42:45 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 10:44:16 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,28 @@ t_trgb	get_trgb_from_xpm_s(t_data *xpm, t_coord inter)
 
 
 
-t_trgb	get_trgb_from_xpm_sprite_new(t_data *xpm, double pscale)
+t_trgb	get_trgb_from_xpm_sprite_new(t_data *xpm,t_coord inter, double pscale)
 {
+	t_coord tmp;
+	int tex_x;
+	int tex_y;
+	t_trgb trgb;
+
+	tmp.z = inter.z - (int)inter.z;
+	tex_y = xpm->img_height - (xpm->img_height * tmp.z);
+
+	//tex_x = xpm->img_width - (xpm->img_width * tmp.x);
+	tex_x = xpm->img_width * pscale;
+
+
 	
+	trgb.b = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4)];
+	trgb.g = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4 + 1)];
+	trgb.r = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4 + 2)];
+	trgb.t = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4 + 3)];
+
+
+	return (trgb);
 }
 
 

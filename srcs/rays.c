@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/05 16:26:36 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 10:47:21 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 	t_coord vect_v2;
 	double v_norm;
 	double pscale;
+	double saved_pscale;
+	t_trgb saved_color;
 
 	dist = 999999;
 
@@ -108,19 +110,22 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 				// tile = vars->cubinfo->map[a][b];
 
 
-			 color_temp = get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter_tmp, vect);
-			// if (color_temp.trgb == -16777216 || color_temp.trgb == 0 || isnan(color_temp.trgb))
-			// {
-			// 	i++;
-			// 	continue;
-			// }
-			// else 
-			
+			//color_temp = get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter_tmp, vect);
+			color_temp = get_trgb_from_xpm_sprite_new(&vars->sprite_xpm, inter_tmp, pscale);
+
+			if (color_temp.trgb == -16777216 || color_temp.trgb == 0 || isnan(color_temp.trgb))
+			{
+				i++;
+				continue;
+			}
+		
 			if (tile == '2')
 			{
 					inter = inter_tmp;
 					dist = dist_tmp;
 					closest_plane = vars->sprites[i].plane;
+					saved_pscale = pscale;
+					saved_color = color_temp;
 					i++;
 					continue;
 			}
@@ -347,8 +352,9 @@ if (dist_tmp > 0 && dist_tmp < dist)
 		return (vars->trgb_sky);
 	}
 
-
-	return get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter, vect);
+	return saved_color;
+	return get_trgb_from_xpm_sprite_new(&vars->sprite_xpm, inter_tmp, saved_pscale);
+	//return get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter, vect);
 	return (vars->trgb_text);
 }
 
