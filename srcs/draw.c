@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 11:14:31 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 15:09:15 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,16 @@ t_coord	get_vector(t_vars *vars, int i, int j)
 	return (tmp);
 }
 
+
+int		buttons(t_vars *vars)
+{
+	(void)vars;
+	printf("red cross\n");
+	exit(0);
+
+	return(0);
+}
+
 void	draw_map(t_vars *vars)
 {
 	vars->mlx = mlx_init();
@@ -235,6 +245,7 @@ void	draw_map(t_vars *vars)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 		mlx_hook(vars->win, 2, 1L<<0, keydown, vars);
 		mlx_hook(vars->win, 3, 1L<<1, keyup, vars);
+		mlx_hook(vars->win, 17, 1L<<17, buttons,vars);
 	}
 	//mlx_hook(vars->win, 2, 1L<<0, myevents, vars);
 

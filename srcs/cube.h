@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 12:47:13 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 15:12:38 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ t_trgb		get_trgb_from_xpm_n(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_s(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_e(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_w(t_data *xpm, t_coord inter);
-t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, t_coord vect);
+//t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, t_coord vect);
 t_plane	create_sprite_plane(t_vars *vars, int i);
 int	is_lastsprite(t_sprite sprite);
 t_plane	*plane_factory_x(t_vars *vars);
@@ -184,5 +184,5 @@ int keydown(int keycode, t_vars *vars);
 int keyup(int keycode, t_vars *vars);
 void	update_pc(t_vars *vars);
 void	img_to_bmp(t_vars *vars);
-t_trgb	get_trgb_from_xpm_sprite_new(t_data *xpm, t_coord inter, double pscale);
+t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, double pscale);
 #endif

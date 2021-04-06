@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 10:47:21 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 15:12:05 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 
 
 			//color_temp = get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter_tmp, vect);
-			color_temp = get_trgb_from_xpm_sprite_new(&vars->sprite_xpm, inter_tmp, pscale);
+			color_temp = get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter_tmp, pscale);
 
 			if (color_temp.trgb == -16777216 || color_temp.trgb == 0 || isnan(color_temp.trgb))
 			{
@@ -353,9 +353,9 @@ if (dist_tmp > 0 && dist_tmp < dist)
 	}
 
 	return saved_color;
-	return get_trgb_from_xpm_sprite_new(&vars->sprite_xpm, inter_tmp, saved_pscale);
+	//return get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter_tmp, saved_pscale);
 	//return get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter, vect);
-	return (vars->trgb_text);
+	//return (vars->trgb_text);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:53:35 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 11:12:24 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 15:12:25 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_trgb	get_trgb_from_xpm_s(t_data *xpm, t_coord inter)
 
 
 
-t_trgb	get_trgb_from_xpm_sprite_new(t_data *xpm,t_coord inter, double pscale)
+t_trgb	get_trgb_from_xpm_sprite(t_data *xpm,t_coord inter, double pscale)
 {
 	t_coord tmp;
 	int tex_x;
@@ -111,7 +111,7 @@ t_trgb	get_trgb_from_xpm_sprite_new(t_data *xpm,t_coord inter, double pscale)
 	return (trgb);
 }
 
-
+/*
 t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, t_coord vect)
 {
 	t_coord tmp;
@@ -178,3 +178,4 @@ t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, t_coord vect)
 	//trgb.t = 0;
 	return (trgb);
 }
+*/
