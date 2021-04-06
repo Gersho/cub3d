@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 10:37:35 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 11:14:31 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ int mynextframe(t_vars *vars)
 	while (j <= vars->cubinfo->res[1])
 	{
 		i = 0;
-	while (i <= vars->cubinfo->res[0])
+		while (i <= vars->cubinfo->res[0])
 		{
 
 			// printf("#########\n");

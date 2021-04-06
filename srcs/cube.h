@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 10:31:11 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 12:47:13 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ typedef struct  s_vars {
 	t_trgb      trgb_sky;
 	t_trgb      trgb_floor;
 	t_trgb      trgb_text;
-	t_plane		*planes;
+//	t_plane		*planes;
 	t_plane		*planes_x;
 	t_plane		*planes_y;
 	t_plane		plane_sky;

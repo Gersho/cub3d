@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 12:46:12 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/27 14:26:53 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 12:31:26 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	cubinfo_init(t_cubinfo *cubinfo)
 	cubinfo->map_size[1] = 0;
 	cubinfo->map_start = -1;
 	cubinfo->map = NULL;
-	// cubinfo->sprite[0] = -1;
-	// cubinfo->sprite[1] = -1;
 	cubinfo->sprite_qt = 0;
 	cubinfo->spawn[0] = -1;
 	cubinfo->spawn[1] = -1;

@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 12:40:49 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/05 13:52:05 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 14:03:06 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	bmp_header(t_vars *vars, int fd)
 	// DataOffset 	4 bytes 	000Ah 	Offset from beginning of file to the beginning of the bitmap data
 // file_size = FILE_HEADER_SIZE + INFO_HEADER_SIZE + 4 + \
 // 	(cfg->resolution.x * cfg->resolution.y * 4);
-	offset = 54;
+	offset = 58;
 	filesize = offset + (vars->cubinfo->res[0] * vars->cubinfo->res[1] * 4);
 	write(fd, "BM", 2);        //magic num
 	write(fd, &filesize, 4);  //file size
@@ -63,17 +63,17 @@ static void bmp_infoheader(t_vars *vars, int fd)
 */
 	infoheadsize = 40;
 	planes = 1;
-	bpp = 24;
+	bpp = 32;
 	write(fd, &infoheadsize, 4);
 	write(fd, &vars->cubinfo->res[0], 4);
 	write(fd, &vars->cubinfo->res[1], 4);
 	write(fd, &planes, 2);
 	write(fd, &bpp, 2);
-	i = 0;
-	while (i < 24)
+	i = -1;
+	while (++i < 28)
 	{
 		write(fd, "\0", 1);
-		i++;
+		// i++;
 	}
 	// write(fd, 0, 4); //compression
 	// write(fd, 0, 4);
@@ -83,8 +83,33 @@ static void bmp_infoheader(t_vars *vars, int fd)
 
 static void bmp_pixeldata(t_vars *vars, int fd)
 {
-	(void)vars;
-	(void)fd;
+	int i;
+	int j;
+	int *addr;
+	
+	addr = (int*)vars->img.addr;
+	j = vars->cubinfo->res[1] - 1;
+	while (j >= 0)
+	{
+		i = -1;
+		while (++i < vars->cubinfo->res[0])
+		{
+			// write(fd, &vars->img.addr[j * vars->cubinfo->res[0] + i * 4 ],1);
+			// write(fd, &vars->img.addr[j * vars->cubinfo->res[0] + i * 4 + 1],1);
+			// write(fd, &vars->img.addr[j * vars->cubinfo->res[0] + i * 4 + 2],1);
+			//write(fd, &vars->img.addr[j * vars->cubinfo->res[0] + i * 4 + 3],1);
+			write(fd, &addr[j * vars->cubinfo->res[0] + i],4);
+			// trgb.b = (uint8_t)vars->img.addr[tex_y * xpm->line_length + tex_x * 4];
+			// trgb.g = (uint8_t)vars->img.addr[tex_y * xpm->line_length + tex_x * 4 + 1];
+			// trgb.r = (uint8_t)vars->img.addr[tex_y * xpm->line_length + tex_x * 4 + 2];
+			// i++;
+		}
+
+
+		j--;
+	}
+
+
 }
 
 void	img_to_bmp(t_vars *vars)

@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:39:04 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/05 13:41:19 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 12:30:06 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,7 @@ int	main(int ac, char **argv)
 	if (ac == 3)
 	{		
 		if (ft_strncmp(argv[2], "--save\0", 7) == 0)
-		{
-			printf("flag is --save\n");
 			vars.savemode = 1;
-			//exit(0);
-		}
 		else
 		{
 			printf("Error: the only second argument supported is --save\n");
@@ -37,9 +33,7 @@ int	main(int ac, char **argv)
 		}
 	}
 	else 
-	{
 		vars.savemode = 0;
-	}
 	cubinfo = NULL;
 	cubinfo = cubinfo_setup(cubinfo, argv[1]);
 	mapinfo_setup(cubinfo, argv[1]);

@@ -6,13 +6,13 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:23:37 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/04 13:05:53 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 12:35:50 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
+static void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
 {
 	int	data[3];
 	int	index;
@@ -36,7 +36,7 @@ void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
 	}
 }
 
-void	ft_parse_path(char *line, t_cubinfo *cubinfo)
+static void	ft_parse_path(char *line, t_cubinfo *cubinfo)
 {
 	char	*ptr;
 
@@ -55,7 +55,7 @@ void	ft_parse_path(char *line, t_cubinfo *cubinfo)
 		cubinfo->path_W = ptr;
 }
 
-void	ft_parse_r(char *line, t_cubinfo *cubinfo)
+static void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 {
 	char	**ptr;
 	int		i;
@@ -78,7 +78,7 @@ void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 	free(ptr);
 }
 
-void	ft_parse_line(char *line, t_cubinfo *cubinfo, int i)
+static void	ft_parse_line(char *line, t_cubinfo *cubinfo, int i)
 {
 	if (ft_strlen(line) == 0)
 		return ;
@@ -120,4 +120,5 @@ void	ft_parse_map(char *path, t_cubinfo *cubinfo)
 			break ;
 		i++;
 	}
+	close(fd);
 }

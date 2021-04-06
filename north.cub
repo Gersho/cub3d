@@ -5,7 +5,7 @@ WE assets/metal.xpm
 EA        assets/stone.xpm
 S assets/chopper.xpm
 F       0   ,   255, 0
-C 0 , 0 , 255
+C 0 , 255 , 255
 
 
 11111111

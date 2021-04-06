@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/03/27 14:27:53 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 12:36:37 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	mapinfo_fill(t_cubinfo *cubinfo, char *path)
 		if (ret == 0)
 			break ;
 	}
+	close(fd);
 }
 
 void	mapinfo_parse(t_cubinfo *cubinfo)
