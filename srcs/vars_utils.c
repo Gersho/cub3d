@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 13:38:06 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 16:17:37 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	vars_get_sprites(t_vars *vars)
 	vars->sprites = sprites;
 }
 
-static void vars_pc_init(t_vars *vars)
+static void	vars_pc_init(t_vars *vars)
 {
 	vars->pc.pos.x = 0.5 + vars->cubinfo->spawn[1];
 	vars->pc.pos.y = 0.5 + vars->cubinfo->spawn[0];
@@ -83,7 +83,7 @@ static void vars_pc_init(t_vars *vars)
 	}
 	else if (vars->cubinfo->facing == 'W')
 	{
-		vars->pc.angle =   - M_PI_2;
+		vars->pc.angle = - M_PI_2;
 	}
 	vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
 }
@@ -105,8 +105,8 @@ void	vars_init(t_cubinfo *cubinfo, t_vars *vars)
 	vars_get_sprites(vars);
 	vars->planes_x = plane_factory_x(vars);
 	vars->planes_y = plane_factory_y(vars);
-	vars->plane_sky = (t_plane) { 0, 0, 1, -1};
-	vars->plane_floor = (t_plane) { 0, 0, 1, 0};
+	vars->plane_sky = (t_plane){0, 0, 1, -1};
+	vars->plane_floor = (t_plane){0, 0, 1, 0};
 	vars_keys_init(vars);
 	vars_pc_init(vars);
 	vect_precalc(vars);
