@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karim <karim@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:09 by karim             #+#    #+#             */
-/*   Updated: 2021/03/30 16:54:43 by karim            ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 15:04:36 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int keydown(int keycode, t_vars *vars)
 {
 	if (keycode == 53)
-		exit(1);
+		normal_shutdown(vars);
 	// if (keycode == 82)
 	// {
 	// 	vars->pc.angle = 0.0;

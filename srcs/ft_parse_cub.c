@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:23:37 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 12:35:50 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 12:46:31 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ static void	ft_parse_path(char *line, t_cubinfo *cubinfo)
 
 	ptr = ft_strtrim((line + 2), " ");
 	if (ptr == NULL)
+	{
+		free(line);
 		freestructs_exit(cubinfo, -1);
+	}
 	if (line[0] == 'S' && line[1] != 'O')
 		cubinfo->path_sprite = ptr;
 	else if (line[0] == 'N' && line[1] == 'O')
@@ -62,13 +65,17 @@ static void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 
 	ptr = ft_split(line + 1, ' ');
 	if (ptr == NULL)
+	{
+		free(line);
 		freestructs_exit(cubinfo, -1);
+	}
 	i = 0;
 	while (ptr[i])
 		i++;
 	if (i != 2)
 	{
 		ft_free_all_2d(ptr, i - 1);
+		free(line);
 		freestructs_msg(cubinfo, "resolution not formated properly.");
 	}
 	cubinfo->res[0] = ft_atoi(ptr[0]);
@@ -81,7 +88,15 @@ static void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 static void	ft_parse_line(char *line, t_cubinfo *cubinfo, int i)
 {
 	if (ft_strlen(line) == 0)
-		return ;
+	{
+		if (cubinfo->map_start != -1)
+		{
+			free(line);
+			freestructs_msg(cubinfo, "empty line inside map.");
+		}
+		else
+			return ;
+	}
 	if (line[0] == 'C' || line[0] == 'F')
 		ft_parse_cf(line, cubinfo);
 	else if (line[0] == 'R')

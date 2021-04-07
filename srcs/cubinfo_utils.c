@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 12:46:12 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 12:31:26 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 10:43:46 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,18 @@ t_cubinfo	*cubinfo_setup(t_cubinfo *cubinfo, char *path)
 
 void	cubinfo_init(t_cubinfo *cubinfo)
 {
-	cubinfo->res[0] = -1;
-	cubinfo->res[1] = -1;
 	cubinfo->path_N = NULL;
 	cubinfo->path_S = NULL;
 	cubinfo->path_E = NULL;
 	cubinfo->path_W = NULL;
 	cubinfo->path_sprite = NULL;
+	cubinfo->map = NULL;
+	cubinfo->sprite_qt = 0;
+	cubinfo->spawn[0] = -1;
+	cubinfo->spawn[1] = -1;
+	cubinfo->facing = 0;
+	cubinfo->res[0] = -1;
+	cubinfo->res[1] = -1;
 	cubinfo->color_floor[0] = -1;
 	cubinfo->color_floor[1] = -1;
 	cubinfo->color_floor[2] = -1;
@@ -40,11 +45,6 @@ void	cubinfo_init(t_cubinfo *cubinfo)
 	cubinfo->map_size[0] = 0;
 	cubinfo->map_size[1] = 0;
 	cubinfo->map_start = -1;
-	cubinfo->map = NULL;
-	cubinfo->sprite_qt = 0;
-	cubinfo->spawn[0] = -1;
-	cubinfo->spawn[1] = -1;
-	cubinfo->facing = 0;
 }
 
 void	cubinfo_free(t_cubinfo *cubinfo)

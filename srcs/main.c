@@ -6,11 +6,32 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:39:04 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 12:30:06 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 16:23:31 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+void ptr_null_setup(t_vars *vars)
+{
+	vars->mlx = NULL;
+	vars->win = NULL;
+	vars->planes_x = NULL;
+	vars->planes_y = NULL;
+	vars->sprites = NULL;
+	vars->n_xpm.img = NULL;
+	vars->s_xpm.img = NULL;
+	vars->e_xpm.img = NULL;
+	vars->w_xpm.img = NULL;
+	vars->sprite_xpm.img = NULL;
+	vars->n_xpm.addr = NULL;
+	vars->s_xpm.addr = NULL;
+	vars->e_xpm.addr = NULL;
+	vars->w_xpm.addr = NULL;
+	vars->sprite_xpm.addr = NULL;
+	vars->img.img = NULL;
+	vars->img.addr = NULL;
+}
 
 int	main(int ac, char **argv)
 {
@@ -29,17 +50,18 @@ int	main(int ac, char **argv)
 		else
 		{
 			printf("Error: the only second argument supported is --save\n");
-			exit(0);
+			exit(-1);
 		}
 	}
 	else 
 		vars.savemode = 0;
+	ptr_null_setup(&vars);
 	cubinfo = NULL;
 	cubinfo = cubinfo_setup(cubinfo, argv[1]);
 	mapinfo_setup(cubinfo, argv[1]);
 	map_floodfill(cubinfo, cubinfo->spawn[0], cubinfo->spawn[1]);
-	cubinfo_print(cubinfo);
-	vars_init(cubinfo, &vars);
+	//cubinfo_print(cubinfo);
+	vars_setup(cubinfo, &vars);
 	draw_map(&vars);
 
 	return (0);

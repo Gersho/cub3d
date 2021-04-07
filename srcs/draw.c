@@ -6,104 +6,11 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 15:09:15 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 15:40:48 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-t_coord	rotate_vect(t_coord vect, float angle)
-{
-	t_coord tmp;
-
-	tmp.x = vect.x * cos(angle) + vect.y * (-sin(angle));
-	tmp.y = vect.x * sin(angle) + vect.y * cos(angle);
-	tmp.z = vect.z;
-
-	return (tmp);
-}
-
-int myevents(int keycode, t_vars *vars)
-{
-	//printf("keycode : %d\n", keycode);
-	(void) vars;
-	if (keycode == 53)
-		exit(1);
-	if (keycode == 82)
-	{
-		vars->pc.angle = 0.0;
-		vars->pc.pos.x = 0.5 + vars->cubinfo->spawn[1];
-		vars->pc.pos.y = 0.5 + vars->cubinfo->spawn[0];
-		vars->pc.pos.z = 0.5;
-	}
-	if (keycode == 49)
-	{
-		printf("space pressed\n");
-	}
-	// if (keycode == 126)
-	// {
-	// 	vars->pc.head_tilt = vars->pc.head_tilt - 0.05;
-	// }
-	// if (keycode == 125)
-	// {
-	// 	vars->pc.head_tilt = vars->pc.head_tilt + 0.05;
-	// }
-	if (keycode == 12)
-	{
-		vars->pc.angle = vars->pc.angle - 0.05;
-		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
-	}
-	if (keycode == 13)
-	{
-		vars->pc.pos = move_pc(vars, 1);
-	}
-	if (keycode == 14)
-	{
-		vars->pc.angle = vars->pc.angle + 0.05;
-		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
-	}
-	if (keycode == 0)
-	{
-		vars->pc.angle = vars->pc.angle - M_PI_2;
-		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
-		vars->pc.pos = move_pc(vars, 1);
-		vars->pc.angle = vars->pc.angle + M_PI_2;
-		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
-
-	}
-	if (keycode == 1)
-	{
-		vars->pc.pos = move_pc(vars, -1);
-	}
-	if (keycode == 2)
-	{
-		vars->pc.angle = vars->pc.angle + M_PI_2;
-		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
-		vars->pc.pos = move_pc(vars, 1);
-		vars->pc.angle = vars->pc.angle - M_PI_2;
-		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
-	}
-	return (0);
-}
-
-t_coord	intersection(t_coord vect, t_coord pos, t_plane plane, float *t)
-{
-	t_coord     res;
-	
-	if ((vect.x * plane.a + vect.y * plane.b + vect.z * plane.c) == 0)
-	{
-		res.x = -1;
-		res.y = -1;
-		res.z = -1;
-		return (res);
-	}
-	*t = -(plane.a * pos.x + plane.b * pos.y + plane.c * pos.z + plane.d) /
-	(vect.x * plane.a + vect.y * plane.b + vect.z * plane.c);
-	res.x = pos.x + *t * vect.x;
-	res.y = pos.y + *t * vect.y;
-	res.z = pos.z + *t * vect.z;
-	return (res);
-}
 
 int mynextframe(t_vars *vars)
 {
@@ -217,39 +124,38 @@ t_coord	get_vector(t_vars *vars, int i, int j)
 	return (tmp);
 }
 
-
 int		buttons(t_vars *vars)
 {
-	(void)vars;
-	printf("red cross\n");
-	exit(0);
-
+	normal_shutdown(vars);
 	return(0);
 }
 
 void	draw_map(t_vars *vars)
 {
 	vars->mlx = mlx_init();
-	xpm_load(vars);
-	xpm_getaddr(vars);
-	
-	if (vars->savemode == 0)
-		vars->win = mlx_new_window(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1], "kzennoun's cube");
-	vars->img.img = mlx_new_image(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1]);
-
-	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bits_per_pixel,
-				 &vars->img.line_length, &vars->img.endian);
+	if (vars->mlx == NULL)
+		free_all_exit(vars);
+	xpm_setup(vars);
 	if (vars->savemode == 0)
 	{
-
+		vars->win = mlx_new_window(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1], "kzennoun's cube");
+		if(vars->win == NULL)
+			free_all_exit(vars);
+	}
+	vars->img.img = mlx_new_image(vars->mlx, vars->cubinfo->res[0], vars->cubinfo->res[1]);
+	if (vars->img.img == NULL)
+		free_all_exit(vars);
+	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bits_per_pixel,
+				 &vars->img.line_length, &vars->img.endian);
+	if (vars->img.addr == NULL)
+		free_all_exit(vars);
+	if (vars->savemode == 0)
+	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 		mlx_hook(vars->win, 2, 1L<<0, keydown, vars);
 		mlx_hook(vars->win, 3, 1L<<1, keyup, vars);
 		mlx_hook(vars->win, 17, 1L<<17, buttons,vars);
 	}
-	//mlx_hook(vars->win, 2, 1L<<0, myevents, vars);
-
-	
 	mlx_loop_hook(vars->mlx, mynextframe, vars);
 	mlx_loop(vars->mlx);
 }

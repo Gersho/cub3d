@@ -6,25 +6,21 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 12:36:37 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 12:55:09 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	mapinfo_setup(t_cubinfo *cubinfo, char *path)
-{
-	mapinfo_instantiate(cubinfo);
-	mapinfo_fill(cubinfo, path);
-	mapinfo_parse(cubinfo);
-}
 
-void	mapinfo_instantiate(t_cubinfo *cubinfo)
+static void	mapinfo_instantiate(t_cubinfo *cubinfo)
 {
 	int	i;
 
 	i = 0;
 	cubinfo->map = malloc((cubinfo->map_size[0] + 1) * (sizeof(char *)));
+	if (cubinfo->map == NULL)
+		freestructs_exit(cubinfo, -1);
 	cubinfo->map[cubinfo->map_size[0]] = NULL;
 	while (i < cubinfo->map_size[0])
 	{
@@ -38,7 +34,7 @@ void	mapinfo_instantiate(t_cubinfo *cubinfo)
 	}
 }
 
-void	mapinfo_fill(t_cubinfo *cubinfo, char *path)
+static void	mapinfo_fill(t_cubinfo *cubinfo, char *path)
 {
 	int		i;
 	int		fd;
@@ -56,7 +52,10 @@ void	mapinfo_fill(t_cubinfo *cubinfo, char *path)
 		if (ret == -1)
 			freestructs_exit(cubinfo, -1);
 		if (i < cubinfo->map_start)
+		{
+			free(line);
 			continue ;
+		}
 		ft_memcpy(cubinfo->map[i - cubinfo->map_start], line, ft_strlen(line));
 		free(line);
 		if (ret == 0)
@@ -65,7 +64,7 @@ void	mapinfo_fill(t_cubinfo *cubinfo, char *path)
 	close(fd);
 }
 
-void	mapinfo_parse(t_cubinfo *cubinfo)
+static void	mapinfo_parse(t_cubinfo *cubinfo)
 {
 	int	i;
 	int	j;
@@ -76,25 +75,31 @@ void	mapinfo_parse(t_cubinfo *cubinfo)
 		j = 0;
 		while (cubinfo->map[i][j])
 		{
-			if (cubinfo->map[i][j] == '2')
+			if (ft_str_index_c("NSEW012 \t\v\n\r\f", cubinfo->map[i][j]) != -1)
 			{
-				// cubinfo->sprite[0] = i;
-				// cubinfo->sprite[1] = j;
-				cubinfo->sprite_qt = cubinfo->sprite_qt + 1;
-			}
-			if (ft_str_index_c("NSEW", cubinfo->map[i][j]) != -1)
-			{
-				if (cubinfo->spawn[0] == -1)
+				if (cubinfo->map[i][j] == '2')
+					cubinfo->sprite_qt = cubinfo->sprite_qt + 1;
+				if (ft_str_index_c("NSEW", cubinfo->map[i][j]) != -1)
 				{
-					cubinfo->spawn[0] = i;
-					cubinfo->spawn[1] = j;
-					cubinfo->facing = cubinfo->map[i][j];
+					if (cubinfo->spawn[0] == -1)
+					{
+						cubinfo->spawn[0] = i;
+						cubinfo->spawn[1] = j;
+						cubinfo->facing = cubinfo->map[i][j];
+					}
+					else
+						freestructs_msg(cubinfo, "multiple spawn on map.");
 				}
-				else
-					freestructs_msg(cubinfo, "multiple spawn on map.");
 			}
 			j++;
 		}
 		i++;
 	}
+}
+
+void	mapinfo_setup(t_cubinfo *cubinfo, char *path)
+{
+	mapinfo_instantiate(cubinfo);
+	mapinfo_fill(cubinfo, path);
+	mapinfo_parse(cubinfo);
 }

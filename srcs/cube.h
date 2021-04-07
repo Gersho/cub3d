@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/06 15:12:38 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 15:48:04 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef	struct s_sprite
 {
 	t_plane	plane;
 	t_coord	pos;
-	//t_data	xpm;
 }				t_sprite;
 
 typedef struct s_cubinfo
@@ -128,7 +127,6 @@ typedef struct  s_vars {
 	t_trgb      trgb_sky;
 	t_trgb      trgb_floor;
 	t_trgb      trgb_text;
-//	t_plane		*planes;
 	t_plane		*planes_x;
 	t_plane		*planes_y;
 	t_plane		plane_sky;
@@ -148,9 +146,6 @@ void		cubinfo_init(t_cubinfo *cubinfo);
 t_cubinfo	*cubinfo_setup(t_cubinfo *cubinfo, char *path);
 void		mapinfo_setup(t_cubinfo *cubinfo, char *path);
 void		error_exit(int err);
-void		mapinfo_instantiate(t_cubinfo *cubinfo);
-void		mapinfo_fill(t_cubinfo *cubinfo, char *path);
-void		mapinfo_parse(t_cubinfo *cubinfo);
 void		freestructs_exit(t_cubinfo *cubinfo, int err);
 void		freestructs_msg(t_cubinfo *cubinfo, char *str);
 void		map_floodfill(t_cubinfo *cubinfo, int x, int y);
@@ -164,7 +159,7 @@ void		color_print(t_trgb trgb);
 void 		ftoa(float n, char* res, int afterpoint);
 t_plane		*plane_factory(t_cubinfo *cubinfo);
 void   		 plane_print(t_plane *planes);
-void		vars_init(t_cubinfo *cubinfo, t_vars *vars);
+void		vars_setup(t_cubinfo *cubinfo, t_vars *vars);
 int			is_lastplane(t_plane plane);
 t_coord		rotate_vect(t_coord vect, float angle);
 t_coord		 move_pc(t_vars *vars, float x);
@@ -185,4 +180,9 @@ int keyup(int keycode, t_vars *vars);
 void	update_pc(t_vars *vars);
 void	img_to_bmp(t_vars *vars);
 t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, double pscale);
+void	xpm_setup(t_vars *vars);
+void 	xpm_free(t_vars *vars);
+void	vars_free(t_vars *vars);
+void	normal_shutdown(t_vars *vars);
+void	free_all_exit(t_vars *vars);
 #endif
