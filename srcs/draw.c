@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/08 15:43:53 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 16:40:17 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int mynextframe(t_vars *vars)
 	int	i,j=i=0;
 	int	upscale;
 	int k;
-	//int l;
+	int l;
 
 	//k = 1;
-	upscale = 1;
+	upscale = 4;
 	update_pc(vars);
 	while (!is_lastsprite(vars->sprites[i]))
 	{
@@ -56,39 +56,34 @@ int mynextframe(t_vars *vars)
 		while (i <= vars->cubinfo->res[0])
 		{
 
-			// printf("#########\n");
-			// printf("i: %d, j: %d\n", i, j);
 			vect = get_vector(vars, i, j);
 			trgb = pick_pixel_color(vars, vect);
 
-
-
-			// printf("color result!!!\n");
-			// color_print(trgb);
-			k = 1;
+			k = 0;
 			my_mlx_pixel_put(&vars->img, i, j, trgb.trgb);
-			// while (k < upscale)
-			// {
-			// 	//printf("upscale:%d\n", upscale);
-			// 	// my_mlx_pixel_put(&vars->img, (i + k), j, trgb.trgb);
-			// 	// my_mlx_pixel_put(&vars->img, i, (j + k), trgb.trgb);
-			// 	// my_mlx_pixel_put(&vars->img, (i + k), (j + k), trgb.trgb);
-			// 	// k++;
-			// 	l = 1;
-			// 	while(l < upscale)
-			// 	{
-			// 		my_mlx_pixel_put(&vars->img, (i + l), j, trgb.trgb);
-			// 	}
+			while (k < upscale)
+			{
+				//printf("upscale:%d\n", upscale);
+				// my_mlx_pixel_put(&vars->img, (i + k), j, trgb.trgb);
+				// my_mlx_pixel_put(&vars->img, i, (j + k), trgb.trgb);
+				// my_mlx_pixel_put(&vars->img, (i + k), (j + k), trgb.trgb);
+				// k++;
+				l = 1;
+				while(l < upscale)
+				{
+					my_mlx_pixel_put(&vars->img, (i + l), (j + k), trgb.trgb);
+					l++;
+				}
 
 
 
 
-			// 	k++;
-			// }
+				k++;
+			}
 			
-			i += upscale;
+			i += upscale - 1;
 		}
-		j += upscale;
+		j += upscale - 1;
 	}
 
 
