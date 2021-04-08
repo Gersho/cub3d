@@ -6,11 +6,12 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/07 15:40:48 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 15:43:53 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
 
 int mynextframe(t_vars *vars)
 {
@@ -18,9 +19,13 @@ int mynextframe(t_vars *vars)
 	t_coord	vect;
 	t_trgb	trgb;
 	int	i,j=i=0;
+	int	upscale;
+	int k;
+	//int l;
 
+	//k = 1;
+	upscale = 1;
 	update_pc(vars);
-	//vars->sprites->plane = create_sprite_plane(vars);
 	while (!is_lastsprite(vars->sprites[i]))
 	{
 		vars->sprites[i].plane = create_sprite_plane(vars, i);
@@ -54,18 +59,36 @@ int mynextframe(t_vars *vars)
 			// printf("#########\n");
 			// printf("i: %d, j: %d\n", i, j);
 			vect = get_vector(vars, i, j);
-			// if (i == 400 && j == 400)
-			// {
-			// 	printf("------------------\n");
-			// 	coord_print(vect);
-			// }
 			trgb = pick_pixel_color(vars, vect);
+
+
+
 			// printf("color result!!!\n");
 			// color_print(trgb);
+			k = 1;
 			my_mlx_pixel_put(&vars->img, i, j, trgb.trgb);
-			i += 1;
+			// while (k < upscale)
+			// {
+			// 	//printf("upscale:%d\n", upscale);
+			// 	// my_mlx_pixel_put(&vars->img, (i + k), j, trgb.trgb);
+			// 	// my_mlx_pixel_put(&vars->img, i, (j + k), trgb.trgb);
+			// 	// my_mlx_pixel_put(&vars->img, (i + k), (j + k), trgb.trgb);
+			// 	// k++;
+			// 	l = 1;
+			// 	while(l < upscale)
+			// 	{
+			// 		my_mlx_pixel_put(&vars->img, (i + l), j, trgb.trgb);
+			// 	}
+
+
+
+
+			// 	k++;
+			// }
+			
+			i += upscale;
 		}
-		j += 1;
+		j += upscale;
 	}
 
 
@@ -101,28 +124,34 @@ int mynextframe(t_vars *vars)
 	return (0);
 }
 
-t_coord	get_vector(t_vars *vars, int i, int j)
-{
-	t_coord	vect;
-	t_coord tmp;
 
-	vect.x = (i - vars->precalc.res0_2) * vars->precalc.r_h;
-	vect.y = -1;
-	vect.z = -(j - vars->precalc.res1_2) * vars->precalc.r_v;
-//rot x (HEAD UP/DOWN)
-	// //tmp.x = vect.x;
-	// tmp.y = vect.y * (cos(vars->pc.head_tilt)) + (-vect.z * sin(vars->pc.head_tilt));
-	// tmp.z = vect.y * sin(vars->pc.head_tilt) +  vect.z * cos(vars->pc.head_tilt);
-	// //vect.x = tmp.x;
-	// vect.y = tmp.y;
-	// //vect.z = tmp.z;
-//rot z (HEAD LEFT/RIGHT)
-	tmp.x = vect.x * cos(vars->pc.angle) + vect.y * (-sin(vars->pc.angle));
-	tmp.y = vect.x * sin(vars->pc.angle) + vect.y * cos(vars->pc.angle);
-	tmp.z = vect.z;
+
+
+
+
+// t_coord	get_vector(t_vars *vars, int i, int j)
+// {
+// 	t_coord	vect;
+// 	t_coord tmp;
+
+// 	vect.x = (i - vars->precalc.res0_2) * vars->precalc.r_h;
+// 	vect.y = -1;
+// 	vect.z = -(j - vars->precalc.res1_2) * vars->precalc.r_v;
+// //rot x (HEAD UP/DOWN)
+// 	// //tmp.x = vect.x;
+// 	// tmp.y = vect.y * (cos(vars->pc.head_tilt)) + (-vect.z * sin(vars->pc.head_tilt));
+// 	// tmp.z = vect.y * sin(vars->pc.head_tilt) +  vect.z * cos(vars->pc.head_tilt);
+// 	// //vect.x = tmp.x;
+// 	// vect.y = tmp.y;
+// 	// //vect.z = tmp.z;
+// //rot z (HEAD LEFT/RIGHT)
+// 	tmp.x = vect.x * cos(vars->pc.angle) + vect.y * (-sin(vars->pc.angle));
+// 	tmp.y = vect.x * sin(vars->pc.angle) + vect.y * cos(vars->pc.angle);
+// 	tmp.z = vect.z;
 	
-	return (tmp);
-}
+// 	return (tmp);
+// }
+
 
 int		buttons(t_vars *vars)
 {

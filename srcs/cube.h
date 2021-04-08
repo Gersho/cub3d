@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/07 15:48:04 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 12:56:52 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_precalc
 	float		r_v;
 	int			res0_2;
 	int			res1_2;
+	t_coord		**vects;
 }				t_precalc;
 
 typedef struct s_keys
