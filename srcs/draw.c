@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/08 16:40:17 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 15:22:54 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int mynextframe(t_vars *vars)
 	int l;
 
 	//k = 1;
-	upscale = 4;
+	upscale = 7;
 	update_pc(vars);
 	while (!is_lastsprite(vars->sprites[i]))
 	{
@@ -32,13 +32,15 @@ int mynextframe(t_vars *vars)
 		i++;
 	}
 	vars->sprites[i].plane = (t_plane){-255,-255,-255,-255};
-	//i = 0;
+	// i = 0;
 	// while (!is_lastsprite(vars->sprites[i]))
 	// {
 	// 	printf("sprite:%d\n", i);
 	// 	coord_print(vars->sprites[i].pos);
 	// 	i++;
 	// }
+	// 		printf("sprite:%d\n", i);
+		//coord_print(vars->sprites[i].pos);
 	// printf("sprite planes:\n");
 	// i = 0;
 	// while (!is_lastsprite(vars->sprites[i]))
@@ -63,21 +65,12 @@ int mynextframe(t_vars *vars)
 			my_mlx_pixel_put(&vars->img, i, j, trgb.trgb);
 			while (k < upscale)
 			{
-				//printf("upscale:%d\n", upscale);
-				// my_mlx_pixel_put(&vars->img, (i + k), j, trgb.trgb);
-				// my_mlx_pixel_put(&vars->img, i, (j + k), trgb.trgb);
-				// my_mlx_pixel_put(&vars->img, (i + k), (j + k), trgb.trgb);
-				// k++;
 				l = 1;
 				while(l < upscale)
 				{
 					my_mlx_pixel_put(&vars->img, (i + l), (j + k), trgb.trgb);
 					l++;
 				}
-
-
-
-
 				k++;
 			}
 			

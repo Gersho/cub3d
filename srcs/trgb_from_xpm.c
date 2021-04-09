@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:53:35 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/07 15:42:28 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 12:41:42 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 t_trgb	get_trgb_from_xpm_e(t_data *xpm, t_coord inter)
 {
-	t_coord tmp;
-	int tex_x;
-	int tex_y;
-	t_trgb trgb;
+	t_coord	tmp;
+	int		tex_x;
+	int		tex_y;
+	t_trgb	trgb;
 
 	tmp.y = inter.y - (int)inter.y;
 	tmp.z = inter.z - (int)inter.z;
@@ -32,10 +32,10 @@ t_trgb	get_trgb_from_xpm_e(t_data *xpm, t_coord inter)
 
 t_trgb	get_trgb_from_xpm_w(t_data *xpm, t_coord inter)
 {
-	t_coord tmp;
-	int tex_x;
-	int tex_y;
-	t_trgb trgb;
+	t_coord	tmp;
+	int		tex_x;
+	int		tex_y;
+	t_trgb	trgb;
 
 	tmp.y = inter.y - (int)inter.y;
 	tmp.z = inter.z - (int)inter.z;
@@ -50,10 +50,10 @@ t_trgb	get_trgb_from_xpm_w(t_data *xpm, t_coord inter)
 
 t_trgb	get_trgb_from_xpm_n(t_data *xpm, t_coord inter)
 {
-	t_coord tmp;
-	int tex_x;
-	int tex_y;
-	t_trgb trgb;
+	t_coord	tmp;
+	int		tex_x;
+	int		tex_y;
+	t_trgb	trgb;
 
 	tmp.x = inter.x - (int)inter.x;
 	tmp.z = inter.z - (int)inter.z;
@@ -68,15 +68,14 @@ t_trgb	get_trgb_from_xpm_n(t_data *xpm, t_coord inter)
 
 t_trgb	get_trgb_from_xpm_s(t_data *xpm, t_coord inter)
 {
-	t_coord tmp;
-	int tex_x;
-	int tex_y;
-	t_trgb trgb;
-
+	t_coord	tmp;
+	int		tex_x;
+	int		tex_y;
+	t_trgb	trgb;
 
 	tmp.x = inter.x - (int)inter.x;
 	tmp.z = inter.z - (int)inter.z;
-	tex_x = xpm->img_width  - (xpm->img_width * tmp.x);
+	tex_x = xpm->img_width - (xpm->img_width * tmp.x);
 	tex_y = xpm->img_height - (xpm->img_height * tmp.z);
 	trgb.b = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4)];
 	trgb.g = (uint8_t)xpm->addr[(tex_y * xpm->line_length + tex_x * 4 + 1)];
@@ -85,12 +84,12 @@ t_trgb	get_trgb_from_xpm_s(t_data *xpm, t_coord inter)
 	return (trgb);
 }
 
-t_trgb	get_trgb_from_xpm_sprite(t_data *xpm,t_coord inter, double pscale)
+t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, double pscale)
 {
-	t_coord tmp;
-	int tex_x;
-	int tex_y;
-	t_trgb trgb;
+	t_coord	tmp;
+	int		tex_x;
+	int		tex_y;
+	t_trgb	trgb;
 
 	tmp.z = inter.z - (int)inter.z;
 	tex_y = xpm->img_height - (xpm->img_height * tmp.z);

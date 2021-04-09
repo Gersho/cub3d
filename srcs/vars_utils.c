@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/07 15:20:59 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 12:52:24 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void	vars_get_sprites(t_vars *vars)
 				sprites[k].pos.y = 0.5 + i;
 				sprites[k].pos.x = 0.5 + j;
 				sprites[k].pos.z = 0.5;
+				//sprites[k].pos = (t_coord) {0.5 + i, 0.5 + j, 0.5};
 				k++;
 			}
 			j++;
@@ -68,6 +69,7 @@ static void	vars_get_sprites(t_vars *vars)
 	sprites[k].pos.y = -255;
 	sprites[k].pos.x = -255;
 	sprites[k].pos.z = -255;
+	//sprites[k].pos = (t_coord) {-255, -255, -255};
 	vars->sprites = sprites;
 }
 
@@ -94,7 +96,7 @@ static void	vars_pc_init(t_vars *vars)
 	}
 	else if (vars->cubinfo->facing == 'W')
 	{
-		vars->pc.angle = - M_PI_2;
+		vars->pc.angle = -M_PI_2;
 	}
 	vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
 }
@@ -116,11 +118,6 @@ void	vars_free(t_vars *vars)
 void	vars_setup(t_cubinfo *cubinfo, t_vars *vars)
 {
 	vars->cubinfo = cubinfo;
-	// vars->mlx = NULL;
-	// vars->win = NULL;
-	// vars->planes_x = NULL;
-	// vars->planes_y = NULL;
-	// vars->sprites = NULL;
 	vars_init(vars);
 	vars_get_sprites(vars);
 	vars->planes_x = plane_factory_x(vars);
