@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/09 15:22:54 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/10 16:07:16 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int mynextframe(t_vars *vars)
 	int l;
 
 	//k = 1;
-	upscale = 7;
+	upscale = 6;
 	update_pc(vars);
 	while (!is_lastsprite(vars->sprites[i]))
 	{
@@ -32,25 +32,6 @@ int mynextframe(t_vars *vars)
 		i++;
 	}
 	vars->sprites[i].plane = (t_plane){-255,-255,-255,-255};
-	// i = 0;
-	// while (!is_lastsprite(vars->sprites[i]))
-	// {
-	// 	printf("sprite:%d\n", i);
-	// 	coord_print(vars->sprites[i].pos);
-	// 	i++;
-	// }
-	// 		printf("sprite:%d\n", i);
-		//coord_print(vars->sprites[i].pos);
-	// printf("sprite planes:\n");
-	// i = 0;
-	// while (!is_lastsprite(vars->sprites[i]))
-	// {
-	// 	printf("plane %d {%f, %f, %f, %f}\n", i, vars->sprites[i].plane.a, vars->sprites[i].plane.b, vars->sprites[i].plane.c, vars->sprites[i].plane.d);
-	// 	coord_print(vars->sprites[i].pos);
-	// 	i++;
-	// }
-	// 			printf("pc coords\n");
-	// 	coord_print(vars->pc.pos);
 	j = 0;
 	while (j <= vars->cubinfo->res[1])
 	{
@@ -65,11 +46,13 @@ int mynextframe(t_vars *vars)
 			my_mlx_pixel_put(&vars->img, i, j, trgb.trgb);
 			while (k < upscale)
 			{
-				l = 1;
+				l = 0;
 				while(l < upscale)
 				{
-					my_mlx_pixel_put(&vars->img, (i + l), (j + k), trgb.trgb);
 					l++;
+					if ((i + l) >= (vars->cubinfo->res[0]) || (j + k) >= (vars->cubinfo->res[1]))
+						continue ;
+					my_mlx_pixel_put(&vars->img, (i + l), (j + k), trgb.trgb);
 				}
 				k++;
 			}
@@ -89,57 +72,8 @@ int mynextframe(t_vars *vars)
 		exit(0);
 
 	}
-
-	//exit(0);
-	// char	*p;
-	// mlx_string_put(vars->mlx, vars->win, 220, 120, vars->trgb_text.trgb, "X");
-    // p = ft_itoa(vars->pc.pos.x * 100);
-    // mlx_string_put(vars->mlx, vars->win, 220, 140, vars->trgb_text.trgb, p);
-    // free(p);
-    // mlx_string_put(vars->mlx, vars->win, 270, 120, vars->trgb_text.trgb, "Y");
-    // p = ft_itoa(vars->pc.pos.y * 100);
-    // mlx_string_put(vars->mlx, vars->win, 270, 140, vars->trgb_text.trgb, p);
-    // free(p);
-    // mlx_string_put(vars->mlx, vars->win, 320, 120, vars->trgb_text.trgb, "Z");
-    // p = ft_itoa(vars->pc.pos.z * 100);
-    // mlx_string_put(vars->mlx, vars->win, 320, 140, vars->trgb_text.trgb, p);
-    // free(p);
-	// char abc[10];
-	// ftoa(vars->pc.angle, abc, 3);
-    // mlx_string_put(vars->mlx, vars->win, 340, 150, vars->trgb_text.trgb, abc);
-	// ftoa(vars->pc.head_tilt, abc, 3);
-	// mlx_string_put(vars->mlx, vars->win, 360, 170, vars->trgb_text.trgb, abc);
 	return (0);
 }
-
-
-
-
-
-
-// t_coord	get_vector(t_vars *vars, int i, int j)
-// {
-// 	t_coord	vect;
-// 	t_coord tmp;
-
-// 	vect.x = (i - vars->precalc.res0_2) * vars->precalc.r_h;
-// 	vect.y = -1;
-// 	vect.z = -(j - vars->precalc.res1_2) * vars->precalc.r_v;
-// //rot x (HEAD UP/DOWN)
-// 	// //tmp.x = vect.x;
-// 	// tmp.y = vect.y * (cos(vars->pc.head_tilt)) + (-vect.z * sin(vars->pc.head_tilt));
-// 	// tmp.z = vect.y * sin(vars->pc.head_tilt) +  vect.z * cos(vars->pc.head_tilt);
-// 	// //vect.x = tmp.x;
-// 	// vect.y = tmp.y;
-// 	// //vect.z = tmp.z;
-// //rot z (HEAD LEFT/RIGHT)
-// 	tmp.x = vect.x * cos(vars->pc.angle) + vect.y * (-sin(vars->pc.angle));
-// 	tmp.y = vect.x * sin(vars->pc.angle) + vect.y * cos(vars->pc.angle);
-// 	tmp.z = vect.z;
-	
-// 	return (tmp);
-// }
-
 
 int		buttons(t_vars *vars)
 {

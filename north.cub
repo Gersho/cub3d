@@ -1,9 +1,9 @@
 R   2400 1200
 
 NO assets/guts.xpm
-SO assets/grass.xpm
-WE assets/metal.xpm
-EA        assets/stone.xpm
+SO assets/wood-planks.xpm
+WE assets/blue-bricks.xpm
+EA        assets/stones.xpm
 S assets/chopper.xpm
 F 0,255,0
 C  0,0   ,  0

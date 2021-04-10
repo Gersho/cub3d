@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:48:00 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/07 15:23:44 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/10 13:12:28 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,6 @@ void	xpm_getaddr(t_vars *vars)
 
 void	xpm_setup(t_vars *vars)
 {
-	// vars->n_xpm.img = NULL;
-	// vars->s_xpm.img = NULL;
-	// vars->e_xpm.img = NULL;
-	// vars->w_xpm.img = NULL;
-	// vars->sprite_xpm.img = NULL;
-	// vars->n_xpm.addr = NULL;
-	// vars->s_xpm.addr = NULL;
-	// vars->e_xpm.addr = NULL;
-	// vars->w_xpm.addr = NULL;
-	// vars->sprite_xpm.addr = NULL;
 	xpm_load(vars);
 	xpm_getaddr(vars);
 }

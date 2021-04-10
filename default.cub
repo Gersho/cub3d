@@ -1,4 +1,4 @@
-R 2400 1500
+R  2400  1300
 NO           assets/brown-bricks.xpm
 SO          assets/blue-bricks.xpm
 EA        assets/blue-bricks-light.xpm
@@ -6,8 +6,6 @@ WE           assets/wood-planks.xpm
 S assets/chopper.xpm
 F       0   ,   255, 0
 C 0 , 0 , 255
-
-
 
 11111
 10001

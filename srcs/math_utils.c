@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:09:47 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/08 14:50:12 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/10 14:01:43 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 t_coord	rotate_vect(t_coord vect, float angle)
 {
-	t_coord tmp;
+	t_coord	tmp;
 
 	tmp.x = vect.x * cos(angle) + vect.y * (-sin(angle));
 	tmp.y = vect.x * sin(angle) + vect.y * cos(angle);
 	tmp.z = vect.z;
-
 	return (tmp);
 }
 
 t_coord	intersection(t_coord vect, t_coord pos, t_plane plane, float *t)
 {
-	t_coord     res;
-	
+	t_coord	res;
+
 	if ((vect.x * plane.a + vect.y * plane.b + vect.z * plane.c) == 0)
 	{
 		res.x = -1;
@@ -34,7 +33,7 @@ t_coord	intersection(t_coord vect, t_coord pos, t_plane plane, float *t)
 		res.z = -1;
 		return (res);
 	}
-	*t = -(plane.a * pos.x + plane.b * pos.y + plane.c * pos.z + plane.d) /
+	*t = -(plane.a * pos.x + plane.b * pos.y + plane.c * pos.z + plane.d) / 
 	(vect.x * plane.a + vect.y * plane.b + vect.z * plane.c);
 	res.x = pos.x + *t * vect.x;
 	res.y = pos.y + *t * vect.y;
@@ -45,7 +44,7 @@ t_coord	intersection(t_coord vect, t_coord pos, t_plane plane, float *t)
 t_coord	get_vector(t_vars *vars, int i, int j)
 {
 	t_coord	vect;
-	t_coord tmp;
+	t_coord	tmp;
 
 	vect = vars->precalc.vects[i][j];
 //rot x (HEAD UP/DOWN)
@@ -59,6 +58,5 @@ t_coord	get_vector(t_vars *vars, int i, int j)
 	tmp.x = vect.x * cos(vars->pc.angle) + vect.y * (-sin(vars->pc.angle));
 	tmp.y = vect.x * sin(vars->pc.angle) + vect.y * cos(vars->pc.angle);
 	tmp.z = vect.z;
-	
 	return (tmp);
 }

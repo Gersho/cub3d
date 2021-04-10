@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:09 by karim             #+#    #+#             */
-/*   Updated: 2021/04/07 15:04:36 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/10 13:46:18 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@ int keydown(int keycode, t_vars *vars)
 {
 	if (keycode == 53)
 		normal_shutdown(vars);
-	// if (keycode == 82)
-	// {
-	// 	vars->pc.angle = 0.0;
-	// 	vars->pc.pos.x = 0.5 + vars->cubinfo->spawn[1];
-	// 	vars->pc.pos.y = 0.5 + vars->cubinfo->spawn[0];
-	// 	vars->pc.pos.z = 0.5;
-	// }
 	if (keycode == 12)
 		vars->keys.turn_l = 1;
 	if (keycode == 13)

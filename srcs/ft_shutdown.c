@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 10:54:20 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/07 15:44:24 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/10 16:26:59 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	free_all_exit(t_vars *vars)
 {
 	xpm_free(vars);
 	vars_free(vars);
+	vect_free(vars);
 	if (vars->img.img)
 		free(vars->img.img);
 	if (vars->img.addr)
@@ -50,6 +51,7 @@ void	normal_shutdown(t_vars *vars)
 {
 	xpm_free(vars);
 	vars_free(vars);
+	vect_free(vars);
 	if (vars->img.img)
 		free(vars->img.img);
 	if (vars->img.addr)
@@ -58,3 +60,15 @@ void	normal_shutdown(t_vars *vars)
 		cubinfo_free(vars->cubinfo);
 	exit(0);
 }
+
+// void	free_all_the_things(t_vars *vars)
+// {
+// 	xpm_free(vars);
+// 	vars_free(vars);
+// 	if (vars->img.img)
+// 		free(vars->img.img);
+// 	if (vars->img.addr)
+// 		free(vars->img.addr);
+// 	if (vars->cubinfo)
+// 		cubinfo_free(vars->cubinfo);
+// }

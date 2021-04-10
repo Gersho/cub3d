@@ -6,13 +6,13 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:39:04 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/08 13:30:19 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/10 16:21:24 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void ptr_null_setup(t_vars *vars)
+void	ptr_null_setup(t_vars *vars)
 {
 	vars->mlx = NULL;
 	vars->win = NULL;
@@ -31,6 +31,7 @@ void ptr_null_setup(t_vars *vars)
 	vars->sprite_xpm.addr = NULL;
 	vars->img.img = NULL;
 	vars->img.addr = NULL;
+	vars->precalc.vects = NULL;
 }
 
 int	main(int ac, char **argv)
@@ -64,6 +65,5 @@ int	main(int ac, char **argv)
 	//exit(0);
 	vars_setup(cubinfo, &vars);
 	draw_map(&vars);
-
 	return (0);
 }

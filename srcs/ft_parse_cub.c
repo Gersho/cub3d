@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:23:37 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/08 11:48:53 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/10 15:21:33 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
 	char	**ptr;
 	int	len;
 	int	i;
+	int tmp;
 	
 	len = 0;
 	i = -1;
@@ -37,7 +38,7 @@ static void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
 	}
 	while(ptr[len] != NULL)
 		len++;
-	//printf("len: %d\n", len);
+	tmp = len;
 	if (len != 3)
 	{
 		ft_free_all_2d(ptr, len - 1);
@@ -64,7 +65,7 @@ static void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
 			cubinfo->color_floor[len - 1] = ft_atoi(ptr[len - 1]);
 		len--;
 	}
-
+	ft_free_all_2d(ptr, tmp - 1);
 }
 
 // static void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
@@ -161,12 +162,12 @@ static void	ft_parse_line(char *line, t_cubinfo *cubinfo, int i)
 {
 	if (ft_strlen(line) == 0)
 	{
-		if (cubinfo->map_start != -1)
-		{
-			free(line);
-			freestructs_msg(cubinfo, "empty line inside map.");
-		}
-		else
+		// if (cubinfo->map_start != -1)
+		// {
+		// 	free(line);
+		// 	freestructs_msg(cubinfo, "empty line inside map.");
+		// }
+		// else
 			return ;
 	}
 	if (line[0] == 'C' || line[0] == 'F')

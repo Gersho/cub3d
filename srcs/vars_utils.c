@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/09 12:52:24 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/10 17:03:25 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,15 @@ static void	vars_pc_init(t_vars *vars)
 void	vars_free(t_vars *vars)
 {
 	if (vars->mlx)
+	{
+
 		free(vars->mlx);
+	}
 	if (vars->win)
+	{
+
 		free(vars->win);
+	}
 	if (vars->planes_x)
 		free(vars->planes_x);
 	if (vars->planes_y)
