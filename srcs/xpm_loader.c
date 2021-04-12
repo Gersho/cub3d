@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:48:00 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 13:03:42 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 16:03:30 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	xpm_load(t_vars *vars)
 	if (!vars->n_xpm.img || !vars->s_xpm.img || !vars->e_xpm.img ||\
 	 !vars->w_xpm.img || !vars->sprite_xpm.img)
 	{
-		free(vars->mlx);
-		vars_free(vars);
 		xpm_free(vars);
+		vars_free(vars);
+		//free(vars->mlx);
 		freestructs_exit(vars->cubinfo, -1);
 	}
 }
@@ -81,9 +81,9 @@ void	xpm_getaddr(t_vars *vars)
 	if (!vars->n_xpm.addr || !vars->s_xpm.addr || !vars->e_xpm.addr ||\
 	 !vars->w_xpm.addr || !vars->sprite_xpm.addr)
 	{
-		free(vars->mlx);
-		vars_free(vars);
 		xpm_free(vars);
+		vars_free(vars);
+		free(vars->mlx);
 		freestructs_exit(vars->cubinfo, -1);
 	}
 }

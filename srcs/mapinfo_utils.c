@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/07 12:55:09 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 15:47:36 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ static void	mapinfo_parse(t_cubinfo *cubinfo)
 
 void	mapinfo_setup(t_cubinfo *cubinfo, char *path)
 {
+	if (cubinfo->map_size[0] < 1 || cubinfo->map_size[1] < 1)
+		freestructs_msg(cubinfo, "map invalid.");
 	mapinfo_instantiate(cubinfo);
 	mapinfo_fill(cubinfo, path);
 	mapinfo_parse(cubinfo);

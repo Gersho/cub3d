@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:39:04 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/10 16:21:24 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 16:52:04 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ int	main(int ac, char **argv)
 	cubinfo = NULL;
 	cubinfo = cubinfo_setup(cubinfo, argv[1]);
 	mapinfo_setup(cubinfo, argv[1]);
-	map_floodfill(cubinfo, cubinfo->spawn[0], cubinfo->spawn[1]);
+	data_validator(cubinfo);
 	//cubinfo_print(cubinfo);
+	//map_floodfill(cubinfo, cubinfo->spawn[0], cubinfo->spawn[1]);
 	//exit(0);
 	vars_setup(cubinfo, &vars);
 	draw_map(&vars);
