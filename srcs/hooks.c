@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:09 by karim             #+#    #+#             */
-/*   Updated: 2021/04/10 13:46:18 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 12:29:43 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,10 @@ int keyup(int keycode, t_vars *vars)
 	if (keycode == 2)
 		vars->keys.right = 0;
 	return (0);
+}
+
+int		buttons(t_vars *vars)
+{
+	normal_shutdown(vars);
+	return(0);
 }

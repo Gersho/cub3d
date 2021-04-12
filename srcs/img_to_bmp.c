@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 12:40:49 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/10 13:52:49 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 13:24:42 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,5 @@ void	img_to_bmp(t_vars *vars)
 	bmp_pixeldata(vars, fd);
 	close(fd);
 	free(name);
+	normal_shutdown(vars);
 }

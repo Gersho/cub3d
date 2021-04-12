@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:49:47 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/10 16:26:08 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 12:27:29 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	vect_free(t_vars *vars)
 		i++;
 	}
 	free(vars->precalc.vects);
-	//ft_free_all_2d(vars->precalc.vects ,i - 1);
 }
 
 void	vect_precalc(t_vars *vars)

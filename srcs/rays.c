@@ -6,12 +6,11 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/08 14:49:03 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 13:40:09 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
 
 t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 {
@@ -36,7 +35,6 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 	t_trgb saved_color;
 
 	dist = 999999;
-
 	i = 0;
 	while(!is_lastplane(vars->sprites[i].plane))
 	{
@@ -45,7 +43,6 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 		{
 			a = (int)inter_tmp.y;
 			b = (int)inter_tmp.x;
-
 			if (a <= 0)
 				a = 0;
 			if (a >= vars->cubinfo->map_size[0])
@@ -192,15 +189,13 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 		else
 			i--;
 	}
-
-//sky/floor
-inter_tmp = intersection(vect, vars->pc.pos, vars->plane_sky, &dist_tmp);
-if (dist_tmp > 0 && dist_tmp < dist)
-{
-	inter = inter_tmp;
-	dist = dist_tmp;
-	closest_plane = vars->plane_sky;
-}
+	inter_tmp = intersection(vect, vars->pc.pos, vars->plane_sky, &dist_tmp);
+	if (dist_tmp > 0 && dist_tmp < dist)
+	{
+		inter = inter_tmp;
+		dist = dist_tmp;
+		closest_plane = vars->plane_sky;
+	}
 	inter_tmp = intersection(vect, vars->pc.pos, vars->plane_floor, &dist_tmp);
 	if (dist_tmp > 0 && dist_tmp < dist)
 	{
@@ -208,14 +203,12 @@ if (dist_tmp > 0 && dist_tmp < dist)
 		dist = dist_tmp;
 		closest_plane = vars->plane_floor;
 	}
-
 	if (closest_plane.b == 1)
 	{
 		if (vect.y < 0)
 			return get_trgb_from_xpm_n(&vars->n_xpm, inter);
 		return get_trgb_from_xpm_s(&vars->s_xpm, inter);
 	}
-
 	if (closest_plane.a == 1)
 	{
 		if (vect.x < 0)
@@ -228,6 +221,5 @@ if (dist_tmp > 0 && dist_tmp < dist)
 			return (vars->trgb_floor);
 		return (vars->trgb_sky);
 	}
-
 	return saved_color;
 }
