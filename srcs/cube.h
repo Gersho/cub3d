@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 14:22:15 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 15:10:03 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,12 +135,13 @@ typedef struct  s_vars {
 	t_sprite	*sprites;
 	t_keys		keys;
 	int			savemode;
+	int			upscale;
 }               t_vars;
 
 
 char		*ft_gnl_substr(char *s, size_t len_s, size_t start, size_t size);
 char		*ft_gnl_join(char *stock, char *s2, int size);
-void		ft_parse_map(char *path, t_cubinfo *cubinfo);
+void		ft_parse_cub(char *path, t_cubinfo *cubinfo);
 void		cubinfo_free(t_cubinfo *cubinfo);
 void		cubinfo_print(t_cubinfo *cubinfo);
 void		cubinfo_init(t_cubinfo *cubinfo);

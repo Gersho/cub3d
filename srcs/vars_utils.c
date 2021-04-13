@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 12:27:14 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:02:03 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,23 @@ void	vars_free(t_vars *vars)
 		free(vars->sprites);
 }
 
+void	upscale_select(t_vars *vars)
+{
+	long unsigned int	res;
+
+	res = vars->cubinfo->res[0] * vars->cubinfo->res[1];
+	if (res > 2000 * 1000)
+		vars->upscale = 6;
+	else if (res > 1500 * 800)
+		vars->upscale = 5;
+	else if (res > 1200 * 600)
+		vars->upscale = 4;
+	else if (res > 800 * 400)
+		vars->upscale = 3;
+	else 
+		vars->upscale = 2;
+}
+
 void	vars_setup(t_cubinfo *cubinfo, t_vars *vars)
 {
 	vars->cubinfo = cubinfo;
@@ -128,4 +145,6 @@ void	vars_setup(t_cubinfo *cubinfo, t_vars *vars)
 	vect_precalc(vars);
 	vars->pc.angle = vars->pc.angle + 0.0001;
 	vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
+	upscale_select(vars);
+	printf("upscale: %d\n", vars->upscale);
 }

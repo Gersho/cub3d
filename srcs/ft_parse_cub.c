@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:23:37 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 17:29:47 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 14:40:29 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,12 @@ static void	ft_parse_path(char *line, t_cubinfo *cubinfo)
 		}
 		cubinfo->path_W = ptr;
 	}
+	else 
+	{
+		free(ptr);
+		free(line);
+		freestructs_msg(cubinfo, "invalid option.");
+	}
 }
 
 static void	ft_parse_r(char *line, t_cubinfo *cubinfo)
@@ -203,33 +209,41 @@ static void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 
 static void	ft_parse_line(char *line, t_cubinfo *cubinfo, int i)
 {
-	if (ft_strlen(line) == 0)
+	if (cubinfo->map_start != -1)
 	{
-		if (cubinfo->map_start != -1)
+		if (ft_strlen(line) == 0)
 		{
 			free(line);
-			freestructs_msg(cubinfo, "empty line inside map.");
+			freestructs_msg(cubinfo, "map is invalid.");
 		}
-		else
-			return ;
+		cubinfo->map_size[0] += 1;
+		if (cubinfo->map_size[1] < (int)ft_strlen(line))
+			cubinfo->map_size[1] = ft_strlen(line);
+		return ;
 	}
+	if (ft_strlen(line) == 0)
+			return ;
 	if (line[0] == 'C' || line[0] == 'F')
 		ft_parse_cf(line, cubinfo);
 	else if (line[0] == 'R')
 		ft_parse_r(line, cubinfo);
 	else if (ft_str_index_c("NSWE", (int)line[0]) >= 0)
 		ft_parse_path(line, cubinfo);
-	else
+	else if (ft_str_index_c("NSWE012", (int)line[0]) >= 0)
 	{
-		if (cubinfo->map_start == -1)
-			cubinfo->map_start = i;
+		cubinfo->map_start = i;
 		cubinfo->map_size[0] += 1;
 		if (cubinfo->map_size[1] < (int)ft_strlen(line))
 			cubinfo->map_size[1] = ft_strlen(line);
 	}
+	else 
+	{
+		free(line);
+		freestructs_msg(cubinfo, "invalid option.");		
+	}
 }
 
-void	ft_parse_map(char *path, t_cubinfo *cubinfo)
+void	ft_parse_cub(char *path, t_cubinfo *cubinfo)
 {
 	int		fd;
 	char	*line;

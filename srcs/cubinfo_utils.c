@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 12:46:12 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/10 13:59:35 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 13:34:06 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_cubinfo	*cubinfo_setup(t_cubinfo *cubinfo, char *path)
 	if (!cubinfo)
 		error_exit(-1);
 	cubinfo_init(cubinfo);
-	ft_parse_map(path, cubinfo);
+	ft_parse_cub(path, cubinfo);
 	return (cubinfo);
 }
 

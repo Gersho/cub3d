@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 13:37:32 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 16:51:22 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 14:23:26 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static void	check_colors(int *color, t_cubinfo *cubinfo)
 	i = 0;
 	while (i < 3)
 	{
+		if (color[i] == -1)
+			freestructs_msg(cubinfo, "color not set.");
 		if (color[i] < 0 || color[i] > 255)
 			freestructs_msg(cubinfo, "invalid color (0 < x < 255).");
 		i++;

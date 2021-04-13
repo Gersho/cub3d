@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:30:34 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 13:34:19 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 15:43:26 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@ int	mynextframe(t_vars *vars)
 	t_trgb	trgb;
 	int		i;
 	int		j;
-	int		upscale;
 	int		k;
 	int		l;
 
 	i = 0;
-	upscale = 6;
 	update_pc(vars);
 	while (!is_lastsprite(vars->sprites[i]))
 	{
@@ -41,10 +39,10 @@ int	mynextframe(t_vars *vars)
 			trgb = pick_pixel_color(vars, vect);
 			k = 0;
 			my_mlx_pixel_put(&vars->img, i, j, trgb.trgb);
-			while (k < upscale)
+			while (k < vars->upscale)
 			{
 				l = 0;
-				while (l < upscale)
+				while (l < vars->upscale)
 				{
 					l++;
 					if ((i + l) >= (vars->cubinfo->res[0]) || (j + k) >= (vars->cubinfo->res[1]))
@@ -53,9 +51,9 @@ int	mynextframe(t_vars *vars)
 				}
 				k++;
 			}
-			i += upscale - 1;
+			i += vars->upscale - 1;
 		}
-		j += upscale - 1;
+		j += vars->upscale - 1;
 	}
 	if (vars->savemode == 0)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
