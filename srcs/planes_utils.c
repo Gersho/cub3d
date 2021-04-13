@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 10:41:53 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/10 13:30:43 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:24:00 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,28 @@ int	is_lastplane(t_plane plane)
 	&& plane.d == -255)
 		return (1);
 	return (0);
+}
+
+int	is_lastsprite(t_sprite sprite)
+{
+	if (sprite.pos.x == -255 && sprite.pos.y == -255 && sprite.pos.z == -255)
+		return (1);
+	return (0);
+}
+
+t_plane	create_sprite_plane(t_vars *vars, int i)
+{
+	t_plane	plane;
+	double	v_norm;
+
+	v_norm = sqrt(pow((double) vars->pc.view.x, 2) + \
+	pow((double) vars->pc.view.y, 2) + pow((double) vars->pc.view.z, 2));
+	plane.a = vars->pc.view.x / v_norm;
+	plane.b = vars->pc.view.y / v_norm;
+	plane.c = vars->pc.view.z / v_norm;
+	plane.d = - (plane.a * vars->sprites[i].pos.x) - \
+	(plane.b * vars->sprites[i].pos.y) - (plane.c * vars->sprites[i].pos.z);
+	return (plane);
 }
 
 t_plane	*plane_factory_x(t_vars *vars)

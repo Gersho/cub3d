@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/13 15:10:03 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:15:08 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,4 +190,5 @@ void	free_all_exit(t_vars *vars);
 void	vect_free(t_vars *vars);
 int		buttons(t_vars *vars);
 void	data_validator(t_cubinfo *cubinfo);
+void	vars_pc_init(t_vars *vars);
 #endif

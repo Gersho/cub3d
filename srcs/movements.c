@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 11:27:20 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/09 13:11:52 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:14:51 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,32 @@ void	update_pc(t_vars *vars)
 		vars->pc.angle = vars->pc.angle + 0.08;
 		vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
 	}
+}
+
+void	vars_pc_init(t_vars *vars)
+{
+	vars->pc.pos.x = 0.5 + vars->cubinfo->spawn[1];
+	vars->pc.pos.y = 0.5 + vars->cubinfo->spawn[0];
+	vars->pc.pos.z = 0.5;
+	vars->pc.view.x = 0;
+	vars->pc.view.y = -1;
+	vars->pc.view.z = 0;
+	vars->pc.head_tilt = 0.0;
+	if (vars->cubinfo->facing == 'N')
+	{
+		vars->pc.angle = 0;
+	}
+	else if (vars->cubinfo->facing == 'S')
+	{
+		vars->pc.angle = M_PI;
+	}
+	else if (vars->cubinfo->facing == 'E')
+	{
+		vars->pc.angle = M_PI_2;
+	}
+	else if (vars->cubinfo->facing == 'W')
+	{
+		vars->pc.angle = -M_PI_2;
+	}
+	vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
 }

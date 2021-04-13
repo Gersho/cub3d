@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:09:47 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 13:18:37 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:25:04 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_coord	intersection(t_coord vect, t_coord pos, t_plane plane, float *t)
 		res.z = -1;
 		return (res);
 	}
-	*t = -(plane.a * pos.x + plane.b * pos.y + plane.c * pos.z + plane.d) / 
-	(vect.x * plane.a + vect.y * plane.b + vect.z * plane.c);
+	*t = -(plane.a * pos.x + plane.b * pos.y + plane.c * pos.z + plane.d) / \
+		(vect.x * plane.a + vect.y * plane.b + vect.z * plane.c);
 	res.x = pos.x + *t * vect.x;
 	res.y = pos.y + *t * vect.y;
 	res.z = pos.z + *t * vect.z;

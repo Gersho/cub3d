@@ -6,12 +6,11 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:16:11 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 15:47:36 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:26:10 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
 
 static void	mapinfo_instantiate(t_cubinfo *cubinfo)
 {

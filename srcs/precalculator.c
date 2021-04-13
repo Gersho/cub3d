@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:49:47 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 16:51:22 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:23:22 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	vect_store(t_vars *vars)
 	int	j;
 
 	i = 0;
-	//cubinfo_print(vars->cubinfo);
 	while (i <= vars->cubinfo->res[0])
 	{
 		j = 0;

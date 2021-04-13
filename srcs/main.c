@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:39:04 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/13 14:13:29 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:28:19 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int ac, char **argv)
 			exit(-1);
 		}
 	}
-	else 
+	else
 		vars.savemode = 0;
 	ptr_null_setup(&vars);
 	cubinfo = NULL;
@@ -64,7 +64,7 @@ int	main(int ac, char **argv)
 	//map_floodfill(cubinfo, cubinfo->spawn[0], cubinfo->spawn[1]);
 	//exit(0);
 	vars_setup(cubinfo, &vars);
-	cubinfo_print(cubinfo);
+	//cubinfo_print(cubinfo);
 	draw_map(&vars);
 	return (0);
 }

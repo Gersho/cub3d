@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:48:00 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 16:03:30 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:07:14 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,16 @@
 
 void 	xpm_free(t_vars *vars)
 {
-	//(void)vars;
-	// if (vars->n_xpm.addr)
-	// 	free(vars->n_xpm.addr);
-	// if (vars->s_xpm.addr)
-	// 	free(vars->s_xpm.addr);
-	// if (vars->sprite_xpm.addr)
-	// 	free(vars->sprite_xpm.addr);
-	// if (vars->e_xpm.addr)
-	// 	free(vars->e_xpm.addr);
-	// if (vars->w_xpm.addr)
-	// 	free(vars->w_xpm.addr);
 	if (vars->n_xpm.img)
 		mlx_destroy_image(vars->mlx, vars->n_xpm.img);
-		// free(vars->n_xpm.img);
 	if (vars->s_xpm.img)
 		mlx_destroy_image(vars->mlx, vars->s_xpm.img);
-		// free(vars->s_xpm.img);
 	if (vars->e_xpm.img)
 		mlx_destroy_image(vars->mlx, vars->e_xpm.img);
-		// free(vars->e_xpm.img);
 	if (vars->w_xpm.img)
 		mlx_destroy_image(vars->mlx, vars->w_xpm.img);
-		// free(vars->w_xpm.img);
 	if (vars->sprite_xpm.img)
 		mlx_destroy_image(vars->mlx, vars->sprite_xpm.img);
-		// free(vars->sprite_xpm.img);
 }
 
 void	xpm_load(t_vars *vars)
@@ -60,7 +44,6 @@ void	xpm_load(t_vars *vars)
 	{
 		xpm_free(vars);
 		vars_free(vars);
-		//free(vars->mlx);
 		freestructs_exit(vars->cubinfo, -1);
 	}
 }

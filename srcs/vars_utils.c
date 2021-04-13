@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/13 16:02:03 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:22:06 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,49 +56,15 @@ static void	vars_get_sprites(t_vars *vars)
 		{
 			if (vars->cubinfo->map[i][j] == '2')
 			{
-				sprites[k].pos.y = 0.5 + i;
-				sprites[k].pos.x = 0.5 + j;
-				sprites[k].pos.z = 0.5;
-				//sprites[k].pos = (t_coord) {0.5 + i, 0.5 + j, 0.5};
+				sprites[k].pos = (t_coord){0.5 + j, 0.5 + i, 0.5};
 				k++;
 			}
 			j++;
 		}
 		i++;
 	}
-	sprites[k].pos.y = -255;
-	sprites[k].pos.x = -255;
-	sprites[k].pos.z = -255;
-	//sprites[k].pos = (t_coord) {-255, -255, -255};
+	sprites[k].pos = (t_coord){-255, -255, -255};
 	vars->sprites = sprites;
-}
-
-static void	vars_pc_init(t_vars *vars)
-{
-	vars->pc.pos.x = 0.5 + vars->cubinfo->spawn[1];
-	vars->pc.pos.y = 0.5 + vars->cubinfo->spawn[0];
-	vars->pc.pos.z = 0.5;
-	vars->pc.view.x = 0;
-	vars->pc.view.y = -1;
-	vars->pc.view.z = 0;
-	vars->pc.head_tilt = 0.0;
-	if (vars->cubinfo->facing == 'N')
-	{
-		vars->pc.angle = 0;
-	}
-	else if (vars->cubinfo->facing == 'S')
-	{
-		vars->pc.angle = M_PI;
-	}
-	else if (vars->cubinfo->facing == 'E')
-	{
-		vars->pc.angle = M_PI_2;
-	}
-	else if (vars->cubinfo->facing == 'W')
-	{
-		vars->pc.angle = -M_PI_2;
-	}
-	vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
 }
 
 void	vars_free(t_vars *vars)
@@ -128,7 +94,7 @@ void	upscale_select(t_vars *vars)
 		vars->upscale = 4;
 	else if (res > 800 * 400)
 		vars->upscale = 3;
-	else 
+	else
 		vars->upscale = 2;
 }
 
@@ -146,5 +112,4 @@ void	vars_setup(t_cubinfo *cubinfo, t_vars *vars)
 	vars->pc.angle = vars->pc.angle + 0.0001;
 	vars->pc.view = rotate_vect((t_coord){0, -1, 0}, vars->pc.angle);
 	upscale_select(vars);
-	printf("upscale: %d\n", vars->upscale);
 }
