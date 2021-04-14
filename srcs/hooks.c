@@ -6,13 +6,13 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:09 by karim             #+#    #+#             */
-/*   Updated: 2021/04/12 12:29:43 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 12:34:35 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int keydown(int keycode, t_vars *vars)
+int	keydown(int keycode, t_vars *vars)
 {
 	if (keycode == 53)
 		normal_shutdown(vars);
@@ -31,7 +31,7 @@ int keydown(int keycode, t_vars *vars)
 	return (0);
 }
 
-int keyup(int keycode, t_vars *vars)
+int	keyup(int keycode, t_vars *vars)
 {
 	if (keycode == 12)
 		vars->keys.turn_l = 0;
@@ -48,8 +48,8 @@ int keyup(int keycode, t_vars *vars)
 	return (0);
 }
 
-int		buttons(t_vars *vars)
+int	buttons(t_vars *vars)
 {
 	normal_shutdown(vars);
-	return(0);
+	return (0);
 }

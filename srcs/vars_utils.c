@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/13 16:22:06 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 14:01:01 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,35 +36,29 @@ static void	vars_init(t_vars *vars)
 
 static void	vars_get_sprites(t_vars *vars)
 {
-	t_sprite	*sprites;
-	int			i;
-	int			j;
-	int			k;
+	int	c[3];
 
-	sprites = malloc((vars->cubinfo->sprite_qt + 1)* sizeof(t_sprite));
-	if (sprites == NULL)
+	vars->sprites = malloc((vars->cubinfo->sprite_qt + 1)* sizeof(t_sprite));
+	if (vars->sprites == NULL)
 	{
 		vars_free(vars);
 		freestructs_exit(vars->cubinfo, -1);
 	}
-	k = 0;
-	i = 0;
-	while (vars->cubinfo->map[i])
+	c[0] = 0;
+	c[2] = 0;
+	while (vars->cubinfo->map[c[0]])
 	{
-		j = 0;
-		while (vars->cubinfo->map[i][j])
+		c[1] = 0;
+		while (vars->cubinfo->map[c[0]][c[1]])
 		{
-			if (vars->cubinfo->map[i][j] == '2')
-			{
-				sprites[k].pos = (t_coord){0.5 + j, 0.5 + i, 0.5};
-				k++;
-			}
-			j++;
+			if (vars->cubinfo->map[c[0]][c[1]] == '2')
+				vars->sprites[c[2]++].pos
+					= (t_coord){0.5 + c[1], 0.5 + c[0], 0.5};
+			c[1] += 1;
 		}
-		i++;
+		c[0] += 1;
 	}
-	sprites[k].pos = (t_coord){-255, -255, -255};
-	vars->sprites = sprites;
+	vars->sprites[c[2]].pos = (t_coord){-255, -255, -255};
 }
 
 void	vars_free(t_vars *vars)

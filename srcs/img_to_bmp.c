@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 12:40:49 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 13:24:42 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 13:58:46 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ static void	bmp_infoheader(t_vars *vars, int fd)
 	write(fd, &vars->cubinfo->res[1], 4);
 	write(fd, &planes, 2);
 	write(fd, &bpp, 2);
-	i = -1;
-	while (++i < 28)
+	i = 0;
+	while (i < 28)
 	{
 		write(fd, "\0", 1);
-		// i++;
+		i++;
 	}
 }
 

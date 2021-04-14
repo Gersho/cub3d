@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:39:04 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/13 16:28:19 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 14:01:40 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ void	ptr_null_setup(t_vars *vars)
 	vars->precalc.vects = NULL;
 }
 
-int	main(int ac, char **argv)
+static void	arg_check(int ac, char **argv, t_vars *vars)
 {
-	t_vars		vars;
-	t_cubinfo	*cubinfo;
-
 	if (!(ac == 2 || ac == 3))
 	{
 		printf("Error: Wrong number of arguments\n");
@@ -47,7 +44,7 @@ int	main(int ac, char **argv)
 	if (ac == 3)
 	{		
 		if (ft_strncmp(argv[2], "--save\0", 7) == 0)
-			vars.savemode = 1;
+			vars->savemode = 1;
 		else
 		{
 			printf("Error: the only second argument supported is --save\n");
@@ -55,14 +52,20 @@ int	main(int ac, char **argv)
 		}
 	}
 	else
-		vars.savemode = 0;
+		vars->savemode = 0;
+}
+
+int	main(int ac, char **argv)
+{
+	t_vars		vars;
+	t_cubinfo	*cubinfo;
+
+	arg_check(ac, argv, &vars);
 	ptr_null_setup(&vars);
 	cubinfo = NULL;
 	cubinfo = cubinfo_setup(cubinfo, argv[1]);
 	mapinfo_setup(cubinfo, argv[1]);
 	data_validator(cubinfo);
-	//map_floodfill(cubinfo, cubinfo->spawn[0], cubinfo->spawn[1]);
-	//exit(0);
 	vars_setup(cubinfo, &vars);
 	//cubinfo_print(cubinfo);
 	draw_map(&vars);

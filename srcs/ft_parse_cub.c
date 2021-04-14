@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:23:37 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/13 14:40:29 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 13:42:38 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
 {
 	char	**ptr;
-	int	len;
-	int	i;
-	int tmp;
-	
+	int		len;
+	int		i;
+	int		tmp;
+
 	len = 0;
 	i = -1;
-	while(line[++i])
+	while (line[++i])
 		if (line[i] == ',')
 			len++;
 	if (len != 2)
@@ -36,7 +36,7 @@ static void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
 		free(line);
 		freestructs_exit(cubinfo, -1);
 	}
-	while(ptr[len] != NULL)
+	while (ptr[len] != NULL)
 		len++;
 	tmp = len;
 	if (len != 3)
@@ -45,45 +45,55 @@ static void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
 		free(line);
 		freestructs_msg(cubinfo, "color(s) not formated properly.");
 	}
-	while(len > 0)
+	while (len > 0)
 	{
 		i = 0;
-		while(i < (int)ft_strlen(ptr[len - 1]))
+		while (i < (int)ft_strlen(ptr[len - 1]))
 		{
 			if (!(ft_isdigit(ptr[len - 1][i]) || ptr[len - 1][i] == ' '))
 			{
-				ft_free_all_2d(ptr, len - 1);
+				ft_free_all_2d(ptr, tmp - 1);
 				free(line);
 				freestructs_msg(cubinfo, "color(s) not formated properly.");
 			}
 			i++;
 		}
-		
 		if (line[0] == 'C')
 		{
 			if (cubinfo->color_ceil[len - 1] != -1)
 			{
-				ft_free_all_2d(ptr, len - 1);
+				ft_free_all_2d(ptr, tmp - 1);
 				free(line);
 				freestructs_msg(cubinfo, "ceilling color set twice.");
 			}
 			cubinfo->color_ceil[len - 1] = ft_atoi(ptr[len - 1]);
+			if (cubinfo->color_ceil[len - 1] == 0 && ft_str_index_c(ptr[len - 1], '0') == -1)
+			{
+				ft_free_all_2d(ptr, tmp - 1);
+				free(line);
+				freestructs_msg(cubinfo, "ceilling color not formated properly.");
+			}
 		}
 		else
 		{
 			if (cubinfo->color_floor[len - 1] != -1)
 			{
-				ft_free_all_2d(ptr, len - 1);
+				ft_free_all_2d(ptr, tmp - 1);
 				free(line);
 				freestructs_msg(cubinfo, "floor color set twice.");
 			}
 			cubinfo->color_floor[len - 1] = ft_atoi(ptr[len - 1]);
+			if (cubinfo->color_floor[len - 1] == 0 && ft_str_index_c(ptr[len - 1], '0') == -1)
+			{
+				ft_free_all_2d(ptr, tmp - 1);
+				free(line);
+				freestructs_msg(cubinfo, "floor color not formated properly.");
+			}
 		}
 		len--;
 	}
 	ft_free_all_2d(ptr, tmp - 1);
 }
-
 
 static void	ft_parse_path(char *line, t_cubinfo *cubinfo)
 {
@@ -97,7 +107,7 @@ static void	ft_parse_path(char *line, t_cubinfo *cubinfo)
 	}
 	if (line[0] == 'S' && line[1] != 'O')
 	{
-		if(cubinfo->path_sprite != NULL)
+		if (cubinfo->path_sprite != NULL)
 		{
 			free(ptr);
 			free(line);
@@ -147,7 +157,7 @@ static void	ft_parse_path(char *line, t_cubinfo *cubinfo)
 		}
 		cubinfo->path_W = ptr;
 	}
-	else 
+	else
 	{
 		free(ptr);
 		free(line);
@@ -171,7 +181,7 @@ static void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 	while (ptr[i])
 	{
 		j = 0;
-		while(j < (int)ft_strlen(ptr[i]))
+		while (j < (int)ft_strlen(ptr[i]))
 		{
 			if (!(ft_isdigit(ptr[i][j]) || ptr[i][j] == ' '))
 			{
@@ -183,7 +193,6 @@ static void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 			}
 			j++;
 		}
-
 		i++;
 	}
 	if (i != 2)
@@ -222,7 +231,7 @@ static void	ft_parse_line(char *line, t_cubinfo *cubinfo, int i)
 		return ;
 	}
 	if (ft_strlen(line) == 0)
-			return ;
+		return ;
 	if (line[0] == 'C' || line[0] == 'F')
 		ft_parse_cf(line, cubinfo);
 	else if (line[0] == 'R')
@@ -236,10 +245,10 @@ static void	ft_parse_line(char *line, t_cubinfo *cubinfo, int i)
 		if (cubinfo->map_size[1] < (int)ft_strlen(line))
 			cubinfo->map_size[1] = ft_strlen(line);
 	}
-	else 
+	else
 	{
 		free(line);
-		freestructs_msg(cubinfo, "invalid option.");		
+		freestructs_msg(cubinfo, "invalid option.");
 	}
 }
 
