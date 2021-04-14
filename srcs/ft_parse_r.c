@@ -6,20 +6,13 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 14:29:36 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/14 17:06:14 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 17:28:58 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-static void	abort_parse_r(char *line, t_cubinfo *cubinfo, char **ptr, char *msg)
-{
-	ptr_minifree(ptr);
-	free(line);
-	freestructs_msg(cubinfo, msg);
-}
-
-static void	ptr_minifree(char **ptr)
+void	ptr_minifree(char **ptr)
 {
 	int	i;
 
@@ -34,6 +27,14 @@ static void	ptr_minifree(char **ptr)
 		free(ptr);
 	}
 }
+
+static void	abort_parse_r(char *line, t_cubinfo *cubinfo, char **ptr, char *msg)
+{
+	ptr_minifree(ptr);
+	free(line);
+	freestructs_msg(cubinfo, msg);
+}
+
 
 void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 {

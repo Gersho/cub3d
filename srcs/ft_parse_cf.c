@@ -6,11 +6,18 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 14:29:49 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/14 14:31:06 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 17:29:05 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+static void	abort_parse_cf(char *line, t_cubinfo *cubinfo, char **ptr, char *m)
+{
+	ptr_minifree(ptr);
+	free(line);
+	freestructs_msg(cubinfo, m);
+}
 
 void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
 {
@@ -51,44 +58,24 @@ void	ft_parse_cf(char *line, t_cubinfo *cubinfo)
 		while (i < (int)ft_strlen(ptr[len - 1]))
 		{
 			if (!(ft_isdigit(ptr[len - 1][i]) || ptr[len - 1][i] == ' '))
-			{
-				ft_free_all_2d(ptr, tmp - 1);
-				free(line);
-				freestructs_msg(cubinfo, "color(s) not formated properly.");
-			}
+				abort_parse_cf(line, cubinfo, ptr, "color is invalid");
 			i++;
 		}
 		if (line[0] == 'C')
 		{
 			if (cubinfo->color_ceil[len - 1] != -1)
-			{
-				ft_free_all_2d(ptr, tmp - 1);
-				free(line);
-				freestructs_msg(cubinfo, "ceilling color set twice.");
-			}
+				abort_parse_cf(line, cubinfo, ptr, "color set twice");
 			cubinfo->color_ceil[len - 1] = ft_atoi(ptr[len - 1]);
 			if (cubinfo->color_ceil[len - 1] == 0 && ft_str_index_c(ptr[len - 1], '0') == -1)
-			{
-				ft_free_all_2d(ptr, tmp - 1);
-				free(line);
-				freestructs_msg(cubinfo, "ceilling color not formated properly.");
-			}
+				abort_parse_cf(line, cubinfo, ptr, "color is invalid");
 		}
 		else
 		{
 			if (cubinfo->color_floor[len - 1] != -1)
-			{
-				ft_free_all_2d(ptr, tmp - 1);
-				free(line);
-				freestructs_msg(cubinfo, "floor color set twice.");
-			}
+				abort_parse_cf(line, cubinfo, ptr, "color set twice");
 			cubinfo->color_floor[len - 1] = ft_atoi(ptr[len - 1]);
 			if (cubinfo->color_floor[len - 1] == 0 && ft_str_index_c(ptr[len - 1], '0') == -1)
-			{
-				ft_free_all_2d(ptr, tmp - 1);
-				free(line);
-				freestructs_msg(cubinfo, "floor color not formated properly.");
-			}
+				abort_parse_cf(line, cubinfo, ptr, "color is invalid");
 		}
 		len--;
 	}
