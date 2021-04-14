@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/13 16:15:08 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 14:32:31 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include "libft/libft.h"
 # include "../libs/minilibx_opengl_20191021/mlx.h"
-//# include "../libs/minilibx_mms_20200219/mlx.h"
 # include <stdio.h>
 # include <math.h>
 
@@ -142,6 +141,9 @@ typedef struct  s_vars {
 char		*ft_gnl_substr(char *s, size_t len_s, size_t start, size_t size);
 char		*ft_gnl_join(char *stock, char *s2, int size);
 void		ft_parse_cub(char *path, t_cubinfo *cubinfo);
+void		ft_parse_cf(char *line, t_cubinfo *cubinfo);
+void		ft_parse_path(char *line, t_cubinfo *cubinfo);
+void		ft_parse_r(char *line, t_cubinfo *cubinfo);
 void		cubinfo_free(t_cubinfo *cubinfo);
 void		cubinfo_print(t_cubinfo *cubinfo);
 void		cubinfo_init(t_cubinfo *cubinfo);
@@ -172,7 +174,6 @@ t_trgb		get_trgb_from_xpm_n(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_s(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_e(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_w(t_data *xpm, t_coord inter);
-//t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, t_coord vect);
 t_plane	create_sprite_plane(t_vars *vars, int i);
 int	is_lastsprite(t_sprite sprite);
 t_plane	*plane_factory_x(t_vars *vars);
