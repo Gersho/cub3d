@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 14:29:36 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/14 17:28:58 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/15 11:02:48 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	abort_parse_r(char *line, t_cubinfo *cubinfo, char **ptr, char *msg)
 	free(line);
 	freestructs_msg(cubinfo, msg);
 }
-
 
 void	ft_parse_r(char *line, t_cubinfo *cubinfo)
 {

@@ -6,11 +6,24 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 14:42:22 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/12 13:40:09 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/15 12:38:25 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+static void	protect_ab(t_vars *vars, int *a, int *b, char *tile)
+{
+	if (*a <= 0)
+		*a = 0;
+	if (*a >= vars->cubinfo->map_size[0])
+		*a = vars->cubinfo->map_size[0] - 1;
+	if (*b <= 0)
+		*b = 0;
+	if (*b >= vars->cubinfo->map_size[1])
+		*b = vars->cubinfo->map_size[1] - 1;
+	*tile = vars->cubinfo->map[*a][*b];
+}
 
 t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 {
@@ -43,15 +56,16 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 		{
 			a = (int)inter_tmp.y;
 			b = (int)inter_tmp.x;
-			if (a <= 0)
-				a = 0;
-			if (a >= vars->cubinfo->map_size[0])
-				a = vars->cubinfo->map_size[0] - 1;
-			if (b <= 0)
-				b = 0;
-			if (b >= vars->cubinfo->map_size[1])
-				b = vars->cubinfo->map_size[1] - 1;
-			tile = vars->cubinfo->map[a][b];
+			// if (a <= 0)
+			// 	a = 0;
+			// if (a >= vars->cubinfo->map_size[0])
+			// 	a = vars->cubinfo->map_size[0] - 1;
+			// if (b <= 0)
+			// 	b = 0;
+			// if (b >= vars->cubinfo->map_size[1])
+			// 	b = vars->cubinfo->map_size[1] - 1;
+			// tile = vars->cubinfo->map[a][b];
+			protect_ab(vars, &a, &b, &tile);
 
 			/* test sprite diag */
 
@@ -129,15 +143,16 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 			{
 				b--;
 			}
-			if (a <= 0)
-				a = 0;
-			if (a >= vars->cubinfo->map_size[0])
-				a = vars->cubinfo->map_size[0] - 1;
-			if (b <= 0)
-				b = 0;
-			if (b >= vars->cubinfo->map_size[1])
-				b = vars->cubinfo->map_size[1] - 1;
-			tile = vars->cubinfo->map[a][b];
+			// if (a <= 0)
+			// 	a = 0;
+			// if (a >= vars->cubinfo->map_size[0])
+			// 	a = vars->cubinfo->map_size[0] - 1;
+			// if (b <= 0)
+			// 	b = 0;
+			// if (b >= vars->cubinfo->map_size[1])
+			// 	b = vars->cubinfo->map_size[1] - 1;
+			// tile = vars->cubinfo->map[a][b];
+			protect_ab(vars, &a, &b, &tile);
 			if (tile == '1')
 			{
 				inter = inter_tmp;
@@ -168,15 +183,16 @@ t_trgb pick_pixel_color(t_vars *vars, t_coord vect)
 			{
 				a--;
 			}
-			if (a <= 0)
-				a = 0;
-			if (a >= vars->cubinfo->map_size[0])
-				a = vars->cubinfo->map_size[0] - 1;
-			if (b <= 0)
-				b = 0;
-			if (b >= vars->cubinfo->map_size[1])
-				b = vars->cubinfo->map_size[1] - 1;
-			tile = vars->cubinfo->map[a][b];
+			// if (a <= 0)
+			// 	a = 0;
+			// if (a >= vars->cubinfo->map_size[0])
+			// 	a = vars->cubinfo->map_size[0] - 1;
+			// if (b <= 0)
+			// 	b = 0;
+			// if (b >= vars->cubinfo->map_size[1])
+			// 	b = vars->cubinfo->map_size[1] - 1;
+			// tile = vars->cubinfo->map[a][b];
+			protect_ab(vars, &a, &b, &tile);
 			if (tile == '1' || vars->planes_y[i].c == 1)
 			{
 				inter = inter_tmp;
