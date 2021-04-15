@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 13:08:29 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/15 13:59:25 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/15 15:07:37 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,48 +34,31 @@ static double	get_pscale(t_vars *vars, t_coord vect, t_coord inter, int i)
 		+ (vect_tmp.z * vect_v2.z) + 0.5);
 }
 
-void	sprites_inter(t_vars *vars, t_coord vect, t_closest *closest)
+void	sprites_inter(t_vars *v, t_coord vect, t_closest *closest)
 {
-	int		i;
-	t_coord	inter_tmp;
-	float	dist_tmp;
-	int		a;
-	int		b;
-	char	tile;
-	double	pscale;
-	t_trgb	color_temp;
+	int			i;
+	t_tmpkit	tmp;
+	double		pscale;
 
-	i = 0;
-	while(!is_lastplane(vars->sprites[i].plane))
+	i = -1;
+	while (!is_lastplane(v->sprites[++i].plane))
 	{
-		inter_tmp = intersection(vect, vars->pc.pos, vars->sprites[i].plane, &dist_tmp);
-		if (dist_tmp > 0 && dist_tmp < closest->dist)
+		tmp.inter = inter(vect, v->pc.pos, v->sprites[i].plane, &tmp.dist);
+		if (tmp.dist > 0 && tmp.dist < closest->dist)
 		{
-			a = (int)inter_tmp.y;
-			b = (int)inter_tmp.x;
-			protect_ab(vars, &a, &b, &tile);
-			pscale = get_pscale(vars, vect, inter_tmp, i);
-			if(pscale > 1 || pscale < 0)
+			tmp.a = (int)tmp.inter.y;
+			tmp.b = (int)tmp.inter.x;
+			protect_ab(v, &tmp.a, &tmp.b, &tmp.tile);
+			pscale = get_pscale(v, vect, tmp.inter, i);
+			tmp.color = get_trgb_from_xpm_sprite(&v->sprite_xpm,
+					tmp.inter, pscale);
+			if (tmp.tile == '2' && tmp.color.trgb != 0)
 			{
-				i++;
-				continue;
-			}
-			color_temp = get_trgb_from_xpm_sprite(&vars->sprite_xpm, inter_tmp, pscale);
-			if (color_temp.trgb == -16777216 || color_temp.trgb == 0 || isnan(color_temp.trgb))
-			{
-				i++;
-				continue;
-			}
-			if (tile == '2')
-			{
-					closest->inter = inter_tmp;
-					closest->dist = dist_tmp;
-					closest->closest_plane = vars->sprites[i].plane;
-					closest->saved_color = color_temp;
-					i++;
-					continue;
+				closest->inter = tmp.inter;
+				closest->dist = tmp.dist;
+				closest->closest_plane = v->sprites[i].plane;
+				closest->saved_color = tmp.color;
 			}
 		}
-		i++;
 	}
 }

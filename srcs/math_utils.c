@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:09:47 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/14 12:37:16 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/15 14:22:17 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_coord	rotate_vect(t_coord vect, float angle)
 	return (tmp);
 }
 
-t_coord	intersection(t_coord vect, t_coord pos, t_plane plane, float *t)
+t_coord	inter(t_coord vect, t_coord pos, t_plane plane, float *t)
 {
 	t_coord	res;
 

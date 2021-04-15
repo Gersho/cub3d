@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:53:35 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/09 12:41:42 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/15 14:38:45 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,11 @@ t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, double pscale)
 	int		tex_y;
 	t_trgb	trgb;
 
+	if (pscale > 1 || pscale < 0)
+	{
+		trgb.trgb = 0;
+		return (trgb);
+	}
 	tmp.z = inter.z - (int)inter.z;
 	tex_y = xpm->img_height - (xpm->img_height * tmp.z);
 	tex_x = xpm->img_width * pscale;

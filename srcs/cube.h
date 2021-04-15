@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/15 14:04:47 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/15 15:24:51 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ typedef struct s_tmpkit
 	float		dist;
 	t_trgb		color;
 	int			reverse;
+	int			i;
 
 }				t_tmpkit;
 
@@ -175,7 +176,7 @@ void		freestructs_msg(t_cubinfo *cubinfo, char *str);
 void		map_floodfill(t_cubinfo *cubinfo, int x, int y);
 void		draw_map(t_vars *vars);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-t_coord		intersection(t_coord vec, t_coord pos, t_plane plane, float *t);
+t_coord		inter(t_coord vec, t_coord pos, t_plane plane, float *t);
 void		coord_print(t_coord	coord);
 t_coord		get_vector(t_vars *vars, int i, int j);
 t_trgb		pick_pixel_color(t_vars *vars, t_coord vect);
@@ -215,5 +216,6 @@ void	vars_pc_init(t_vars *vars);
 void	ptr_minifree(char **ptr);
 void	protect_ab(t_vars *vars, int *a, int *b, char *tile);
 void	sprites_inter(t_vars *vars, t_coord vect, t_closest *closest);
-
+void	loop_x_inter(t_vars *vars, t_coord vect, t_tmpkit *tmp, t_closest *closest);
+void	loop_y_inter(t_vars *vars, t_coord vect, t_tmpkit *tmp, t_closest *closest);
 #endif
