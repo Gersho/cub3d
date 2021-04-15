@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/14 17:29:29 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/15 14:04:47 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,26 @@ typedef struct  s_vars {
 	int			upscale;
 }               t_vars;
 
+typedef struct	s_closest
+{
+	t_coord		inter;
+	float		dist;
+	t_plane		closest_plane;
+	t_trgb		saved_color;
+}				t_closest;
+
+typedef struct s_tmpkit
+{
+	int			a;
+	int			b;
+	char		tile;
+	t_coord		inter;
+	float		dist;
+	t_trgb		color;
+	int			reverse;
+
+}				t_tmpkit;
+
 
 char		*ft_gnl_substr(char *s, size_t len_s, size_t start, size_t size);
 char		*ft_gnl_join(char *stock, char *s2, int size);
@@ -193,4 +213,7 @@ int		buttons(t_vars *vars);
 void	data_validator(t_cubinfo *cubinfo);
 void	vars_pc_init(t_vars *vars);
 void	ptr_minifree(char **ptr);
+void	protect_ab(t_vars *vars, int *a, int *b, char *tile);
+void	sprites_inter(t_vars *vars, t_coord vect, t_closest *closest);
+
 #endif
