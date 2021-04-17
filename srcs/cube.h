@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/17 11:18:09 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 15:58:50 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,18 @@
 # include "../libs/minilibx_opengl_20191021/mlx.h"
 # include <stdio.h>
 # include <math.h>
-// # include <stdint.h>
 
-typedef struct  s_data {
-    void        *img;
-    char        *addr;
-    int         bits_per_pixel;
-    int         line_length;
-    int         endian;
-	int         img_width;
-    int         img_height;
-}               t_data;
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		img_width;
+	int		img_height;
+}				t_data;
 
-typedef	struct	s_plane
+typedef struct s_plane
 {
 	float	a;
 	float	b;
@@ -41,14 +40,14 @@ typedef	struct	s_plane
 	float	d;
 }				t_plane;
 
-typedef struct	s_coord
+typedef struct s_coord
 {
 	float	x;
 	float	y;
 	float	z;
 }				t_coord;
 
-typedef	struct s_sprite
+typedef struct s_sprite
 {
 	t_plane	plane;
 	t_coord	pos;
@@ -72,7 +71,7 @@ typedef struct s_cubinfo
 	int		map_start;
 }				t_cubinfo;
 
-typedef union	u_trgb
+typedef union u_trgb
 {
 	int			trgb;
 	struct
@@ -82,10 +81,9 @@ typedef union	u_trgb
 		uint8_t	r;
 		uint8_t	t;
 	};
-	
 }				t_trgb;
 
-typedef	struct	s_pc
+typedef struct s_pc
 {
 	t_coord		pos;
 	t_coord		view;
@@ -113,11 +111,11 @@ typedef struct s_keys
 
 }				t_keys;
 
-typedef struct  s_vars {
-    void        *mlx;
-    void        *win;
+typedef struct s_vars {
+	void		*mlx;
+	void		*win;
 	t_precalc	precalc;
-    t_data      img;
+	t_data		img;
 	t_data		n_xpm;
 	t_data		s_xpm;
 	t_data		e_xpm;
@@ -125,9 +123,9 @@ typedef struct  s_vars {
 	t_data		sprite_xpm;
 	t_cubinfo	*cubinfo;
 	t_pc		pc;
-	t_trgb      trgb_sky;
-	t_trgb      trgb_floor;
-	t_trgb      trgb_text;
+	t_trgb		trgb_sky;
+	t_trgb		trgb_floor;
+	t_trgb		trgb_text;
 	t_plane		*planes_x;
 	t_plane		*planes_y;
 	t_plane		plane_sky;
@@ -136,9 +134,9 @@ typedef struct  s_vars {
 	t_keys		keys;
 	int			savemode;
 	int			upscale;
-}               t_vars;
+}				t_vars;
 
-typedef struct	s_closest
+typedef struct s_closest
 {
 	t_coord		inter;
 	float		dist;
@@ -158,7 +156,6 @@ typedef struct s_tmpkit
 	int			i;
 
 }				t_tmpkit;
-
 
 char		*ft_gnl_substr(char *s, size_t len_s, size_t start, size_t size);
 char		*ft_gnl_join(char *stock, char *s2, int size);
@@ -182,13 +179,13 @@ void		coord_print(t_coord	coord);
 t_coord		get_vector(t_vars *vars, int i, int j);
 t_trgb		pick_pixel_color(t_vars *vars, t_coord vect);
 void		color_print(t_trgb trgb);
-void 		ftoa(float n, char* res, int afterpoint);
+void		ftoa(float n, char *res, int afterpoint);
 t_plane		*plane_factory(t_cubinfo *cubinfo);
-void   		 plane_print(t_plane *planes);
+void		plane_print(t_plane *planes);
 void		vars_setup(t_cubinfo *cubinfo, t_vars *vars);
 int			is_lastplane(t_plane plane);
 t_coord		rotate_vect(t_coord vect, float angle);
-t_coord		 move_pc(t_vars *vars, float x);
+t_coord		move_pc(t_vars *vars, float x);
 void		vect_precalc(t_vars *vars);
 void		xpm_load(t_vars *vars);
 void		xpm_getaddr(t_vars *vars);
@@ -196,27 +193,29 @@ t_trgb		get_trgb_from_xpm_n(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_s(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_e(t_data *xpm, t_coord inter);
 t_trgb		get_trgb_from_xpm_w(t_data *xpm, t_coord inter);
-t_plane	create_sprite_plane(t_vars *vars, int i);
-int	is_lastsprite(t_sprite sprite);
-t_plane	*plane_factory_x(t_vars *vars);
-t_plane	*plane_factory_y(t_vars *vars);
-int keydown(int keycode, t_vars *vars);
-int keyup(int keycode, t_vars *vars);
-void	update_pc(t_vars *vars);
-void	img_to_bmp(t_vars *vars);
-t_trgb	get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, double pscale);
-void	xpm_setup(t_vars *vars);
-void 	xpm_free(t_vars *vars);
-void	vars_free(t_vars *vars);
-void	normal_shutdown(t_vars *vars);
-void	free_all_exit(t_vars *vars);
-void	vect_free(t_vars *vars);
-int		buttons(t_vars *vars);
-void	data_validator(t_cubinfo *cubinfo);
-void	vars_pc_init(t_vars *vars);
-void	ptr_minifree(char **ptr);
-void	protect_ab(t_vars *vars, int *a, int *b, char *tile);
-void	sprites_inter(t_vars *vars, t_coord vect, t_closest *closest);
-void	loop_x_inter(t_vars *vars, t_coord vect, t_tmpkit *tmp, t_closest *closest);
-void	loop_y_inter(t_vars *vars, t_coord vect, t_tmpkit *tmp, t_closest *closest);
+t_plane		create_sprite_plane(t_vars *vars, int i);
+int			is_lastsprite(t_sprite sprite);
+t_plane		*plane_factory_x(t_vars *vars);
+t_plane		*plane_factory_y(t_vars *vars);
+int			keydown(int keycode, t_vars *vars);
+int			keyup(int keycode, t_vars *vars);
+void		update_pc(t_vars *vars);
+void		img_to_bmp(t_vars *vars);
+t_trgb		get_trgb_from_xpm_sprite(t_data *xpm, t_coord inter, double pscale);
+void		xpm_setup(t_vars *vars);
+void		xpm_free(t_vars *vars);
+void		vars_free(t_vars *vars);
+void		normal_shutdown(t_vars *vars);
+void		free_all_exit(t_vars *vars);
+void		vect_free(t_vars *vars);
+int			buttons(t_vars *vars);
+void		data_validator(t_cubinfo *cubinfo);
+void		vars_pc_init(t_vars *vars);
+void		ptr_minifree(char **ptr);
+void		protect_ab(t_vars *vars, int *a, int *b, char *tile);
+void		sprites_inter(t_vars *vars, t_coord vect, t_closest *closest);
+void		loop_x_inter(t_vars *vars, t_coord vect, t_tmpkit *tmp,
+				t_closest *closest);
+void		loop_y_inter(t_vars *vars, t_coord vect, t_tmpkit *tmp,
+				t_closest *closest);
 #endif
