@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:39:39 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/15 15:24:51 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 11:18:09 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../libs/minilibx_opengl_20191021/mlx.h"
 # include <stdio.h>
 # include <math.h>
+// # include <stdint.h>
 
 typedef struct  s_data {
     void        *img;

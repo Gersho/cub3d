@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 16:11:02 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/14 14:01:01 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 13:24:42 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ void	vars_free(t_vars *vars)
 {
 	if (vars->win)
 		mlx_destroy_window(vars->mlx, vars->win);
-	if (vars->mlx)
-		free(vars->mlx);
 	if (vars->planes_x)
 		free(vars->planes_x);
 	if (vars->planes_y)

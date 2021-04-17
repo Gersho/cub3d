@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:09 by karim             #+#    #+#             */
-/*   Updated: 2021/04/14 12:34:35 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 12:52:17 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	keydown(int keycode, t_vars *vars)
 {
 	if (keycode == 53)
 		normal_shutdown(vars);
-	if (keycode == 12)
+	if (keycode == 12 || keycode == 123)
 		vars->keys.turn_l = 1;
 	if (keycode == 13)
 		vars->keys.up = 1;
-	if (keycode == 14)
+	if (keycode == 14 || keycode == 124)
 		vars->keys.turn_r = 1;
 	if (keycode == 0)
 		vars->keys.left = 1;
@@ -33,11 +33,11 @@ int	keydown(int keycode, t_vars *vars)
 
 int	keyup(int keycode, t_vars *vars)
 {
-	if (keycode == 12)
+	if (keycode == 12 || keycode == 123)
 		vars->keys.turn_l = 0;
 	if (keycode == 13)
 		vars->keys.up = 0;
-	if (keycode == 14)
+	if (keycode == 14 || keycode == 124)
 		vars->keys.turn_r = 0;
 	if (keycode == 0)
 		vars->keys.left = 0;

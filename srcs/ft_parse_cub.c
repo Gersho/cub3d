@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:23:37 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/14 16:23:27 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 13:27:10 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ static void	ft_parse_line(char *line, t_cubinfo *cubinfo, int i)
 	}
 }
 
+static void	ft_check_pathname(char *path, t_cubinfo *cubinfo)
+{
+	int	len;
+
+	len = ft_strlen(path);
+	if (ft_strncmp((path + (len - 4)), ".cub\0", 5) != 0)
+		freestructs_msg(cubinfo, "scene description\
+			file must have .cub extension");
+}
+
 void	ft_parse_cub(char *path, t_cubinfo *cubinfo)
 {
 	int		fd;
@@ -62,6 +72,7 @@ void	ft_parse_cub(char *path, t_cubinfo *cubinfo)
 	int		ret;
 	int		i;
 
+	ft_check_pathname(path, cubinfo);
 	i = 0;
 	fd = open(path, O_RDONLY);
 	if (!fd)

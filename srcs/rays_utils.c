@@ -6,7 +6,7 @@
 /*   By: kzennoun <kzennoun@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 13:03:55 by kzennoun          #+#    #+#             */
-/*   Updated: 2021/04/15 15:25:22 by kzennoun         ###   ########lyon.fr   */
+/*   Updated: 2021/04/17 10:22:22 by kzennoun         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	protect_ab(t_vars *vars, int *a, int *b, char *tile)
 	*tile = vars->cubinfo->map[*a][*b];
 }
 
-void	loop_x_inter(t_vars *vars, t_coord vect, t_tmpkit *tmp, t_closest *closest)
+void	loop_x_inter(t_vars *vars, t_coord vect, t_tmpkit *tmp,
+	t_closest *closest)
 {
 	tmp->inter = inter(vect, vars->pc.pos, vars->planes_x[tmp->i], &tmp->dist);
 	if (tmp->dist > 0 && tmp->dist < closest->dist)
@@ -44,7 +45,8 @@ void	loop_x_inter(t_vars *vars, t_coord vect, t_tmpkit *tmp, t_closest *closest)
 	}
 }
 
-void	loop_y_inter(t_vars *vars, t_coord vect, t_tmpkit *tmp, t_closest *closest)
+void	loop_y_inter(t_vars *vars, t_coord vect, t_tmpkit *tmp,
+	t_closest *closest)
 {
 	tmp->inter = inter(vect, vars->pc.pos, vars->planes_y[tmp->i], &tmp->dist);
 	if (tmp->dist > 0 && tmp->dist < closest->dist)
