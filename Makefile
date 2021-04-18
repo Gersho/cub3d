@@ -5,25 +5,25 @@ srcs/movements.c srcs/precalculator.c srcs/xpm_loader.c srcs/trgb_from_xpm.c \
 srcs/hooks.c srcs/img_to_bmp.c srcs/math_utils.c srcs/ft_parse_cf.c \
 srcs/ft_parse_path.c srcs/ft_parse_r.c srcs/rays_utils.c srcs/sprites_inter.c
 
-OBJS	= $(SRCS:.c=.o)
-NAME = cube.a
-CC		= gcc
-RM		= rm -f
-CFLAGS	= -Wall -Wextra -Werror -O3 -g
-AR		= ar -cr
-MINILIB = libs/minilibx_opengl_20191021
+OBJS		= $(SRCS:.c=.o)
+NAME		= cub3D
+CC			= gcc
+RM			= rm -f
+CFLAGS		= -Wall -Wextra -Werror -O3
+MINILIB		= libs/minilibx_opengl_20191021
+FRAMEWORK	= -framework OpenGL -framework AppKit
 
-%.o: %.c	cube.h
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+%.o: 		%.c	cube.h
+			$(CC) $(CFLAGS) -c -o $*
 
 all: 		$(NAME)
 
+bonus:		all
+
 $(NAME):	$(OBJS)
 			make -C srcs/libft/
-			cp srcs/libft/libft.a cube.a
 			make -C libs/minilibx_opengl_20191021
-			$(AR) $(NAME) $(OBJS)
-			gcc $(NAME) -L $(MINILIB) -lmlx -framework OpenGL -framework AppKit -o cub3D
+			gcc $^ srcs/libft/libft.a -L $(MINILIB) $(FRAMEWORK) -lmlx -o $(NAME)
 
 clean:
 			$(RM) $(OBJS)
